@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.SettingsPane?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ListView layoutX="70.0" layoutY="140.0" prefHeight="200.0" prefWidth="479.0" />
+      <Text layoutX="258.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="KHACH HANG" />
+      <SettingsPane fx:id="maKH" layoutX="58.0" layoutY="129.0" />
+   </children>
+</Pane>
