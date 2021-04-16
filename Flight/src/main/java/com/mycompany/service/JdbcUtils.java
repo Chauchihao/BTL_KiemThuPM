@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author M
+ * @author Admin
  */
 public class JdbcUtils {
     static {
@@ -24,6 +24,6 @@ public class JdbcUtils {
     
     public static Connection getConn() throws SQLException {
        
-        return DriverManager.getConnection("jdbc:mysql://localhost/flight", "root", "12345679");
+        return DriverManager.getConnection("jdbc:mysql://localhost/flight", "root", "12345678");
     }
 }
