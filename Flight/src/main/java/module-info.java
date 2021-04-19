@@ -5,4 +5,5 @@ module com.mycompany.flight {
 
     opens com.mycompany.flight to javafx.fxml;
     exports com.mycompany.flight;
+    exports com.mycompany.pojo;
 }

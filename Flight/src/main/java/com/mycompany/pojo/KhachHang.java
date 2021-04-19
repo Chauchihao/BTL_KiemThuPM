@@ -10,37 +10,51 @@ package com.mycompany.pojo;
  * @author Admin
  */
 public class KhachHang {
-    private int id;
-    private String hoTen;
+    private int maKH;
+    private String tenKH;
+    private String email;
     private String sdt;
-    private String diaChi;
 
     /**
-     * @return the id
+     * @return the maKH
      */
-    public int getId() {
-        return id;
+    public int getMaKH() {
+        return maKH;
     }
 
     /**
-     * @param id the id to set
+     * @param maKH the maKH to set
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setMaKH(int maKH) {
+        this.maKH = maKH;
     }
 
     /**
-     * @return the hoTen
+     * @return the tenKH
      */
-    public String getHoTen() {
-        return hoTen;
+    public String getTenKH() {
+        return tenKH;
     }
 
     /**
-     * @param hoTen the hoTen to set
+     * @param tenKH the tenKH to set
      */
-    public void setHoTen(String hoTen) {
-        this.hoTen = hoTen;
+    public void setTenKH(String tenKH) {
+        this.tenKH = tenKH;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
@@ -55,19 +69,5 @@ public class KhachHang {
      */
     public void setSdt(String sdt) {
         this.sdt = sdt;
-    }
-
-    /**
-     * @return the diaChi
-     */
-    public String getDiaChi() {
-        return diaChi;
-    }
-
-    /**
-     * @param diaChi the diaChi to set
-     */
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
     }
 }

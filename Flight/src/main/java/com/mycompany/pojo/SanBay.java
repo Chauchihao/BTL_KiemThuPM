@@ -12,6 +12,7 @@ package com.mycompany.pojo;
 public class SanBay {
     private String maSanBay;
     private String tenSanBay;
+    private String diaDiem;
     private String quocGia;
     private Boolean trangThai;
 
@@ -69,5 +70,19 @@ public class SanBay {
      */
     public void setTrangThai(Boolean trangThai) {
         this.trangThai = trangThai;
+    }
+
+    /**
+     * @return the diaDiem
+     */
+    public String getDiaDiem() {
+        return diaDiem;
+    }
+
+    /**
+     * @param diaDiem the diaDiem to set
+     */
+    public void setDiaDiem(String diaDiem) {
+        this.diaDiem = diaDiem;
     }
 }

@@ -13,7 +13,6 @@ public class Ghe {
     private String maGhe;
     private Boolean trangThai;
     private Enum hangGhe;
-    private String soHieuMayBay;
 
     /**
      * @return the maGhe
@@ -57,17 +56,4 @@ public class Ghe {
         this.hangGhe = hangGhe;
     }
 
-    /**
-     * @return the soHieuMayBay
-     */
-    public String getSoHieuMayBay() {
-        return soHieuMayBay;
-    }
-
-    /**
-     * @param soHieuMayBay the soHieuMayBay to set
-     */
-    public void setSoHieuMayBay(String soHieuMayBay) {
-        this.soHieuMayBay = soHieuMayBay;
-    }
 }

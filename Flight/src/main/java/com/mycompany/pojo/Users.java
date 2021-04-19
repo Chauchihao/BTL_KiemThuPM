@@ -10,15 +10,22 @@ package com.mycompany.pojo;
  * @author Admin
  */
 public class Users {
+    
+    
     private int id;
     private String hoTen;
     private String tenTK;
     private String matKhau;
     private Boolean trangThai;
-    private Enum loaiTK;
+    private EnumLoaiTK loaiTK;
     private String diaChi;
     private String sdt;
 
+    
+    public enum EnumLoaiTK
+    {
+        NhanVien, KhachHang;
+    }
     /**
      * @return the id
      */
@@ -99,7 +106,7 @@ public class Users {
     /**
      * @param loaiTK the loaiTK to set
      */
-    public void setLoaiTK(Enum loaiTK) {
+    public void setLoaiTK(EnumLoaiTK loaiTK) {
         this.loaiTK = loaiTK;
     }
 

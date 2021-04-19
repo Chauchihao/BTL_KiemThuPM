@@ -20,7 +20,7 @@ public class ChuyenBay {
     private Date thoiGianDung;
     private String noiDi;
     private String noiDen;
-    private int sanBayTrungGian; 
+    private String sanBayTrungGian; 
 
     /**
      * @return the maChuyenBay
@@ -137,15 +137,14 @@ public class ChuyenBay {
     /**
      * @return the sanBayTrungGian
      */
-    public int getSanBayTrungGian() {
+    public String getSanBayTrungGian() {
         return sanBayTrungGian;
     }
 
     /**
      * @param sanBayTrungGian the sanBayTrungGian to set
      */
-    public void setSanBayTrungGian(int sanBayTrungGian) {
+    public void setSanBayTrungGian(String sanBayTrungGian) {
         this.sanBayTrungGian = sanBayTrungGian;
     }
-    
 }
