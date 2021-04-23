@@ -6,11 +6,13 @@ module-info.class
 com\mycompany\service\JdbcUtils.class
 com\mycompany\service\GheService.class
 com\mycompany\service\ChuyenBayService.class
+com\mycompany\service\KhachHangTestService.class
 com\mycompany\pojo\Users.class
 com\mycompany\service\PhieuDatChoService.class
 com\mycompany\pojo\KhachHang.class
 com\mycompany\flight\PrimaryController.class
 com\mycompany\service\KhachHangService.class
+com\mycompany\pojo\KhachHangTest.class
 com\mycompany\pojo\SanBay.class
 com\mycompany\service\UsersService.class
 com\mycompany\pojo\Users$EnumLoaiTK.class
