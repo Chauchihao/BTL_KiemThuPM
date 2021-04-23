@@ -1,7 +1,9 @@
+com\mycompany\flight\DatVeTaiQuay.class
 com\mycompany\flight\SecondaryController.class
 com\mycompany\service\SanBayService.class
 com\mycompany\pojo\MayBay.class
 com\mycompany\pojo\ChuyenBay.class
+com\mycompany\flight\DatVeOnlineController.class
 module-info.class
 com\mycompany\service\JdbcUtils.class
 com\mycompany\service\GheService.class
@@ -11,12 +13,14 @@ com\mycompany\service\PhieuDatChoService.class
 com\mycompany\pojo\KhachHang.class
 com\mycompany\flight\PrimaryController.class
 com\mycompany\service\KhachHangService.class
+com\mycompany\flight\TraCuuChuyenBay.class
 com\mycompany\pojo\SanBay.class
 com\mycompany\service\UsersService.class
 com\mycompany\pojo\Users$EnumLoaiTK.class
 com\mycompany\service\MayBayService.class
 com\mycompany\pojo\Ghe.class
 com\mycompany\flight\DangNhapController.class
+com\mycompany\flight\TraCuuVeController.class
 com\mycompany\flight\Utils.class
 com\mycompany\pojo\PhieuDatCho.class
 com\mycompany\flight\App.class

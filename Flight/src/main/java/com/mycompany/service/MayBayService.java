@@ -5,10 +5,37 @@
  */
 package com.mycompany.service;
 
+import com.mycompany.pojo.MayBay;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Admin
  */
 public class MayBayService {
+    private Connection conn;
+
+    public MayBayService(Connection conn) {
+        this.conn = conn;
+    }
     
+    public List<MayBay> getMayBay() throws SQLException {
+        String sql = "SELECT * FROM maybay WHERE soHieuMayBay like concat(?) ORDER BY soHieuMayBay DESC";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        
+        ResultSet rs = stm.executeQuery();
+        List<MayBay> maybay = new ArrayList<>();
+        while (rs.next()) {
+            MayBay mb = new MayBay();
+            mb.setSoHieuMayBay(rs.getString("soHieuMayBay"));
+            mb.setHangMayBay(rs.getString("hangMayBay"));
+            maybay.add(mb);
+        }
+        return maybay;
+    }
 }

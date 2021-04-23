@@ -5,7 +5,6 @@
  */
 package com.mycompany.flight;
 
-import com.mycompany.pojo.KhachHang;
 import com.mycompany.pojo.Users;
 import com.mycompany.service.JdbcUtils;
 import com.mycompany.service.UsersService;
@@ -21,14 +20,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  *
@@ -38,6 +31,7 @@ public class DangNhapController implements Initializable{
     @FXML private ComboBox<Users> cbLoaiTK;
     @FXML private TextField txtTenTK;
     @FXML private TextField txtMatKhau;
+    @FXML private Button btDangNhap;
     
 
     @Override
@@ -46,7 +40,13 @@ public class DangNhapController implements Initializable{
         
     }
     
-    public void addHandler(ActionEvent evt) {
+    public void dangNhapHandle(ActionEvent evt) {
+        if (this.txtTenTK.getText().equals("")){
+            Utils.getBox("Vui lòng điền tài khoản", Alert.AlertType.INFORMATION).show();
+        }
+        if (this.txtMatKhau.getText().equals("")){
+            Utils.getBox("Vui lòng điền mật khẩu", Alert.AlertType.INFORMATION).show();
+        }
         try {
             Connection conn = JdbcUtils.getConn();
             UsersService s = new UsersService(conn);
@@ -54,15 +54,17 @@ public class DangNhapController implements Initializable{
             Users u = new Users();
             u.setTenTK(txtTenTK.getText());
             u.setMatKhau(txtMatKhau.getText());
-            if (s.addUsers(u) == true) {
-                Utils.getBox("SUCCESSFUL", Alert.AlertType.INFORMATION).show();
+            
+            if (s.login(u) == true) {
+                Utils.getBox("Đăng nhập thành công!", Alert.AlertType.INFORMATION).show();
             } else
-                Utils.getBox("FAILED", Alert.AlertType.INFORMATION).show();
+                Utils.getBox("Đăng nhập thất bại", Alert.AlertType.INFORMATION).show();
             
         } catch (SQLException ex) {
             Logger.getLogger(DangNhapController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     
 
 }

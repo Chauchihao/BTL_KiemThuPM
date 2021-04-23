@@ -27,7 +27,6 @@ public class UsersService {
         this.conn = conn;
     }
     
-     
     public List<Users> getUsers(String kw) throws SQLException {
         if (kw == null)
             throw new SQLDataException();
@@ -43,7 +42,6 @@ public class UsersService {
             u.setId(rs.getInt("id"));
             u.setHoTen(rs.getString("hoTen"));
             u.setTenTK(rs.getString("tenTK"));
-            u.setMatKhau(rs.getString("matKhau"));
             u.setTrangThai(rs.getBoolean("trangThai"));
             //Loi
             //.setLoaiTK(rs.getEnum("matKhau"));
@@ -51,6 +49,18 @@ public class UsersService {
             users.add(u);
         }
         return users;
+    }
+    
+    public boolean login(Users u) throws SQLException{
+        String sql = "SELECT * FROM users WHERE tenTK=? AND matkhau=? ";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setString(1, u.getTenTK());
+        stm.setString(2, u.getMatKhau());
+        ResultSet rs = stm.executeQuery();
+        
+        if (rs.next())
+            return true;
+        return false;
     }
     
     
