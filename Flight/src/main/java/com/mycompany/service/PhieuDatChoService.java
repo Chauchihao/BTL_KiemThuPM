@@ -33,14 +33,10 @@ public class PhieuDatChoService {
         List<PhieuDatCho> phieudatcho = new ArrayList<>();
         while (rs.next()) {
             PhieuDatCho pdc = new PhieuDatCho();
-//            pdc.setMaKH(rs.getInt("maKH"));
-//            pdc.setMaPhieu(rs.getString("maPhieu"));
-//            pdc.getMaVe(rs.getString("maVe"));
-//            pdc.getNgayDatVe(rs.getDate("ngayDatVe"));
-//            pdc.setThoiGianDung(rs.getDate("ngayVe"));
-//            pdc.setNoiDi(rs.getString("noiDen"));
-//            pdc.setNoiDen(rs.getString("noiDi"));
-//            pdc.setSanBayTrungGian(rs.getString("sanBayTrungGian"));
+            pdc.setMaKH(rs.getInt("maKH"));
+            pdc.setMaPhieu(rs.getInt("maPhieu"));
+            pdc.setMaVe(rs.getInt("maVe"));
+            pdc.setNgayDatVe(rs.getDate("ngayDatVe"));
             
             phieudatcho.add(pdc);
         }
