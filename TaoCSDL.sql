@@ -70,7 +70,7 @@ CREATE TABLE chuyenbay (
   thoiGianBay datetime NOT NULL,
   thoiGianDung datetime NOT NULL,
   noiDi varchar(255) NOT NULL,
-  noiDen varchar(255) NOT NULL,
+  noiDen varchar(255) NOT NULL, 
   soHieuMayBay varchar(10) NOT NULL,
   sanBayTrungGian varchar(10) NULL,
   
@@ -86,20 +86,33 @@ CREATE TABLE chuyenbay (
   CONSTRAINT FK_chuyenbay_soHieuMayBay FOREIGN KEY (soHieuMayBay) REFERENCES maybay(soHieuMayBay)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE loaiTK (
+	id int NOT NULL,
+    tk varchar(255) NOT NULL,
+    
+    PRIMARY KEY (id),
+  
+	KEY FK_id_idx (id)
+    
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 #Tạo Bảng users
 CREATE TABLE users (
   id int NOT NULL,
   hoTen varchar(255) NOT NULL,
   tenTK varchar(255) NOT NULL,
   matKhau varchar(255) NOT NULL,
-  trangThai bool NOT NULL,
-  loaiTK enum('Khách Hàng','Nhân Viên') NOT NULL DEFAULT 'Nhân Viên',
-  diaChi varchar(255) DEFAULT NULL,
+  trangThai bool DEFAULT TRUE NOT NULL ,
+  #loaiTK enum('Khách Hàng','Nhân Viên') NOT NULL DEFAULT 'Nhân Viên',
+  idLoaiTK int NOT NULL,
+  diaChi varchar(255) NULL,
   sdt varchar(10) NULL,
   
   PRIMARY KEY (id),
   
-  KEY FK_users_id_idx (id)
+  KEY FK_users_id_idx (id),
+  KEY FK_users_idLoaiTK_idx (idLoaiTK),
+  CONSTRAINT FK_users_loaiTK FOREIGN KEY (idLoaiTK) REFERENCES loaiTK(id)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 #Tạo Bảng khachhang
@@ -152,4 +165,38 @@ CREATE TABLE phieudatcho (
   CONSTRAINT FK_phieudatcho_maVe FOREIGN KEY (maVe) REFERENCES vemaybay(maVe),
   CONSTRAINT FK_phieudatcho_maKH FOREIGN KEY (maKH) REFERENCES khachhang(maKH)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO flight.loaitk (id, tk) VALUES ('1', 'Nhân Viên');
+INSERT INTO flight.loaitk (id, tk) VALUES ('2', 'Khách Hàng');
+
+INSERT INTO flight.users (id, hoTen, tenTK, matKhau, idLoaiTK) VALUES ('1', 'Test', 'testnv', '1234', '1');
+INSERT INTO flight.users (id, hoTen, tenTK, matKhau, idLoaiTK) VALUES ('2', 'Test', 'testkh', '1234', '2');
+
+INSERT INTO flight.khachhang (maKH, tenKH) VALUES ('1', 'test');
+INSERT INTO flight.khachhang (maKH, tenKH) VALUES ('2', 'test2');
+
+INSERT INTO flight.ghe (maGhe, trangThai, hangGhe) VALUES ('1', '1', '1');
+INSERT INTO flight.ghe (maGhe, trangThai, hangGhe) VALUES ('2', '1', '2');
+
+INSERT INTO flight.maybay (soHieuMayBay, hangBay) VALUES ('AB1', 'VN');
+INSERT INTO flight.maybay (soHieuMayBay, hangBay) VALUES ('YZ5', 'UK');
+
+INSERT INTO flight.sanbay (maSanBay, tenSanBay, diaDiem, quocGia, trangThai) VALUES ('1', 'TSN', 'HCM', 'VN', '1');
+INSERT INTO flight.sanbay (maSanBay, tenSanBay, diaDiem, quocGia, trangThai) VALUES ('2', 'MB', 'HN', 'VN', '1');
+
+INSERT INTO flight.maybay_ghe (soHieuMayBay, maGhe, soGheHang1, soGheHang2) VALUES ('AB1', '1', '20', '21');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, maGhe, soGheHang1, soGheHang2) VALUES ('YZ5', '2', '10', '16');
+
+INSERT INTO flight.chuyenbay (maChuyenBay,thoiGianBay,thoiGianDung,noiDi,noiDen,soHieuMayBay) VALUES ('1','2020-05-20 07:00:00','2020-05-20 12:00:00','HCM','HN','AB1');
+INSERT INTO flight.chuyenbay (maChuyenBay,thoiGianBay,thoiGianDung,noiDi,noiDen,soHieuMayBay) VALUES ('2','2020-06-25 17:00:00','2020-06-27 20:00:00','HN','HCM','YZ5');
+
+INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('1', 'AB1', '2021-03-20 05:50:00');
+INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('2', 'YZ5', '2021-01-01 20:30:00');
+
+INSERT INTO flight.vemaybay (maVe, hangVe, giaVe, maGhe, ngayXuatVe, maNguoiDat, maKH, maChuyenBay) VALUES ('1', '1', '20', '1', '2021-03-20 05:50:00', '1', '1', '1');
+INSERT INTO flight.vemaybay (maVe, hangVe, giaVe, maGhe, ngayXuatVe, maNguoiDat, maKH, maChuyenBay) VALUES ('2', '2', '10', '2', '2021-03-10 22:20:21', '2', '2', '2');
+
+INSERT INTO flight.phieudatcho (maPhieu, maVe, maKH, ngayDatVe) VALUES ('1', '1', '1', '2021-03-20 05:50:00');
+INSERT INTO flight.phieudatcho (maPhieu, maVe, maKH, ngayDatVe) VALUES ('2', '2', '2', '2021-01-30 09:40:00');
+
 

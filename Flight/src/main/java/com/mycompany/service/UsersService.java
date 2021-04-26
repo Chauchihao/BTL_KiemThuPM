@@ -27,32 +27,8 @@ public class UsersService {
         this.conn = conn;
     }
     
-    public List<Users> getUsers(String kw) throws SQLException {
-        if (kw == null)
-            throw new SQLDataException();
-        
-        String sql = "SELECT * FROM users WHERE tenTK like concat('%', ?, '%') ORDER BY id DESC";
-        PreparedStatement stm = this.conn.prepareStatement(sql);
-        stm.setString(1, kw);
-        
-        ResultSet rs = stm.executeQuery();
-        List<Users> users = new ArrayList<>();
-        while (rs.next()) {
-            Users u = new Users();
-            u.setId(rs.getInt("id"));
-            u.setHoTen(rs.getString("hoTen"));
-            u.setTenTK(rs.getString("tenTK"));
-            u.setTrangThai(rs.getBoolean("trangThai"));
-            //Loi
-            //.setLoaiTK(rs.getEnum("matKhau"));
-            
-            users.add(u);
-        }
-        return users;
-    }
-    
     public boolean login(Users u) throws SQLException{
-        String sql = "SELECT * FROM users WHERE tenTK=? AND matkhau=? ";
+        String sql = "SELECT * FROM users WHERE tenTK=? AND matKhau=?";
         PreparedStatement stm = this.conn.prepareStatement(sql);
         stm.setString(1, u.getTenTK());
         stm.setString(2, u.getMatKhau());
@@ -63,32 +39,21 @@ public class UsersService {
         return false;
     }
     
-    
-    public boolean addUsers(Users u) throws SQLException {
-        String sql = "INSERT INTO users(hoTen, tenTK, matkhau, trangThai, "
-                + "loaiTK, diachi, sdt) VALUES(?, ?, ?, ?, ?, ?, ?)";
+    public List<Users> getUsers(String tenTK) throws SQLException {
+        String sql = "SELECT id, hoTen, tenTK FROM users WHERE tenTK=?";
         PreparedStatement stm = this.conn.prepareStatement(sql);
-        stm.setString(1, u.getHoTen());
-        stm.setString(2, u.getTenTK());
-        stm.setString(3, u.getMatKhau());
-        stm.setBoolean(4, u.getTrangThai());
-        //Loi
-        //stm.setEnum(5, u.getLoaiTK());
-        stm.setString(6, u.getDiaChi());
-        stm.setString(7, u.getSdt());
+        stm.setString(1, tenTK);
         
-        int row = stm.executeUpdate();
-        
-        return row > 0;
-    }
-    
-    public boolean deleleUsers(int id) throws SQLException {
-        String sql = "DELETE FROM users WHERE id=?";
-        PreparedStatement stm = this.conn.prepareStatement(sql);
-        stm.setInt(1, id);
-        
-        int row = stm.executeUpdate();
-        
-        return row > 0;
+        ResultSet rs = stm.executeQuery();
+        List<Users> users = new ArrayList<>();
+        while (rs.next()) {
+            Users u = new Users();
+            u.setId(rs.getInt("id"));
+            u.setHoTen(rs.getString("hoTen"));
+            u.setTenTK(rs.getString("tenTK"));
+            
+            users.add(u);
+        }
+        return users;
     }
 }

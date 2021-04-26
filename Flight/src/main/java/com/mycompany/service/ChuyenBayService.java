@@ -25,6 +25,21 @@ public class ChuyenBayService {
         this.conn = conn;
     }
     
+    public List<ChuyenBay> getMaChuyenBay() throws SQLException {
+        String sql = "SELECT maChuyeBbay FROM chuyenbay";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        
+        ResultSet rs = stm.executeQuery();
+        List<ChuyenBay> chuyenbay = new ArrayList<>();
+        while (rs.next()) {
+            ChuyenBay cb = new ChuyenBay();
+            cb.setMaChuyenBay(rs.getString("maChuyenBay"));
+            
+            chuyenbay.add(cb);
+        }
+        return chuyenbay;
+    }
+    
     public List<ChuyenBay> getChuyenBay() throws SQLException {
         String sql = "SELECT * FROM chuyenbay WHERE maChuyenBay like concat(?) ORDER BY maChuyenBay DESC";
         PreparedStatement stm = this.conn.prepareStatement(sql);

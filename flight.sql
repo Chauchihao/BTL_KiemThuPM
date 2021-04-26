@@ -1,9 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.24, for Win64 (x86_64)
 --
 -- Host: localhost    Database: flight
 -- ------------------------------------------------------
--- Server version	8.0.22
-
+-- Server version	8.0.24
 CREATE DATABASE flight /*!40100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
 USE flight;
@@ -28,10 +27,10 @@ DROP TABLE IF EXISTS `chuyenbay`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `chuyenbay` (
   `maChuyenBay` int NOT NULL,
-  `thoiGianBay` datetime NOT NULL,
-  `thoiGianDung` datetime NOT NULL,
-  `noiDi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `noiDen` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `thoiGianBay` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `thoiGianDung` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `noiDi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'HCM',
+  `noiDen` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'HN',
   `soHieuMayBay` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sanBayTrungGian` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`maChuyenBay`),
@@ -53,6 +52,7 @@ CREATE TABLE `chuyenbay` (
 
 LOCK TABLES `chuyenbay` WRITE;
 /*!40000 ALTER TABLE `chuyenbay` DISABLE KEYS */;
+INSERT INTO `chuyenbay` VALUES (1,'2020-05-20 07:00:00','2020-05-20 12:00:00','HCM','HN','AB1',NULL),(2,'2020-06-25 17:00:00','2020-06-27 20:00:00','HN','HCM','YZ5',NULL);
 /*!40000 ALTER TABLE `chuyenbay` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,6 +77,7 @@ CREATE TABLE `ghe` (
 
 LOCK TABLES `ghe` WRITE;
 /*!40000 ALTER TABLE `ghe` DISABLE KEYS */;
+INSERT INTO `ghe` VALUES ('1',1,'Hạng 1'),('2',1,'Hạng 2');
 /*!40000 ALTER TABLE `ghe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,7 +104,33 @@ CREATE TABLE `khachhang` (
 
 LOCK TABLES `khachhang` WRITE;
 /*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
+INSERT INTO `khachhang` VALUES (1,'test',NULL,NULL),(2,'test2',NULL,NULL);
 /*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `loaitk`
+--
+
+DROP TABLE IF EXISTS `loaitk`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `loaitk` (
+  `id` int NOT NULL,
+  `tk` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_id_idx` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `loaitk`
+--
+
+LOCK TABLES `loaitk` WRITE;
+/*!40000 ALTER TABLE `loaitk` DISABLE KEYS */;
+INSERT INTO `loaitk` VALUES (1,'Nhân Viên'),(2,'Khách Hàng');
+/*!40000 ALTER TABLE `loaitk` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -126,6 +153,7 @@ CREATE TABLE `maybay` (
 
 LOCK TABLES `maybay` WRITE;
 /*!40000 ALTER TABLE `maybay` DISABLE KEYS */;
+INSERT INTO `maybay` VALUES ('AB1','VN'),('YZ5','UK');
 /*!40000 ALTER TABLE `maybay` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,6 +183,7 @@ CREATE TABLE `maybay_ghe` (
 
 LOCK TABLES `maybay_ghe` WRITE;
 /*!40000 ALTER TABLE `maybay_ghe` DISABLE KEYS */;
+INSERT INTO `maybay_ghe` VALUES ('AB1','1',20,21),('YZ5','2',10,16);
 /*!40000 ALTER TABLE `maybay_ghe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,6 +213,7 @@ CREATE TABLE `phieudatcho` (
 
 LOCK TABLES `phieudatcho` WRITE;
 /*!40000 ALTER TABLE `phieudatcho` DISABLE KEYS */;
+INSERT INTO `phieudatcho` VALUES (1,1,1,'2021-03-20 05:50:00'),(2,2,2,'2021-01-30 09:40:00');
 /*!40000 ALTER TABLE `phieudatcho` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,6 +241,7 @@ CREATE TABLE `sanbay` (
 
 LOCK TABLES `sanbay` WRITE;
 /*!40000 ALTER TABLE `sanbay` DISABLE KEYS */;
+INSERT INTO `sanbay` VALUES ('1','TSN','HCM','VN',1),('2','MB','HN','VN',1);
 /*!40000 ALTER TABLE `sanbay` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,6 +270,7 @@ CREATE TABLE `sanbay_maybay` (
 
 LOCK TABLES `sanbay_maybay` WRITE;
 /*!40000 ALTER TABLE `sanbay_maybay` DISABLE KEYS */;
+INSERT INTO `sanbay_maybay` VALUES ('1','AB1','2021-03-20 05:50:00'),('2','YZ5','2021-01-01 20:30:00');
 /*!40000 ALTER TABLE `sanbay_maybay` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,12 +286,14 @@ CREATE TABLE `users` (
   `hoTen` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tenTK` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `matKhau` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `trangThai` tinyint(1) NOT NULL,
-  `loaiTK` enum('Khách Hàng','Nhân Viên') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Nhân Viên',
+  `trangThai` tinyint(1) NOT NULL DEFAULT '1',
+  `idLoaiTK` int NOT NULL,
   `diaChi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sdt` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_users_id_idx` (`id`)
+  KEY `FK_users_id_idx` (`id`),
+  KEY `FK_users_idLoaiTK_idx` (`idLoaiTK`),
+  CONSTRAINT `FK_users_loaiTK` FOREIGN KEY (`idLoaiTK`) REFERENCES `loaitk` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -269,6 +303,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Test','testnv','1234',1,1,NULL,NULL),(2,'Test','testkh','1234',1,2,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -307,6 +342,7 @@ CREATE TABLE `vemaybay` (
 
 LOCK TABLES `vemaybay` WRITE;
 /*!40000 ALTER TABLE `vemaybay` DISABLE KEYS */;
+INSERT INTO `vemaybay` VALUES (1,'1',20,'1','2021-03-20 05:50:00',1,1,1),(2,'2',10,'2','2021-03-10 22:20:21',2,2,2);
 /*!40000 ALTER TABLE `vemaybay` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -319,4 +355,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-19 13:45:03
+-- Dump completed on 2021-04-26  3:08:47

@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ccffff;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ccffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.flight.TrangChuController">
    <children>
-      <Label layoutX="364.0" layoutY="23.0" text="Khách Hàng">
-         <font>
-            <Font name="Arial Italic" size="36.0" />
-         </font>
-      </Label>
-      <Button layoutX="97.0" layoutY="137.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="196.0" text="Tra Cứu Chuyến Bay" />
-      <Button layoutX="195.0" layoutY="195.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="196.0" text="Tra Cứu Vé" />
-      <Button layoutX="310.0" layoutY="249.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="196.0" text="Đặt Vé Tại Quầy" />
-      <TextField floatText="đ" layoutX="40.0" layoutY="293.0" />
+      <Button fx:id="btKH_TraCuuCB" layoutX="97.0" layoutY="137.0" mnemonicParsing="false" onAction="#traCuuCBHandler" prefHeight="30.0" prefWidth="196.0" text="Tra Cứu Chuyến Bay" />
+      <Button fx:id="btKH_TraCuuVe" layoutX="195.0" layoutY="195.0" mnemonicParsing="false" onAction="#traCuuVeHandler" prefHeight="30.0" prefWidth="196.0" text="Tra Cứu Vé" />
+      <Button fx:id="btKH_DatVeOnline" layoutX="310.0" layoutY="249.0" mnemonicParsing="false" onAction="#datVeOnlineHandler" prefHeight="30.0" prefWidth="196.0" text="Đặt Vé Online" />
+      <AnchorPane layoutX="2.0" layoutY="7.0" minHeight="0.0" minWidth="0.0" prefHeight="58.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="3.0" prefHeight="58.0" prefWidth="174.0" text="XIN CHÀO">
+               <font>
+                  <Font name="Arial Italic" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbKhachHang" layoutX="186.0" layoutY="-5.0" prefHeight="67.0" prefWidth="415.0" text="Khách Hàng">
+               <font>
+                  <Font name="Arial Italic" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

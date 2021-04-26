@@ -10,22 +10,15 @@ package com.mycompany.pojo;
  * @author Admin
  */
 public class Users {
-    
-    
     private int id;
+    private int idLoaiTK;
     private String hoTen;
     private String tenTK;
     private String matKhau;
     private Boolean trangThai;
-    private EnumLoaiTK loaiTK;
     private String diaChi;
     private String sdt;
 
-    
-    public enum EnumLoaiTK
-    {
-        NhanVien, KhachHang;
-    }
     /**
      * @return the id
      */
@@ -38,6 +31,20 @@ public class Users {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * @return the idLoaiTK
+     */
+    public int getIdLoaiTK() {
+        return idLoaiTK;
+    }
+
+    /**
+     * @param idLoaiTK the idLoaiTK to set
+     */
+    public void setIdLoaiTK(int idLoaiTK) {
+        this.idLoaiTK = idLoaiTK;
     }
 
     /**
@@ -97,20 +104,6 @@ public class Users {
     }
 
     /**
-     * @return the loaiTK
-     */
-    public Enum getLoaiTK() {
-        return loaiTK;
-    }
-
-    /**
-     * @param loaiTK the loaiTK to set
-     */
-    public void setLoaiTK(EnumLoaiTK loaiTK) {
-        this.loaiTK = loaiTK;
-    }
-
-    /**
      * @return the diaChi
      */
     public String getDiaChi() {
@@ -137,5 +130,5 @@ public class Users {
     public void setSdt(String sdt) {
         this.sdt = sdt;
     }
-    
-}
+
+    }
