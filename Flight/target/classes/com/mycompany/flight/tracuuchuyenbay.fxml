@@ -5,6 +5,8 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,35 +19,83 @@
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="14.0" layoutY="49.0" mnemonicParsing="false" text="Khứ Hồi" />
-      <Button layoutX="82.0" layoutY="49.0" mnemonicParsing="false" text="Một Chiều" />
-      <AnchorPane layoutX="12.0" layoutY="79.0" prefHeight="338.0" prefWidth="687.0" style="-fx-background-color: lightblue;">
-         <children>
-            <Label layoutX="25.0" layoutY="27.0" text="Nơi đi" />
-            <Label layoutX="25.0" layoutY="61.0" text="Nơi đến" />
-            <ChoiceBox layoutX="97.0" layoutY="23.0" prefWidth="150.0" />
-            <ChoiceBox layoutX="97.0" layoutY="57.0" prefWidth="150.0" />
-            <DatePicker layoutX="402.0" layoutY="23.0" />
-            <DatePicker layoutX="402.0" layoutY="57.0" />
-            <Label layoutX="298.0" layoutY="27.0" text="Ngày khởi hành" />
-            <Label layoutX="298.0" layoutY="61.0" text="Ngày về" />
-            <Button layoutX="615.0" layoutY="55.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" text="Tra Cứu" />
-            <Button layoutX="615.0" layoutY="154.0" mnemonicParsing="false" text="Tiếp Tục" />
-            <Group layoutX="78.0" layoutY="132.0" />
-            <Button layoutX="615.0" layoutY="294.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" text="Thoát" />
-            <TableView layoutX="14.0" layoutY="94.0" prefHeight="232.0" prefWidth="587.0">
-              <columns>
-                <TableColumn prefWidth="41.0" text="STT" />
-                <TableColumn prefWidth="81.0" text="Mã chuyến bay" />
-                  <TableColumn prefWidth="61.0" text="Số hiệu máy bay" />
-                  <TableColumn prefWidth="89.0" text="Nơi đi" />
-                  <TableColumn prefWidth="86.0" text="Nơi đến" />
-                  <TableColumn prefWidth="99.0" text="Thời gian khởi hành" />
-                  <TableColumn prefWidth="74.0" text="Số ghế trống" />
-                  <TableColumn prefWidth="69.0" text="Tổng số ghế" />
-              </columns>
-            </TableView>
-         </children>
-      </AnchorPane>
+      <TabPane layoutX="14.0" layoutY="49.0" prefHeight="373.0" prefWidth="694.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="tpKhuHoi" text="Khứ Hồi">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="338.0" prefWidth="687.0" style="-fx-background-color: lightblue;">
+                           <children>
+                              <Label layoutX="25.0" layoutY="27.0" text="Nơi đi" />
+                              <Label layoutX="25.0" layoutY="61.0" text="Nơi đến" />
+                              <ChoiceBox layoutX="97.0" layoutY="23.0" prefWidth="150.0" />
+                              <ChoiceBox layoutX="97.0" layoutY="57.0" prefWidth="150.0" />
+                              <DatePicker layoutX="402.0" layoutY="23.0" />
+                              <DatePicker layoutX="402.0" layoutY="57.0" />
+                              <Label layoutX="298.0" layoutY="27.0" text="Ngày khởi hành" />
+                              <Label layoutX="298.0" layoutY="61.0" text="Ngày về" />
+                              <Button layoutX="615.0" layoutY="55.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" text="Tra Cứu" />
+                              <Button layoutX="615.0" layoutY="154.0" mnemonicParsing="false" text="Tiếp Tục" />
+                              <Group layoutX="78.0" layoutY="132.0" />
+                              <Button layoutX="615.0" layoutY="294.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" text="Thoát" />
+                              <TableView layoutX="14.0" layoutY="94.0" prefHeight="232.0" prefWidth="587.0">
+                                 <columns>
+                                    <TableColumn prefWidth="41.0" text="STT" />
+                                    <TableColumn prefWidth="81.0" text="Mã chuyến bay" />
+                                    <TableColumn prefWidth="61.0" text="Số hiệu máy bay" />
+                                    <TableColumn prefWidth="89.0" text="Nơi đi" />
+                                    <TableColumn prefWidth="86.0" text="Nơi đến" />
+                                    <TableColumn prefWidth="99.0" text="Thời gian khởi hành" />
+                                    <TableColumn prefWidth="74.0" text="Số ghế trống" />
+                                    <TableColumn prefWidth="69.0" text="Tổng số ghế" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="tpMotChieu" text="Một Chiều">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <AnchorPane prefHeight="338.0" prefWidth="687.0" style="-fx-background-color: lightblue;">
+                                 <children>
+                                    <Label layoutX="25.0" layoutY="27.0" text="Nơi đi" />
+                                    <Label layoutX="25.0" layoutY="61.0" text="Nơi đến" />
+                                    <ChoiceBox fx:id="cbNoiDi" layoutX="97.0" layoutY="23.0" prefWidth="150.0" />
+                                    <ChoiceBox fx:id="cbNoiDen" layoutX="97.0" layoutY="57.0" prefWidth="150.0" />
+                                    <DatePicker fx:id="dpNgayKhoiHanh" layoutX="402.0" layoutY="23.0" />
+                                    <Label layoutX="298.0" layoutY="27.0" text="Ngày khởi hành" />
+                                    <Button fx:id="btTraCuu" layoutX="615.0" layoutY="55.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" text="Tra Cứu" />
+                                    <Button fx:id="btTiepTuc" layoutX="615.0" layoutY="154.0" mnemonicParsing="false" text="Tiếp Tục" />
+                                    <Group layoutX="78.0" layoutY="132.0" />
+                                    <Button fx:id="btThoat" layoutX="615.0" layoutY="294.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" text="Thoát" />
+                                    <TableView fx:id="tbvChuyenBay" layoutX="14.0" layoutY="94.0" prefHeight="232.0" prefWidth="587.0">
+                                       <columns>
+                                          <TableColumn prefWidth="41.0" text="STT" />
+                                          <TableColumn prefWidth="81.0" text="Mã chuyến bay" />
+                                          <TableColumn prefWidth="61.0" text="Số hiệu máy bay" />
+                                          <TableColumn prefWidth="89.0" text="Nơi đi" />
+                                          <TableColumn prefWidth="86.0" text="Nơi đến" />
+                                          <TableColumn prefWidth="99.0" text="Thời gian khởi hành" />
+                                          <TableColumn prefWidth="74.0" text="Số ghế trống" />
+                                          <TableColumn prefWidth="69.0" text="Tổng số ghế" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>
