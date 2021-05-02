@@ -31,16 +31,27 @@ import javafx.stage.Stage;
 public class TrangChuController implements Initializable {
     @FXML private Label lbNhanVien;
     @FXML private Label lbKhachHang;
-    
+    Users nd;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
     
+    
+    
     public void setTenTK(Users u){
-        if (u.getIdLoaiTK() == 1)
-            lbNhanVien.setText(u.getTenTK());
-        if (u.getIdLoaiTK() == 2)
-            lbKhachHang.setText(u.getTenTK());
+        try {
+            Connection conn = JdbcUtils.getConn();
+            UsersService us = new UsersService(conn);
+            nd = us.getUsers(u.getTenTK());
+            if (u.getIdLoaiTK() == 1)
+                lbNhanVien.setText(nd.getHoTen());
+            if (u.getIdLoaiTK() == 2)
+                lbKhachHang.setText(nd.getHoTen());
+        } catch (SQLException ex) {
+            Logger.getLogger(TraCuuChuyenBayController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
     
     public void traCuuCBHandler(ActionEvent evt) {
@@ -95,6 +106,8 @@ public class TrangChuController implements Initializable {
             v = loader.load();
             Scene scene = new Scene(v);
             Stage stage = new Stage();
+            DatVeOnlineController controller = loader.getController();
+            controller.setTTUser(nd);
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {

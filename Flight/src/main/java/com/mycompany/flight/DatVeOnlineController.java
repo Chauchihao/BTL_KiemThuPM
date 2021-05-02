@@ -6,19 +6,43 @@
 package com.mycompany.flight;
 
 import com.mycompany.pojo.ChuyenBay;
+import com.mycompany.pojo.HangVe;
+import com.mycompany.pojo.Ghe;
+import com.mycompany.pojo.KhachHang;
+import com.mycompany.pojo.PhieuDatCho;
+import com.mycompany.pojo.Users;
 import com.mycompany.pojo.VeMayBay;
 import com.mycompany.service.ChuyenBayService;
+import com.mycompany.service.HangVeService;
+import com.mycompany.service.GheService;
+import com.mycompany.service.GiaVeService;
 import com.mycompany.service.JdbcUtils;
+import com.mycompany.service.KhachHangService;
+import com.mycompany.service.PhieuDatChoService;
+import com.mycompany.service.UsersService;
+import com.mycompany.service.VeMayBayService;
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 /**
@@ -26,30 +50,171 @@ import javafx.scene.control.TextField;
  * @author Admin
  */
 public class DatVeOnlineController implements Initializable {
-    @FXML private ChoiceBox<ChuyenBay> cbMaCB;
-    @FXML private ChoiceBox<VeMayBay> cbHangve;
-    @FXML private ChoiceBox<VeMayBay> cbViTri;
+    @FXML private ComboBox<ChuyenBay> cbMaCB;
+    @FXML private ComboBox<HangVe> cbHangVe;
+    @FXML private ComboBox<Ghe> cbViTri;
+    @FXML private TextField txtNgayGioDat;
     @FXML private TextField txtGiaTien;
     @FXML private TextField txtHoTen;
     @FXML private TextField txtIDCard;
     @FXML private TextField txtSDT;
     @FXML private TextField txtEmail;
-    
+    Users nd;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
             Connection conn = JdbcUtils.getConn();
             ChuyenBayService s = new ChuyenBayService(conn);
-            
-            this.cbMaCB.setItems(FXCollections.observableList(s.getMaChuyenBay()));
+            VeMayBayService ss = new VeMayBayService(conn);
+            this.cbMaCB.setItems(FXCollections.observableList(s.getChuyenBay()));
+
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat simpleformat = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
+            this.txtNgayGioDat.setText(simpleformat.format(cal.getTime()));
             
             conn.close();
         } catch (SQLException ex) {
-            Logger.getLogger(DangNhapController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DatVeOnlineController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
+    public void setTTUser(Users u){
+            nd = u;
+            txtHoTen.setText(u.getHoTen());
+            if (u.getEmail().isEmpty() == false)
+                txtEmail.setText(u.getEmail());
+            if (u.getSdt().isEmpty() == false)
+                txtSDT.setText(u.getSdt());
+            if (u.getIdCard().isEmpty() == false)
+                txtIDCard.setText(u.getIdCard());
+          
+    }
+    
+    public void chonComboBoxMaCB(ActionEvent evt){
+        if (evt.getSource() == this.cbMaCB) {
+            try {
+                    if (this.cbMaCB.getSelectionModel().isEmpty() == false) {
+                        Connection conn = JdbcUtils.getConn();
+                        HangVeService hvs = new HangVeService(conn);
+                        this.cbHangVe.setItems(FXCollections.observableList(hvs.getHangVe()));
+                        conn.close();
+                    }
+                        
+                } catch (SQLException ex) {
+                    Logger.getLogger(DatVeOnlineController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+            
+            
+//            maCB = this.cbMaCB.getSelectionModel().getSelectedItem().getMaChuyenBay();
+//            Utils.getBox("Mã chuyến bay: " + maCB, Alert.AlertType.CONFIRMATION).show();
+//            Connection conn;
+//            try {
+//                conn = JdbcUtils.getConn();
+//                VeMayBayService ss = new VeMayBayService(conn);
+//                //giaVe = String.valueOf(ss.getGiaVeByMaCB(maCB));
+//                this.txtGiaTien.setText("Lỗi");
+//                conn.close();
+//            } catch (SQLException ex) {
+//                Logger.getLogger(DatVeOnlineController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            
+        }
+//        return maCB;
+    }
+    
+    public void chonComboBoxHangVe(ActionEvent evt){
+        if (evt.getSource() == this.cbHangVe) {
+            try {
+                    if (this.cbHangVe.getSelectionModel().isEmpty() == false)
+                    {
+                        Connection conn = JdbcUtils.getConn();
+                        GheService gs = new GheService(conn);
+                        GiaVeService gvs = new GiaVeService(conn);
+                        this.cbViTri.setItems(FXCollections.observableList(gs.getGhe()));
+                        this.txtGiaTien.setText(gvs.getGiaVeByChuyenBay_HangVe(
+                            this.cbMaCB.getSelectionModel().getSelectedItem()
+                            .getMaChuyenBay(), this.cbHangVe.getSelectionModel()
+                            .getSelectedItem().getId()).getGiaVe().toString());
+                        //String maCB = this.cbMaCB.getSelectionModel().getSelectedItem().getMaChuyenBay();
+//                        List<VeMayBay> vmb = ss.getVeMayBayByMaCB(maCB);
+//                        this.cbHangVe.setItems(FXCollections.observableList(vmb));
+                        
+                        
+                        //this.cbViTri.setItems(FXCollections.observableList(ss.getVeMayBay()));
+                    }
+                        
+            } catch (SQLException ex) {
+                Logger.getLogger(DatVeOnlineController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void confirmHandle(ActionEvent e) throws IOException {
+        Connection conn;
+        try {
+            conn = JdbcUtils.getConn();
+            VeMayBayService vmbs = new VeMayBayService(conn);
+            VeMayBay vmb = new VeMayBay();
+            PhieuDatChoService pdcs = new PhieuDatChoService(conn);
+            PhieuDatCho pdc = new PhieuDatCho();
+            KhachHangService khs = new KhachHangService(conn);
+            KhachHang kh;
+            Calendar cal = Calendar.getInstance();
+            
+            if (this.cbMaCB.getSelectionModel().isEmpty())
+                Utils.getBox("Vui lòng chọn mã chuyến bay!!!", Alert.AlertType.WARNING).show();
+                else if (this.cbHangVe.getSelectionModel().isEmpty())
+                        Utils.getBox("Vui lòng chọn hạng vé!!!", Alert.AlertType.WARNING).show();
+                    else if (this.cbViTri.getSelectionModel().isEmpty())
+                            Utils.getBox("Vui lòng chọn vị trí!!!", Alert.AlertType.WARNING).show();
+                        else if (this.txtHoTen.getText().isEmpty())
+                                Utils.getBox("Vui lòng nhập họ tên!!", Alert.AlertType.WARNING).show();
+                            else if (this.txtIDCard.getText().isEmpty())
+                                    Utils.getBox("Vui lòng nhập CMND/CCCD!!!", Alert.AlertType.WARNING).show();
+                                else if (this.txtEmail.getText().isEmpty())
+                                        Utils.getBox("Vui lòng nhập email!!!", Alert.AlertType.WARNING).show();
+                                    else if (this.txtSDT.getText().isEmpty())
+                                            Utils.getBox("Vui lòng nhập số điện thoại!!!", Alert.AlertType.WARNING).show();
+                                        else
+                                    {
+                                        vmb.setMaCB(this.cbMaCB.getSelectionModel().getSelectedItem().getMaChuyenBay());
+                                        vmb.setIdHangVe(this.cbHangVe.getSelectionModel().getSelectedItem().getId());
+                                        vmb.setMaGhe(this.cbViTri.getSelectionModel().getSelectedItem().getMaGhe());
+                                        vmb.setGiaVe(new BigDecimal(this.txtGiaTien.getText()));
+                                        vmb.setNgayXuatVe(Date.valueOf(LocalDate.now()));
+                                        kh = khs.getKhachHang(this.txtHoTen.getText());
+                                        if (kh == null)
+                                        {
+                                            KhachHang k = new KhachHang();
+                                            k.setTenKH(this.txtHoTen.getText());
+                                            k.setIdCard(this.txtIDCard.getText());
+                                            k.setEmail(this.txtEmail.getText());
+                                            k.setSdt(this.txtSDT.getText());
+                                            if (khs.addKhachHang(k) == true)
+                                            {
+                                                Utils.getBox("Thêm Khách hàng thành công!", Alert.AlertType.INFORMATION).show();
+                                                kh = khs.getKhachHang(this.txtHoTen.getText());
+                            //                    vmb.setMaKH(kh.getMaKH());
+                            //                    vmb.setMaNguoiDat(nd.getId());
+                                            }
+                                            else
+                                                Utils.getBox("Thêm Khách hàng thất bại!!!", Alert.AlertType.ERROR).show();
+                                        }
+                                        vmb.setMaKH(kh.getMaKH());
+                                        vmb.setMaNguoiDat(nd.getId());
+
+                                        if (vmbs.addVeMayBay(vmb) == true )
+                                                Utils.getBox("Đặt vé thành công!", Alert.AlertType.INFORMATION).show();
+                                                else 
+                                                    Utils.getBox("Đặt vé thất bại!!!", Alert.AlertType.ERROR).show();
+                                    }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DatVeOnlineController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }
 

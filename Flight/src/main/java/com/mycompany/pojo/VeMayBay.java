@@ -5,7 +5,9 @@
  */
 package com.mycompany.pojo;
 
+import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -13,13 +15,19 @@ import java.sql.Date;
  */
 public class VeMayBay {
     private int maVe;
-    private String hangVe;
-    private Float giaVe;
+    private int idHangVe;
+    private BigDecimal giaVe;
     private String maGhe;
     private Date ngayXuatVe;
     private int maNguoiDat;
     private int maKH;
-    private int maCB;
+    private String maCB;
+
+    
+    @Override
+    public String toString() {
+        return Integer.toString(this.getMaVe());
+    }
 
     /**
      * @return the maVe
@@ -36,30 +44,30 @@ public class VeMayBay {
     }
 
     /**
-     * @return the hangVe
+     * @return the idHangVe
      */
-    public String getHangVe() {
-        return hangVe;
+    public int getIdHangVe() {
+        return idHangVe;
     }
 
     /**
-     * @param hangVe the hangVe to set
+     * @param idHangVe the idHangVe to set
      */
-    public void setHangVe(String hangVe) {
-        this.hangVe = hangVe;
+    public void setIdHangVe(int idHangVe) {
+        this.idHangVe = idHangVe;
     }
 
     /**
      * @return the giaVe
      */
-    public Float getGiaVe() {
+    public BigDecimal getGiaVe() {
         return giaVe;
     }
 
     /**
      * @param giaVe the giaVe to set
      */
-    public void setGiaVe(Float giaVe) {
+    public void setGiaVe(BigDecimal giaVe) {
         this.giaVe = giaVe;
     }
 
@@ -122,14 +130,18 @@ public class VeMayBay {
     /**
      * @return the maCB
      */
-    public int getMaCB() {
+    public String getMaCB() {
         return maCB;
     }
 
     /**
      * @param maCB the maCB to set
      */
-    public void setMaCB(int maCB) {
+    public void setMaCB(String maCB) {
         this.maCB = maCB;
     }
+
+    
+
+    
 }

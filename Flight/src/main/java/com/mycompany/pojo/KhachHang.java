@@ -12,6 +12,7 @@ package com.mycompany.pojo;
 public class KhachHang {
     private int maKH;
     private String tenKH;
+    private String idCard; 
     private String email;
     private String sdt;
 
@@ -44,6 +45,20 @@ public class KhachHang {
     }
 
     /**
+     * @return the idCard
+     */
+    public String getIdCard() {
+        return idCard;
+    }
+
+    /**
+     * @param idCard the idCard to set
+     */
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    /**
      * @return the email
      */
     public String getEmail() {
@@ -70,4 +85,6 @@ public class KhachHang {
     public void setSdt(String sdt) {
         this.sdt = sdt;
     }
+
+    
 }

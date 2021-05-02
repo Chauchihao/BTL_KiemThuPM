@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,19 +26,37 @@ public class GheService {
     }
     
     public List<Ghe> getGhe() throws SQLException {
-        String sql = "SELECT * FROM ghe WHERE maGhe like concat(?) ORDER BY maGhe DESC";
-        PreparedStatement stm = this.conn.prepareStatement(sql);
+        Statement stm = this.conn.createStatement();
+        ResultSet r = stm.executeQuery("SELECT * FROM ghe");
         
-        ResultSet rs = stm.executeQuery();
+        
         List<Ghe> ghe = new ArrayList<>();
-        while (rs.next()) {
+        while (r.next()) {
             Ghe g = new Ghe();
-            g.setMaGhe(rs.getString("maGhe"));
-            //g.setHangGhe(rs.getEnum("hangGhe"));
-            g.setTrangThai(rs.getBoolean("trangThai"));
+            g.setMaGhe(r.getString("maGhe"));
+            g.setTrangThai(r.getBoolean("trangThai"));
+            g.setIdHangVe(r.getInt("idHangVe"));
             
             ghe.add(g);
         }
         return ghe;
     }
+    
+    //    public List<VeMayBay> getVeMayBayByMaCB(String maChuyenBay) throws SQLException {
+//        String sql = "SELECT * FROM vemaybay WHERE maChuyenBay=?";
+//        PreparedStatement stm = this.conn.prepareStatement(sql);
+//        stm.setString(1, maChuyenBay);
+//        
+//        ResultSet rs = stm.executeQuery();
+//        List<VeMayBay> vmb = new ArrayList<>();
+//        while (rs.next()) {
+//            VeMayBay v = new VeMayBay();
+//            v.setHangVe(rs.getInt("hangVe"));
+//            v.setMaGhe(rs.getString("maGhe"));
+//            
+//            vmb.add(v);
+//        }
+//        
+//        return vmb;
+//    }
 }

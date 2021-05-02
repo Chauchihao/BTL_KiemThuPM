@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLDataException;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,40 +26,46 @@ public class ChuyenBayService {
         this.conn = conn;
     }
     
-    public List<ChuyenBay> getMaChuyenBay() throws SQLException {
-        String sql = "SELECT maChuyeBbay FROM chuyenbay";
-        PreparedStatement stm = this.conn.prepareStatement(sql);
+    public List<ChuyenBay> getChuyenBay() throws SQLException {
+        Statement stm = this.conn.createStatement();
+        ResultSet r = stm.executeQuery("SELECT * FROM chuyenbay");
         
-        ResultSet rs = stm.executeQuery();
+        
         List<ChuyenBay> chuyenbay = new ArrayList<>();
-        while (rs.next()) {
+        while (r.next()) {
             ChuyenBay cb = new ChuyenBay();
-            cb.setMaChuyenBay(rs.getString("maChuyenBay"));
+            cb.setMaChuyenBay(r.getString("maChuyenBay"));
+            cb.setSoHieuMayBay(r.getString("soHieuMayBay"));
+            cb.setNgayGioKhoiHanh(r.getDate("ngayGioKhoiHanh"));
+            cb.setNgayGioDen(r.getDate("ngayGioDen"));
+            cb.setMaSanBayDi(r.getString("maSanBayDi"));
+            cb.setMaSanBayDen(r.getString("maSanBayDen"));
+            cb.setSanBayTrungGian(r.getString("sanBayTrungGian"));
             
             chuyenbay.add(cb);
         }
         return chuyenbay;
     }
     
-    public List<ChuyenBay> getChuyenBay() throws SQLException {
-        String sql = "SELECT * FROM chuyenbay WHERE maChuyenBay like concat(?) ORDER BY maChuyenBay DESC";
+    public ChuyenBay getChuyenBayByMaCB(String maCB) throws SQLException {
+        String sql = "SELECT * FROM chuyenbay WHERE maChuyenBay=?";
         PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setString(1, maCB);
         
-        ResultSet rs = stm.executeQuery();
-        List<ChuyenBay> chuyenbay = new ArrayList<>();
-        while (rs.next()) {
-            ChuyenBay cb = new ChuyenBay();
-            cb.setMaChuyenBay(rs.getString("maChuyenBay"));
-            cb.setSoHieuMayBay(rs.getString("soHieuMayBay"));
-            cb.setNgayKhoiHanh(rs.getDate("ngayKhoiHanh"));
-            cb.setThoiGianBay(rs.getDate("ngayVe"));
-            cb.setThoiGianDung(rs.getDate("ngayVe"));
-            cb.setNoiDi(rs.getString("noiDen"));
-            cb.setNoiDen(rs.getString("noiDi"));
-            cb.setSanBayTrungGian(rs.getString("sanBayTrungGian"));
+        ResultSet r = stm.executeQuery();
+        ChuyenBay cb = null;
+        while (r.next()) {
+            cb = new ChuyenBay();
+            cb.setMaChuyenBay(r.getString("maChuyenBay"));
+            cb.setSoHieuMayBay(r.getString("soHieuMayBay"));
+            cb.setNgayGioKhoiHanh(r.getDate("ngayGioKhoiHanh"));
+            cb.setNgayGioDen(r.getDate("ngayGioDen"));
+            cb.setMaSanBayDi(r.getString("maSanBayDi"));
+            cb.setMaSanBayDen(r.getString("maSanBayDen"));
+            cb.setSanBayTrungGian(r.getString("sanBayTrungGian"));
             
-            chuyenbay.add(cb);
         }
-        return chuyenbay;
+        
+        return cb;
     }
 }

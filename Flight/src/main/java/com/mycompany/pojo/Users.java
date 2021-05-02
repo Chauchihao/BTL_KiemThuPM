@@ -16,7 +16,8 @@ public class Users {
     private String tenTK;
     private String matKhau;
     private Boolean trangThai;
-    private String diaChi;
+    private String idCard;
+    private String email;
     private String sdt;
 
     /**
@@ -104,17 +105,31 @@ public class Users {
     }
 
     /**
-     * @return the diaChi
+     * @return the idCard
      */
-    public String getDiaChi() {
-        return diaChi;
+    public String getIdCard() {
+        return idCard;
     }
 
     /**
-     * @param diaChi the diaChi to set
+     * @param idCard the idCard to set
      */
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**
@@ -131,4 +146,5 @@ public class Users {
         this.sdt = sdt;
     }
 
-    }
+    
+}

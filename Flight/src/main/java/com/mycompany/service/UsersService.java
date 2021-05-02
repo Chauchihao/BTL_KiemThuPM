@@ -39,21 +39,23 @@ public class UsersService {
         return false;
     }
     
-    public List<Users> getUsers(String tenTK) throws SQLException {
-        String sql = "SELECT id, hoTen, tenTK FROM users WHERE tenTK=?";
+    public Users getUsers(String tenTK) throws SQLException {
+        String sql = "SELECT id, hoTen, tenTK, idLoaiTK, idCard, sdt, email FROM users WHERE tenTK=?";
         PreparedStatement stm = this.conn.prepareStatement(sql);
         stm.setString(1, tenTK);
         
         ResultSet rs = stm.executeQuery();
-        List<Users> users = new ArrayList<>();
+        Users u = null;
         while (rs.next()) {
-            Users u = new Users();
+            u = new Users();
             u.setId(rs.getInt("id"));
             u.setHoTen(rs.getString("hoTen"));
             u.setTenTK(rs.getString("tenTK"));
-            
-            users.add(u);
+            u.setIdLoaiTK(rs.getInt("idLoaiTK"));
+            u.setIdCard(rs.getString("idCard"));
+            u.setEmail(rs.getString("email"));
+            u.setSdt(rs.getString("sdt"));
         }
-        return users;
+        return u;
     }
 }

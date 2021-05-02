@@ -96,7 +96,7 @@ public class PrimaryController implements Initializable {
             Connection conn = JdbcUtils.getConn();
             KhachHangService s = new KhachHangService(conn);
             
-            this.tbKH.setItems(FXCollections.observableList(s.getKhachHang(kw)));
+            //this.tbKH.setItems(FXCollections.observableList(s.getKhachHang(this.txtTenKH.getText())));
             
             conn.close();
         } catch (SQLException ex) {

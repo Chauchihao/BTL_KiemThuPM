@@ -15,7 +15,7 @@ public class PhieuDatCho {
     private int maPhieu;
     private int maVe;
     private int maKH;
-    private Date ngayDatVe;
+    private String ngayDatVe;
 
     /**
      * @return the maPhieu
@@ -62,15 +62,14 @@ public class PhieuDatCho {
     /**
      * @return the ngayDatVe
      */
-    public Date getNgayDatVe() {
+    public String getNgayDatVe() {
         return ngayDatVe;
     }
 
     /**
      * @param ngayDatVe the ngayDatVe to set
      */
-    public void setNgayDatVe(Date ngayDatVe) {
+    public void setNgayDatVe(String ngayDatVe) {
         this.ngayDatVe = ngayDatVe;
     }
-    
 }

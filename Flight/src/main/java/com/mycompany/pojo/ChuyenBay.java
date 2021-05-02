@@ -14,13 +14,16 @@ import java.sql.Date;
 public class ChuyenBay {
     private String maChuyenBay;
     private String soHieuMayBay;
-    private Date ngayKhoiHanh;
-    private Date ngayVe;
-    private Date thoiGianBay;
-    private Date thoiGianDung;
-    private String noiDi;
-    private String noiDen;
+    private Date ngayGioKhoiHanh;
+    private Date ngayGioDen;
+    private String maSanBayDi;
+    private String maSanBayDen;
     private String sanBayTrungGian; 
+
+    @Override
+    public String toString() {
+        return this.getMaChuyenBay();
+    }
 
     /**
      * @return the maChuyenBay
@@ -51,87 +54,59 @@ public class ChuyenBay {
     }
 
     /**
-     * @return the ngayKhoiHanh
+     * @return the ngayGioKhoiHanh
      */
-    public Date getNgayKhoiHanh() {
-        return ngayKhoiHanh;
+    public Date getNgayGioKhoiHanh() {
+        return ngayGioKhoiHanh;
     }
 
     /**
-     * @param ngayKhoiHanh the ngayKhoiHanh to set
+     * @param ngayGioKhoiHanh the ngayGioKhoiHanh to set
      */
-    public void setNgayKhoiHanh(Date ngayKhoiHanh) {
-        this.ngayKhoiHanh = ngayKhoiHanh;
+    public void setNgayGioKhoiHanh(Date ngayGioKhoiHanh) {
+        this.ngayGioKhoiHanh = ngayGioKhoiHanh;
     }
 
     /**
-     * @return the ngayVe
+     * @return the ngayGioDen
      */
-    public Date getNgayVe() {
-        return ngayVe;
+    public Date getNgayGioDen() {
+        return ngayGioDen;
     }
 
     /**
-     * @param ngayVe the ngayVe to set
+     * @param ngayGioDen the ngayGioDen to set
      */
-    public void setNgayVe(Date ngayVe) {
-        this.ngayVe = ngayVe;
+    public void setNgayGioDen(Date ngayGioDen) {
+        this.ngayGioDen = ngayGioDen;
     }
 
     /**
-     * @return the thoiGianBay
+     * @return the maSanBayDi
      */
-    public Date getThoiGianBay() {
-        return thoiGianBay;
+    public String getMaSanBayDi() {
+        return maSanBayDi;
     }
 
     /**
-     * @param thoiGianBay the thoiGianBay to set
+     * @param maSanBayDi the maSanBayDi to set
      */
-    public void setThoiGianBay(Date thoiGianBay) {
-        this.thoiGianBay = thoiGianBay;
+    public void setMaSanBayDi(String maSanBayDi) {
+        this.maSanBayDi = maSanBayDi;
     }
 
     /**
-     * @return the thoiGianDung
+     * @return the maSanBayDen
      */
-    public Date getThoiGianDung() {
-        return thoiGianDung;
+    public String getMaSanBayDen() {
+        return maSanBayDen;
     }
 
     /**
-     * @param thoiGianDung the thoiGianDung to set
+     * @param maSanBayDen the maSanBayDen to set
      */
-    public void setThoiGianDung(Date thoiGianDung) {
-        this.thoiGianDung = thoiGianDung;
-    }
-
-    /**
-     * @return the noiDi
-     */
-    public String getNoiDi() {
-        return noiDi;
-    }
-
-    /**
-     * @param noiDi the noiDi to set
-     */
-    public void setNoiDi(String noiDi) {
-        this.noiDi = noiDi;
-    }
-
-    /**
-     * @return the noiDen
-     */
-    public String getNoiDen() {
-        return noiDen;
-    }
-
-    /**
-     * @param noiDen the noiDen to set
-     */
-    public void setNoiDen(String noiDen) {
-        this.noiDen = noiDen;
+    public void setMaSanBayDen(String maSanBayDen) {
+        this.maSanBayDen = maSanBayDen;
     }
 
     /**
@@ -147,4 +122,6 @@ public class ChuyenBay {
     public void setSanBayTrungGian(String sanBayTrungGian) {
         this.sanBayTrungGian = sanBayTrungGian;
     }
+
+    
 }

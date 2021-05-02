@@ -26,7 +26,7 @@ public class PhieuDatChoService {
     }
     
     public List<PhieuDatCho> getPhieuDatCho() throws SQLException {
-        String sql = "SELECT * FROM phieudatcho WHERE maPhieuDatCho like concat(?) ORDER BY maPhieuDatCho DESC";
+        String sql = "SELECT * FROM phieudatcho WHERE maPhieuDatCho=?";
         PreparedStatement stm = this.conn.prepareStatement(sql);
         
         ResultSet rs = stm.executeQuery();
@@ -34,12 +34,25 @@ public class PhieuDatChoService {
         while (rs.next()) {
             PhieuDatCho pdc = new PhieuDatCho();
             pdc.setMaKH(rs.getInt("maKH"));
-            pdc.setMaPhieu(rs.getInt("maPhieu"));
+            pdc.setMaPhieu(rs.getInt("maPhieuDatCho"));
             pdc.setMaVe(rs.getInt("maVe"));
-            pdc.setNgayDatVe(rs.getDate("ngayDatVe"));
+            pdc.setNgayDatVe(rs.getString("ngayDatVe"));
             
             phieudatcho.add(pdc);
         }
         return phieudatcho;
     }
+    
+    public boolean addPhieuDatCho(PhieuDatCho pdc) throws SQLException {
+        String sql = "INSERT INTO phieudatcho(maVe, maKH, ngayDatVe) VALUES(?, ?, ?)";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setInt(1, pdc.getMaVe());
+        stm.setInt(2, pdc.getMaKH());
+        stm.setString(3, pdc.getNgayDatVe());
+        
+        int row = stm.executeUpdate();
+        
+        return row > 0;
+    }
+    
 }

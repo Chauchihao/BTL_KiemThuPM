@@ -63,39 +63,48 @@ public class DangNhapController implements Initializable {
             Connection conn = JdbcUtils.getConn();
             UsersService s = new UsersService(conn);
             
-            Users u = new Users();
-            u.setIdLoaiTK(this.cbLoaiTK.getSelectionModel().getSelectedItem().getId());
-            u.setTenTK(this.txtTenTK.getText());
-            u.setMatKhau(this.txtMatKhau.getText());
-            if (s.login(u) == true){
-                Parent trangchu;
-                var path= "";
-                Utils.getBox("Đăng nhập thành công!", Alert.AlertType.INFORMATION).show();
-                try {
-                    if (u.getIdLoaiTK() == 1)
-                        path = "UInhanvien.fxml";
-                    if (u.getIdLoaiTK() == 2)
-                        path = "UIkhachhang.fxml";
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(getClass().getResource(path));
-                    trangchu = loader.load();
-                    Scene scene = new Scene(trangchu);
-                    Stage stage = new Stage();
-                    TrangChuController controller = loader.getController();
-                    controller.setTenTK(u);
-                    stage.setScene(scene);
-                    stage.show();
-                } catch (IOException ex) {
-                    Logger.getLogger(DangNhapController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            else if (this.txtTenTK.getText().equals(""))
-                Utils.getBox("Vui lòng điền tài khoản", Alert.AlertType.INFORMATION).show();
-                else if (this.txtMatKhau.getText().equals(""))
-                    Utils.getBox("Vui lòng điền mật khẩu", Alert.AlertType.INFORMATION).show();
-                    else
-                        Utils.getBox("Đăng nhập thất bại", Alert.AlertType.INFORMATION).show();
+                        
+            
+            if (this.cbLoaiTK.getSelectionModel().isEmpty())
+                Utils.getBox("Vui lòng chọn loại tài khoản!!!", Alert.AlertType.WARNING).show();
+                else if (this.txtTenTK.getText().isEmpty()) 
+                    Utils.getBox("Vui lòng điền tài khoản!!!", Alert.AlertType.WARNING).show();
+                    else if (this.txtMatKhau.getText().isEmpty()) 
+                        Utils.getBox("Vui lòng điền mật khẩu!!!", Alert.AlertType.WARNING).show();
+                        else {
+                            Users u = new Users();
+                            u.setIdLoaiTK(this.cbLoaiTK.getSelectionModel().getSelectedItem().getId());
+                            u.setTenTK(this.txtTenTK.getText());
+                            u.setMatKhau(this.txtMatKhau.getText());
+                            if (s.login(u) == true && s.getUsers(u.getTenTK()).getIdLoaiTK() == u.getIdLoaiTK()){
+                                Parent trangchu;
+                                var path= "";
+                                Utils.getBox("Đăng nhập thành công!", Alert.AlertType.INFORMATION).show();
+                                try {
+                                    if (u.getIdLoaiTK() == 1)
+                                        path = "UInhanvien.fxml";
+                                    if (u.getIdLoaiTK() == 2)
+                                        path = "UIkhachhang.fxml";
+                                    FXMLLoader loader = new FXMLLoader();
+                                    loader.setLocation(getClass().getResource(path));
+                                    trangchu = loader.load();
+                                    Scene scene = new Scene(trangchu);
+                                    Stage stage = new Stage();
+                                    TrangChuController controller = loader.getController();
+                                    controller.setTenTK(u);
+                                    stage.setScene(scene);
+                                    stage.show();
+                                } catch (IOException ex) {
+                                    Logger.getLogger(DangNhapController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
+                            else if (s.getUsers(u.getTenTK()).getIdLoaiTK() != u.getIdLoaiTK())
+                                    Utils.getBox("Vui lòng chọn đúng loại tài khoản hoặc nhập đúng tài khoản!!!", Alert.AlertType.INFORMATION).show();
+                                else
+                                    Utils.getBox("Đăng nhập thất bại!!!", Alert.AlertType.INFORMATION).show();
+                        }
             conn.close();
+            
         } catch (SQLException ex) {
             Logger.getLogger(DangNhapController.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -12,7 +12,12 @@ package com.mycompany.pojo;
 public class Ghe {
     private String maGhe;
     private Boolean trangThai;
-    private Enum hangGhe;
+    private int idHangVe;
+
+    @Override
+    public String toString() {
+        return this.getMaGhe();
+    }
 
     /**
      * @return the maGhe
@@ -43,17 +48,20 @@ public class Ghe {
     }
 
     /**
-     * @return the hangGhe
+     * @return the idHangVe
      */
-    public Enum getHangGhe() {
-        return hangGhe;
+    public int getIdHangVe() {
+        return idHangVe;
     }
 
     /**
-     * @param hangGhe the hangGhe to set
+     * @param idHangVe the idHangVe to set
      */
-    public void setHangGhe(Enum hangGhe) {
-        this.hangGhe = hangGhe;
+    public void setIdHangVe(int idHangVe) {
+        this.idHangVe = idHangVe;
     }
 
+    
+    
+    
 }

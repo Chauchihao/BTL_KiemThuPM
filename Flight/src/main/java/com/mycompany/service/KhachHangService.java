@@ -25,34 +25,33 @@ public class KhachHangService {
         this.conn = conn;
     }
      
-    public List<KhachHang> getKhachHang(String kw) throws SQLException {
-        if (kw == null)
-            throw new SQLDataException();
+    public KhachHang getKhachHang(String tenKH) throws SQLException {
         
-        String sql = "SELECT * FROM khachhang WHERE tenKH like concat('%', ?, '%') ORDER BY maKH DESC";
+        String sql = "SELECT * FROM khachhang WHERE tenKH=?";
         PreparedStatement stm = this.conn.prepareStatement(sql);
-        stm.setString(1, kw);
+        stm.setString(1, tenKH);
         
         ResultSet rs = stm.executeQuery();
-        List<KhachHang> khachhang = new ArrayList<>();
+        KhachHang kh = null;
         while (rs.next()) {
-            KhachHang kh = new KhachHang();
+            kh = new KhachHang();
             kh.setMaKH(rs.getInt("maKH"));
             kh.setTenKH(rs.getString("tenKH"));
+            kh.setIdCard(rs.getString("idCard"));
             kh.setEmail(rs.getString("email"));
             kh.setSdt(rs.getString("sdt"));
             
-            khachhang.add(kh);
         }
-        return khachhang;
+        return kh;
     }
     
     public boolean addKhachHang(KhachHang kh) throws SQLException {
-        String sql = "INSERT INTO khachhang(tenKH, email, sdt) VALUES(?, ?, ?)";
+        String sql = "INSERT INTO khachhang(tenKH, idCard, email, sdt) VALUES(?, ?, ?, ?)";
         PreparedStatement stm = this.conn.prepareStatement(sql);
         stm.setString(1, kh.getTenKH());
-        stm.setString(2, kh.getEmail());
-        stm.setString(3, kh.getSdt());
+        stm.setString(2, kh.getIdCard());
+        stm.setString(3, kh.getEmail());
+        stm.setString(4, kh.getSdt());
         
         int row = stm.executeUpdate();
         
