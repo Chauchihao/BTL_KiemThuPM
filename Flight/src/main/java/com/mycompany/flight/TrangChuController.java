@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -56,12 +57,12 @@ public class TrangChuController implements Initializable {
     
     public void traCuuCBHandler(ActionEvent evt) {
         try {
-            Parent cb;
+            Parent tccb;
+            Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("tracuuchuyenbay.fxml"));
-            cb = loader.load();
-            Scene scene = new Scene(cb);
-            Stage stage = new Stage();
+            tccb = loader.load();
+            Scene scene = new Scene(tccb);
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
@@ -71,12 +72,12 @@ public class TrangChuController implements Initializable {
     
     public void traCuuVeHandler(ActionEvent evt) {
         try {
-            Parent v;
+            Parent tcv;
+            Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("tracuuve.fxml"));
-            v = loader.load();
-            Scene scene = new Scene(v);
-            Stage stage = new Stage();
+            tcv = loader.load();
+            Scene scene = new Scene(tcv);
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
@@ -86,12 +87,14 @@ public class TrangChuController implements Initializable {
     
     public void datVeTaiQuayHandler(ActionEvent evt) {
         try {
-            Parent cb;
+            Parent dvtq;
+            Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("datvetaiquay.fxml"));
-            cb = loader.load();
-            Scene scene = new Scene(cb);
-            Stage stage = new Stage();
+            dvtq = loader.load();
+            Scene scene = new Scene(dvtq);
+            DatVeTaiQuayController controller = loader.getController();
+            controller.setTTUser(nd);
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
@@ -100,12 +103,12 @@ public class TrangChuController implements Initializable {
     }
     public void datVeOnlineHandler(ActionEvent evt) {
         try {
-            Parent v;
+            Parent dvo;
+            Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("datveonline.fxml"));
-            v = loader.load();
-            Scene scene = new Scene(v);
-            Stage stage = new Stage();
+            dvo = loader.load();
+            Scene scene = new Scene(dvo);
             DatVeOnlineController controller = loader.getController();
             controller.setTTUser(nd);
             stage.setScene(scene);

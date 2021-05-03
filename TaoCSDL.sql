@@ -64,7 +64,7 @@ CREATE TABLE sanbay (
 CREATE TABLE sanbay_maybay (
   maSanBay varchar(10) NOT NULL,
   soHieuMayBay varchar(10) NOT NULL,
-  ngayDauTaiSanBay datetime NOT NULL,
+  ngayDauTaiSanBay varchar(19) NOT NULL,
   
   PRIMARY KEY (maSanBay, soHieuMayBay),
   
@@ -79,8 +79,8 @@ CREATE TABLE sanbay_maybay (
 #Tạo Bảng chuyenbay
 CREATE TABLE chuyenbay (
   maChuyenBay varchar(10) NOT NULL,
-  ngayGioKhoiHanh datetime NOT NULL,
-  ngayGioDen datetime NOT NULL,
+  ngayGioKhoiHanh varchar(19) NOT NULL,
+  ngayGioDen varchar(19) NOT NULL,
   maSanBayDi varchar(10) NOT NULL,
   maSanBayDen varchar(10) NOT NULL, 
   soHieuMayBay varchar(10) NOT NULL,
@@ -167,7 +167,7 @@ CREATE TABLE vemaybay (
   idHangVe int NOT NULL,
   giaVe decimal NOT NULL,
   maGhe varchar(5) NOT NULL,
-  ngayXuatVe datetime NOT NULL,
+  ngayXuatVe varchar(19) NOT NULL,
   maNguoiDat int NOT NULL,
   maKH int NOT NULL,
   maChuyenBay varchar(10) NOT NULL,
@@ -235,8 +235,8 @@ INSERT INTO flight.sanbay (maSanBay, tenSanBay, diaDiem, quocGia, trangThai) VAL
 INSERT INTO flight.maybay_ghe (soHieuMayBay, maGhe) VALUES ('AB1', '1');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, maGhe) VALUES ('YZ5', '2');
 
-INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,maSanBayDi,maSanBayDen,soHieuMayBay) VALUES ('1','2020-05-20 07:00:00','2020-05-20 12:00:00','2','1','AB1');
-INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,maSanBayDi,maSanBayDen,soHieuMayBay) VALUES ('2','2020-06-25 17:00:00','2020-06-27 20:00:00','1','2','YZ5');
+INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,maSanBayDi,maSanBayDen,soHieuMayBay) VALUES ('1','07:00:00 2020-05-20','12:00:00 2020-05-20','2','1','AB1');
+INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,maSanBayDi,maSanBayDen,soHieuMayBay) VALUES ('2','17:00:00 2020-06-25','20:00:00 2020-06-27','1','2','YZ5');
 
 INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES ('1','2','Vietnam Airlines','1','100000');
 INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES ('1','2','Vietnam Airlines','2','120000');
@@ -251,15 +251,15 @@ INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES 
 INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES ('1','2','Bamboo Airways','2','100000');
 INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES ('1','2','Bamboo Airways','3','150000');
 
-INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('1', 'AB1', '2021-03-20 05:50:00');
-INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('2', 'YZ5', '2021-01-01 20:30:00');
+INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('1', 'AB1', '05:50:002021-03-20');
+INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('2', 'YZ5', '20:30:002021-01-01');
 
-INSERT INTO flight.vemaybay (idHangVe, giaVe, maGhe, ngayXuatVe, maNguoiDat, maKH, maChuyenBay) VALUES ('1', '100000', '1', '2021-03-10 05:50:00', '3', '1', '1');
-INSERT INTO flight.vemaybay (idHangVe, giaVe, maGhe, ngayXuatVe, maNguoiDat, maKH, maChuyenBay) VALUES ('3', '150000', '4', '2021-03-15 22:20:21', '4', '2', '2');
-INSERT INTO flight.vemaybay (idHangVe, giaVe, maGhe, ngayXuatVe, maNguoiDat, maKH, maChuyenBay) VALUES ('2', '100000', '4', '2021-04-01 12:30:00', '4', '3', '2');
-INSERT INTO flight.vemaybay (idHangVe, giaVe, maGhe, ngayXuatVe, maNguoiDat, maKH, maChuyenBay) VALUES ('3', '200000', '4', '2021-04-20 18:22:31', '3', '4', '1');
+INSERT INTO flight.vemaybay (idHangVe, giaVe, maGhe, ngayXuatVe, maNguoiDat, maKH, maChuyenBay) VALUES ('1', '100000', '1', '05:50:00 2021-03-10', '3', '1', '1');
+INSERT INTO flight.vemaybay (idHangVe, giaVe, maGhe, ngayXuatVe, maNguoiDat, maKH, maChuyenBay) VALUES ('3', '150000', '4', '22:20:21 2021-03-15', '4', '2', '2');
+INSERT INTO flight.vemaybay (idHangVe, giaVe, maGhe, ngayXuatVe, maNguoiDat, maKH, maChuyenBay) VALUES ('2', '100000', '4', '12:30:00 2021-04-01', '4', '3', '2');
+INSERT INTO flight.vemaybay (idHangVe, giaVe, maGhe, ngayXuatVe, maNguoiDat, maKH, maChuyenBay) VALUES ('3', '200000', '4', '18:22:31 2021-04-20', '3', '4', '1');
 
-INSERT INTO flight.phieudatcho (maVe, maKH, ngayDatVe) VALUES ('1', '1', '2021-03-20 05:50:00');
-INSERT INTO flight.phieudatcho (maVe, maKH, ngayDatVe) VALUES ('2', '2', '2021-01-30 09:40:00');
+INSERT INTO flight.phieudatcho (maVe, maKH, ngayDatVe) VALUES ('1', '1', '05:50:00 2021-03-20');
+INSERT INTO flight.phieudatcho (maVe, maKH, ngayDatVe) VALUES ('2', '2', '09:40:00 2021-01-30');
 
 

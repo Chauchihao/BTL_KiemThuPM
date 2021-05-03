@@ -18,7 +18,7 @@ public class VeMayBay {
     private int idHangVe;
     private BigDecimal giaVe;
     private String maGhe;
-    private Date ngayXuatVe;
+    private String ngayXuatVe;
     private int maNguoiDat;
     private int maKH;
     private String maCB;
@@ -88,14 +88,14 @@ public class VeMayBay {
     /**
      * @return the ngayXuatVe
      */
-    public Date getNgayXuatVe() {
+    public String getNgayXuatVe() {
         return ngayXuatVe;
     }
 
     /**
      * @param ngayXuatVe the ngayXuatVe to set
      */
-    public void setNgayXuatVe(Date ngayXuatVe) {
+    public void setNgayXuatVe(String ngayXuatVe) {
         this.ngayXuatVe = ngayXuatVe;
     }
 
@@ -140,8 +140,6 @@ public class VeMayBay {
     public void setMaCB(String maCB) {
         this.maCB = maCB;
     }
-
-    
 
     
 }

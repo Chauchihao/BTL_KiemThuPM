@@ -28,26 +28,25 @@ public class VeMayBayService {
         this.conn = conn;
     }
     
-    public List<VeMayBay> getVeMayBay() throws SQLException {
-        Statement stm = this.conn.createStatement();
-        ResultSet r = stm.executeQuery("SELECT * FROM vemaybay");
+    public VeMayBay getVeMayBay(String ngayXuatVe, int maKH) throws SQLException {
+        String sql = "SELECT * FROM vemaybay WHERE ngayXuatVe = ? AND maKH = ?";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setString(1, ngayXuatVe);
+        stm.setInt(2, maKH);
         
-        
-        List<VeMayBay> vemaybay = new ArrayList<>();
-        while (r.next()) {
-            VeMayBay vmb = new VeMayBay();
-            vmb.setMaVe(r.getInt("maVe"));
-            vmb.setIdHangVe(r.getInt("idHangVe"));
-            vmb.setGiaVe(r.getBigDecimal("giaVe"));
-            vmb.setNgayXuatVe(r.getDate("ngayXuatVe"));
-            vmb.setMaCB(r.getString("maChuyenBay"));
-            vmb.setMaGhe(r.getString("maGhe"));
-            vmb.setMaKH(r.getInt("maKH"));
-            vmb.setMaNguoiDat(r.getInt("maNguoiDat"));
-            
-            vemaybay.add(vmb);
+        ResultSet rs = stm.executeQuery();
+        VeMayBay vmb = null;
+        while (rs.next()) {
+            vmb = new VeMayBay();
+            vmb.setMaVe(rs.getInt("maVe"));
+            vmb.setIdHangVe(rs.getInt("idHangVe"));
+            vmb.setGiaVe(rs.getBigDecimal("giaVe"));
+            vmb.setNgayXuatVe(rs.getString("ngayXuatVe"));
+            vmb.setMaNguoiDat(rs.getInt("maNguoiDat"));
+            vmb.setMaKH(rs.getInt("maKH"));
+            vmb.setMaCB(rs.getString("maChuyenBay"));
         }
-        return vemaybay;
+        return vmb;
     }
     
     public boolean addVeMayBay(VeMayBay vmb) throws SQLException {
@@ -57,7 +56,7 @@ public class VeMayBayService {
         stm.setInt(1, vmb.getIdHangVe());
         stm.setBigDecimal(2, vmb.getGiaVe());
         stm.setString(3, vmb.getMaGhe());
-        stm.setDate(4, vmb.getNgayXuatVe());
+        stm.setString(4, vmb.getNgayXuatVe());
         stm.setInt(5, vmb.getMaNguoiDat());
         stm.setInt(6, vmb.getMaKH());
         stm.setString(7, vmb.getMaCB());

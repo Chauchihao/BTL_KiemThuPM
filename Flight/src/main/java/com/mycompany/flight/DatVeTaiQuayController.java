@@ -6,20 +6,19 @@
 package com.mycompany.flight;
 
 import com.mycompany.pojo.ChuyenBay;
-import com.mycompany.pojo.HangVe;
 import com.mycompany.pojo.Ghe;
+import com.mycompany.pojo.HangVe;
 import com.mycompany.pojo.KhachHang;
 import com.mycompany.pojo.PhieuDatCho;
 import com.mycompany.pojo.Users;
 import com.mycompany.pojo.VeMayBay;
 import com.mycompany.service.ChuyenBayService;
-import com.mycompany.service.HangVeService;
 import com.mycompany.service.GheService;
 import com.mycompany.service.GiaVeService;
+import com.mycompany.service.HangVeService;
 import com.mycompany.service.JdbcUtils;
 import com.mycompany.service.KhachHangService;
 import com.mycompany.service.PhieuDatChoService;
-import com.mycompany.service.UsersService;
 import com.mycompany.service.VeMayBayService;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -27,12 +26,9 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,7 +42,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -54,7 +49,7 @@ import javafx.stage.Stage;
  *
  * @author Admin
  */
-public class DatVeOnlineController implements Initializable {
+public class DatVeTaiQuayController implements Initializable {
     @FXML private ComboBox<ChuyenBay> cbMaCB;
     @FXML private ComboBox<HangVe> cbHangVe;
     @FXML private ComboBox<Ghe> cbViTri;
@@ -64,6 +59,7 @@ public class DatVeOnlineController implements Initializable {
     @FXML private TextField txtIDCard;
     @FXML private TextField txtSDT;
     @FXML private TextField txtEmail;
+    @FXML private TextField txtNhanVien;
     Users nd;
     String ngay;
 
@@ -72,7 +68,6 @@ public class DatVeOnlineController implements Initializable {
         try {
             Connection conn = JdbcUtils.getConn();
             ChuyenBayService s = new ChuyenBayService(conn);
-            VeMayBayService ss = new VeMayBayService(conn);
             this.cbMaCB.setItems(FXCollections.observableList(s.getChuyenBay()));
 
             Calendar cal = Calendar.getInstance();
@@ -81,78 +76,45 @@ public class DatVeOnlineController implements Initializable {
             
             conn.close();
         } catch (SQLException ex) {
-            Logger.getLogger(DatVeOnlineController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DatVeTaiQuayController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     public void setTTUser(Users u){
             nd = u;
-            txtHoTen.setText(u.getHoTen());
-            if (u.getEmail().isEmpty() == false)
-                txtEmail.setText(u.getEmail());
-            if (u.getSdt().isEmpty() == false)
-                txtSDT.setText(u.getSdt());
-            if (u.getIdCard().isEmpty() == false)
-                txtIDCard.setText(u.getIdCard());
-          
+            txtNhanVien.setText(u.getHoTen());
     }
     
     public void chonComboBoxMaCB(ActionEvent evt){
         if (evt.getSource() == this.cbMaCB) {
             try {
-                    if (this.cbMaCB.getSelectionModel().isEmpty() == false) {
-                        Connection conn = JdbcUtils.getConn();
-                        HangVeService hvs = new HangVeService(conn);
-                        this.cbHangVe.setItems(FXCollections.observableList(hvs.getHangVe()));
-                        conn.close();
-                    }
-                        
-                } catch (SQLException ex) {
-                    Logger.getLogger(DatVeOnlineController.class.getName()).log(Level.SEVERE, null, ex);
+                if (this.cbMaCB.getSelectionModel().isEmpty() == false) {
+                    Connection conn = JdbcUtils.getConn();
+                    HangVeService hvs = new HangVeService(conn);
+                    this.cbHangVe.setItems(FXCollections.observableList(hvs.getHangVe()));
+                    conn.close();
                 }
-            
-            
-            
-//            maCB = this.cbMaCB.getSelectionModel().getSelectedItem().getMaChuyenBay();
-//            Utils.getBox("Mã chuyến bay: " + maCB, Alert.AlertType.CONFIRMATION).show();
-//            Connection conn;
-//            try {
-//                conn = JdbcUtils.getConn();
-//                VeMayBayService ss = new VeMayBayService(conn);
-//                //giaVe = String.valueOf(ss.getGiaVeByMaCB(maCB));
-//                this.txtGiaTien.setText("Lỗi");
-//                conn.close();
-//            } catch (SQLException ex) {
-//                Logger.getLogger(DatVeOnlineController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-            
+            } catch (SQLException ex) {
+                Logger.getLogger(DatVeTaiQuayController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-//        return maCB;
     }
     
     public void chonComboBoxHangVe(ActionEvent evt){
         if (evt.getSource() == this.cbHangVe) {
             try {
-                    if (this.cbHangVe.getSelectionModel().isEmpty() == false)
-                    {
-                        Connection conn = JdbcUtils.getConn();
-                        GheService gs = new GheService(conn);
-                        GiaVeService gvs = new GiaVeService(conn);
-                        this.cbViTri.setItems(FXCollections.observableList(gs.getGhe()));
-                        this.txtGiaTien.setText(gvs.getGiaVeByChuyenBay_HangVe(
-                            this.cbMaCB.getSelectionModel().getSelectedItem()
-                            .getMaChuyenBay(), this.cbHangVe.getSelectionModel()
-                            .getSelectedItem().getId()).getGiaVe().toString());
-                        //String maCB = this.cbMaCB.getSelectionModel().getSelectedItem().getMaChuyenBay();
-//                        List<VeMayBay> vmb = ss.getVeMayBayByMaCB(maCB);
-//                        this.cbHangVe.setItems(FXCollections.observableList(vmb));
-                        
-                        
-                        //this.cbViTri.setItems(FXCollections.observableList(ss.getVeMayBay()));
-                    }
-                        
+                if (this.cbHangVe.getSelectionModel().isEmpty() == false) {
+                    Connection conn = JdbcUtils.getConn();
+                    GheService gs = new GheService(conn);
+                    GiaVeService gvs = new GiaVeService(conn);
+                    this.cbViTri.setItems(FXCollections.observableList(gs.getGhe()));
+                    this.txtGiaTien.setText(gvs.getGiaVeByChuyenBay_HangVe(
+                        this.cbMaCB.getSelectionModel().getSelectedItem()
+                        .getMaChuyenBay(), this.cbHangVe.getSelectionModel()
+                        .getSelectedItem().getId()).getGiaVe().toString());
+                }          
             } catch (SQLException ex) {
-                Logger.getLogger(DatVeOnlineController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DatVeTaiQuayController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -169,7 +131,6 @@ public class DatVeOnlineController implements Initializable {
             KhachHang kh;
             Calendar cal;
             SimpleDateFormat simpleformat = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
-            
             
             if (this.cbMaCB.getSelectionModel().isEmpty())
                 Utils.getBox("Vui lòng chọn mã chuyến bay!!!", Alert.AlertType.WARNING).show();
@@ -198,46 +159,49 @@ public class DatVeOnlineController implements Initializable {
                                                     ngay = simpleformat.format(cal.getTime());
                                                     vmb.setNgayXuatVe(ngay);
                                                     kh = khs.getKhachHang(this.txtHoTen.getText());
-
-                                                    if (kh == null){
+                                                    if (kh == null) {
                                                         KhachHang k = new KhachHang();
                                                         k.setTenKH(this.txtHoTen.getText());
                                                         k.setIdCard(this.txtIDCard.getText());
                                                         k.setEmail(this.txtEmail.getText());
                                                         k.setSdt(this.txtSDT.getText());
-
                                                         if (khs.addKhachHang(k) == true)
                                                             kh = khs.getKhachHang(this.txtHoTen.getText());
                                                     }
                                                     vmb.setMaKH(kh.getMaKH());
                                                     vmb.setMaNguoiDat(nd.getId());
 
-                                                    if (vmbs.addVeMayBay(vmb) == true ) {
-                                                        Utils.getBox("Đặt vé thành công!", Alert.AlertType.INFORMATION).show();
+                                                    if (vmbs.addVeMayBay(vmb) == true ){
+                                                        pdc.setMaVe(vmbs.getVeMayBay(ngay, kh.getMaKH()).getMaVe());
+                                                        pdc.setNgayDatVe(ngay);
+                                                        pdc.setMaKH(kh.getMaKH());
+                                                        if (pdcs.addPhieuDatCho(pdc) == true) {
+                                                            Utils.getBox("Đặt vé thành công!", Alert.AlertType.INFORMATION).show();
 
-                                                        Parent dvo;
-                                                        Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
-                                                        FXMLLoader loader = new FXMLLoader();
-                                                        loader.setLocation(getClass().getResource("datveonline.fxml"));
-                                                        dvo = loader.load();
-                                                        Scene scene = new Scene(dvo);
-                                                        DatVeOnlineController controller = loader.getController();
-                                                        controller.setTTUser(nd);
-                                                        stage.setScene(scene);
-                                                        stage.show();
+                                                            Parent dvtq;
+                                                            Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
+                                                            FXMLLoader loader = new FXMLLoader();
+                                                            loader.setLocation(getClass().getResource("datvetaiquay.fxml"));
+                                                            dvtq = loader.load();
+                                                            Scene scene = new Scene(dvtq);
+                                                            DatVeTaiQuayController controller = loader.getController();
+                                                            controller.setTTUser(nd);
+                                                            stage.setScene(scene);
+                                                            stage.show();
+                                                        }
                                                     }
                                                     else 
                                                         Utils.getBox("Đặt vé thất bại!!!", Alert.AlertType.ERROR).show();
                                                 }
             conn.close();
         } catch (SQLException ex) {
-            Logger.getLogger(DatVeOnlineController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DatVeTaiQuayController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public void logoutHandler(ActionEvent e) throws IOException {
+    public void logoutHandler(ActionEvent evt) throws IOException {
         Parent dangnhap;
-        Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+        Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("dangnhap.fxml"));
         dangnhap = loader.load();
@@ -247,18 +211,16 @@ public class DatVeOnlineController implements Initializable {
 
     }
     
-    public void continueHandler(ActionEvent e) throws IOException {
-        Parent trangChuNV;
-        Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+    public void continueHandler(ActionEvent evt) throws IOException {
+        Parent trangChuKhach;
+        Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("UIkhachhang.fxml"));
-        trangChuNV = loader.load();
-        Scene scene = new Scene(trangChuNV);
+        loader.setLocation(getClass().getResource("UInhanvien.fxml"));
+        trangChuKhach = loader.load();
+        Scene scene = new Scene(trangChuKhach);
         TrangChuController controller = loader.getController();
         controller.setTenTK(nd);
         stage.setScene(scene);
         stage.show();
-
     }
 }
-

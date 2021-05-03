@@ -14,8 +14,8 @@ import java.sql.Date;
 public class ChuyenBay {
     private String maChuyenBay;
     private String soHieuMayBay;
-    private Date ngayGioKhoiHanh;
-    private Date ngayGioDen;
+    private String ngayGioKhoiHanh;
+    private String ngayGioDen;
     private String maSanBayDi;
     private String maSanBayDen;
     private String sanBayTrungGian; 
@@ -56,28 +56,28 @@ public class ChuyenBay {
     /**
      * @return the ngayGioKhoiHanh
      */
-    public Date getNgayGioKhoiHanh() {
+    public String getNgayGioKhoiHanh() {
         return ngayGioKhoiHanh;
     }
 
     /**
      * @param ngayGioKhoiHanh the ngayGioKhoiHanh to set
      */
-    public void setNgayGioKhoiHanh(Date ngayGioKhoiHanh) {
+    public void setNgayGioKhoiHanh(String ngayGioKhoiHanh) {
         this.ngayGioKhoiHanh = ngayGioKhoiHanh;
     }
 
     /**
      * @return the ngayGioDen
      */
-    public Date getNgayGioDen() {
+    public String getNgayGioDen() {
         return ngayGioDen;
     }
 
     /**
      * @param ngayGioDen the ngayGioDen to set
      */
-    public void setNgayGioDen(Date ngayGioDen) {
+    public void setNgayGioDen(String ngayGioDen) {
         this.ngayGioDen = ngayGioDen;
     }
 

@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -61,9 +62,6 @@ public class DangNhapController implements Initializable {
         
         try {
             Connection conn = JdbcUtils.getConn();
-            UsersService s = new UsersService(conn);
-            
-                        
             
             if (this.cbLoaiTK.getSelectionModel().isEmpty())
                 Utils.getBox("Vui lòng chọn loại tài khoản!!!", Alert.AlertType.WARNING).show();
@@ -72,6 +70,7 @@ public class DangNhapController implements Initializable {
                     else if (this.txtMatKhau.getText().isEmpty()) 
                         Utils.getBox("Vui lòng điền mật khẩu!!!", Alert.AlertType.WARNING).show();
                         else {
+                            UsersService s = new UsersService(conn);
                             Users u = new Users();
                             u.setIdLoaiTK(this.cbLoaiTK.getSelectionModel().getSelectedItem().getId());
                             u.setTenTK(this.txtTenTK.getText());
@@ -85,11 +84,11 @@ public class DangNhapController implements Initializable {
                                         path = "UInhanvien.fxml";
                                     if (u.getIdLoaiTK() == 2)
                                         path = "UIkhachhang.fxml";
+                                    Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
                                     FXMLLoader loader = new FXMLLoader();
                                     loader.setLocation(getClass().getResource(path));
                                     trangchu = loader.load();
                                     Scene scene = new Scene(trangchu);
-                                    Stage stage = new Stage();
                                     TrangChuController controller = loader.getController();
                                     controller.setTenTK(u);
                                     stage.setScene(scene);
@@ -98,10 +97,12 @@ public class DangNhapController implements Initializable {
                                     Logger.getLogger(DangNhapController.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                             }
-                            else if (s.getUsers(u.getTenTK()).getIdLoaiTK() != u.getIdLoaiTK())
-                                    Utils.getBox("Vui lòng chọn đúng loại tài khoản hoặc nhập đúng tài khoản!!!", Alert.AlertType.INFORMATION).show();
-                                else
-                                    Utils.getBox("Đăng nhập thất bại!!!", Alert.AlertType.INFORMATION).show();
+                            else if (s.getUsers(u.getTenTK()) == null)
+                                    Utils.getBox("Tên tài khoản không tồn tại!!!", Alert.AlertType.WARNING).show();
+                                else if (s.getUsers(u.getTenTK()).getIdLoaiTK() != u.getIdLoaiTK())
+                                        Utils.getBox("Vui lòng chọn đúng loại tài khoản hoặc nhập đúng tài khoản!!!", Alert.AlertType.WARNING).show();
+                                    else
+                                        Utils.getBox("Đăng nhập thất bại!!!", Alert.AlertType.WARNING).show();
                         }
             conn.close();
             

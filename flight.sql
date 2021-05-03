@@ -27,8 +27,8 @@ DROP TABLE IF EXISTS `chuyenbay`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `chuyenbay` (
   `maChuyenBay` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ngayGioKhoiHanh` datetime NOT NULL,
-  `ngayGioDen` datetime NOT NULL,
+  `ngayGioKhoiHanh` varchar(19) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ngayGioDen` varchar(19) COLLATE utf8mb4_unicode_ci NOT NULL,
   `maSanBayDi` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `maSanBayDen` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `soHieuMayBay` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE `chuyenbay` (
 
 LOCK TABLES `chuyenbay` WRITE;
 /*!40000 ALTER TABLE `chuyenbay` DISABLE KEYS */;
-INSERT INTO `chuyenbay` VALUES ('1','2020-05-20 07:00:00','2020-05-20 12:00:00','2','1','AB1',NULL),('2','2020-06-25 17:00:00','2020-06-27 20:00:00','1','2','YZ5',NULL);
+INSERT INTO `chuyenbay` VALUES ('1','07:00:00 2020-05-20','12:00:00 2020-05-20','2','1','AB1',NULL),('2','17:00:00 2020-06-25','20:00:00 2020-06-27','1','2','YZ5',NULL);
 /*!40000 ALTER TABLE `chuyenbay` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,7 +159,7 @@ CREATE TABLE `khachhang` (
   `sdt` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`maKH`),
   KEY `FK_khachhang_maKH_idx` (`maKH`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,7 +168,7 @@ CREATE TABLE `khachhang` (
 
 LOCK TABLES `khachhang` WRITE;
 /*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
-INSERT INTO `khachhang` VALUES (1,'Phạm Anh D','012345678910','phamanhdg@gmail.com','0345678921'),(2,'Nguyễn Thị Diễm M','012345678911','nguyenthidiemm@gmail.com','0345678922'),(3,'Nguyễn Văn A','012345678999','nguyenvana@gmail.com','0988775544'),(4,'Trần Thị C','012345678888',NULL,NULL),(5,'Phạm Anh Adudu','012345678910','phamanhdg@gmail.com','0345678921');
+INSERT INTO `khachhang` VALUES (1,'Phạm Anh D','012345678910','phamanhdg@gmail.com','0345678921'),(2,'Nguyễn Thị Diễm M','012345678911','nguyenthidiemm@gmail.com','0345678922'),(3,'Nguyễn Văn A','012345678999','nguyenvana@gmail.com','0988775544'),(4,'Trần Thị C','012345678888',NULL,NULL);
 /*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -276,7 +276,7 @@ CREATE TABLE `phieudatcho` (
 
 LOCK TABLES `phieudatcho` WRITE;
 /*!40000 ALTER TABLE `phieudatcho` DISABLE KEYS */;
-INSERT INTO `phieudatcho` VALUES (1,1,1,'2021-03-20 05:50:00'),(2,2,2,'2021-01-30 09:40:00');
+INSERT INTO `phieudatcho` VALUES (1,1,1,'05:50:00 2021-03-20'),(2,2,2,'09:40:00 2021-01-30');
 /*!40000 ALTER TABLE `phieudatcho` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -318,7 +318,7 @@ DROP TABLE IF EXISTS `sanbay_maybay`;
 CREATE TABLE `sanbay_maybay` (
   `maSanBay` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `soHieuMayBay` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ngayDauTaiSanBay` datetime NOT NULL,
+  `ngayDauTaiSanBay` varchar(19) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`maSanBay`,`soHieuMayBay`),
   KEY `FK_sanbay_maybay_maSanBay_idx` (`maSanBay`),
   KEY `FK_sanbay_maybay_soHieuMayBay_idx` (`soHieuMayBay`),
@@ -333,7 +333,7 @@ CREATE TABLE `sanbay_maybay` (
 
 LOCK TABLES `sanbay_maybay` WRITE;
 /*!40000 ALTER TABLE `sanbay_maybay` DISABLE KEYS */;
-INSERT INTO `sanbay_maybay` VALUES ('1','AB1','2021-03-20 05:50:00'),('2','YZ5','2021-01-01 20:30:00');
+INSERT INTO `sanbay_maybay` VALUES ('1','AB1','05:50:002021-03-20'),('2','YZ5','20:30:002021-01-01');
 /*!40000 ALTER TABLE `sanbay_maybay` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -383,7 +383,7 @@ CREATE TABLE `vemaybay` (
   `idHangVe` int NOT NULL,
   `giaVe` decimal(10,0) NOT NULL,
   `maGhe` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ngayXuatVe` datetime NOT NULL,
+  `ngayXuatVe` varchar(19) COLLATE utf8mb4_unicode_ci NOT NULL,
   `maNguoiDat` int NOT NULL,
   `maKH` int NOT NULL,
   `maChuyenBay` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -401,7 +401,7 @@ CREATE TABLE `vemaybay` (
   CONSTRAINT `FK_vemaybay_maChuyenBay` FOREIGN KEY (`maChuyenBay`) REFERENCES `chuyenbay` (`maChuyenBay`),
   CONSTRAINT `FK_vemaybay_maGhe` FOREIGN KEY (`maGhe`) REFERENCES `ghe` (`maGhe`),
   CONSTRAINT `FK_vemaybay_maNguoiDat` FOREIGN KEY (`maNguoiDat`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -410,7 +410,7 @@ CREATE TABLE `vemaybay` (
 
 LOCK TABLES `vemaybay` WRITE;
 /*!40000 ALTER TABLE `vemaybay` DISABLE KEYS */;
-INSERT INTO `vemaybay` VALUES (1,1,100000,'1','2021-03-10 05:50:00',3,1,'1'),(2,3,150000,'4','2021-03-15 22:20:21',4,2,'2'),(3,2,100000,'4','2021-04-01 12:30:00',4,3,'2'),(4,3,200000,'4','2021-04-20 18:22:31',3,4,'1'),(5,2,120000,'3','2021-05-02 00:00:00',3,1,'1'),(6,2,120000,'3','2021-05-02 00:00:00',3,5,'1');
+INSERT INTO `vemaybay` VALUES (1,1,100000,'1','05:50:00 2021-03-10',3,1,'1'),(2,3,150000,'4','22:20:21 2021-03-15',4,2,'2'),(3,2,100000,'4','12:30:00 2021-04-01',4,3,'2'),(4,3,200000,'4','18:22:31 2021-04-20',3,4,'1');
 /*!40000 ALTER TABLE `vemaybay` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -423,4 +423,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-02 21:04:05
+-- Dump completed on 2021-05-03 23:23:33
