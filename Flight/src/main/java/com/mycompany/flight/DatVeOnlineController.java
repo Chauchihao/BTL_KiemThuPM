@@ -141,7 +141,7 @@ public class DatVeOnlineController implements Initializable {
                         this.txtGiaTien.setText(gvs.getGiaVeByChuyenBay_HangVe(
                             this.cbMaCB.getSelectionModel().getSelectedItem()
                             .getMaChuyenBay(), this.cbHangVe.getSelectionModel()
-                            .getSelectedItem().getId()).getGiaVe().toString());
+                            .getSelectedItem().getHangVe()).getGiaVe().toString());
                         //String maCB = this.cbMaCB.getSelectionModel().getSelectedItem().getMaChuyenBay();
 //                        List<VeMayBay> vmb = ss.getVeMayBayByMaCB(maCB);
 //                        this.cbHangVe.setItems(FXCollections.observableList(vmb));

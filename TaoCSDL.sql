@@ -14,7 +14,7 @@ CREATE TABLE maybay (
 #Tạo bảng hangve
 CREATE TABLE hangve (
 	id int NOT NULL,
-    hangVe varchar(255) NOT NULL,
+    hangVe varchar(100) NOT NULL,
     
     PRIMARY KEY (id),
 	KEY FK_id_idx (id),
@@ -26,11 +26,11 @@ CREATE TABLE hangve (
 CREATE TABLE ghe (
   maGhe varchar(5) NOT NULL,
   trangThai bool NOT NULL,
-  idHangVe int NOT NULL,
+  hangVe varchar(100) NOT NULL,
   
   PRIMARY KEY (maGhe),
-  KEY FK_ghe_idHangve_idx (idHangVe),
-  CONSTRAINT FK_ghe_idHangve FOREIGN KEY (idHangVe) REFERENCES hangve(id)
+  KEY FK_ghe_hangVe_idx (hangVe),
+  CONSTRAINT FK_ghe_hangVe FOREIGN KEY (hangVe) REFERENCES hangve(hangVe)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -52,13 +52,14 @@ CREATE TABLE maybay_ghe (
 #Tạo Bảng sanbay
 CREATE TABLE sanbay (
   maSanBay varchar(10) NOT NULL,
-  tenSanBay varchar(255) NOT NULL,
-  diaDiem varchar(255) NOT NULL,
-  quocGia varchar(255) NOT NULL,
+  tenSanBay varchar(100) NOT NULL,
+  diaDiem varchar(100) NOT NULL,
+  quocGia varchar(100) NOT NULL,
   trangThai bool NOT NULL,
   
   PRIMARY KEY (maSanBay),
-  KEY FK_sanbay_maSanBay_idx (maSanBay)
+  KEY FK_sanbay_maSanBay_idx (maSanBay),
+  KEY FK_sanbay_tenSanBay_idx (tenSanBay)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -83,49 +84,49 @@ CREATE TABLE chuyenbay (
   maChuyenBay varchar(10) NOT NULL,
   ngayGioKhoiHanh varchar(19) NOT NULL,
   ngayGioDen varchar(19) NOT NULL,
-  maSanBayDi varchar(10) NOT NULL,
-  maSanBayDen varchar(10) NOT NULL, 
+  tenSanBayDi varchar(100) NOT NULL,
+  tenSanBayDen varchar(100) NOT NULL, 
   soHieuMayBay varchar(10) NOT NULL,
   sanBayTrungGian varchar(10) NULL,
   
   PRIMARY KEY (maChuyenBay),
   KEY FK_chuyenbay_sanBayTrungGian_idx (sanBayTrungGian),
-  KEY FK_chuyenbay_maSanBayDi_idx (maSanBayDi),
-  KEY FK_chuyenbay_maSanBayDen_idx (maSanBayDen),
+  KEY FK_chuyenbay_tenSanBayDi_idx (tenSanBayDi),
+  KEY FK_chuyenbay_tenSanBayDen_idx (tenSanBayDen),
   KEY FK_chuyenbay_soHieuMayBay_idx (soHieuMayBay),
   KEY FK_chuyenbay_maChuyenBay_idx (maChuyenBay),
   CONSTRAINT FK_chuyenbay_sanBayTrungGian FOREIGN KEY (sanBayTrungGian) REFERENCES sanbay(maSanBay),
-  CONSTRAINT FK_chuyenbay_maSanBayDi FOREIGN KEY (maSanBayDi) REFERENCES sanbay(maSanBay),
-  CONSTRAINT FK_chuyenbay_maSanBayDen FOREIGN KEY (maSanBayDen) REFERENCES sanbay(maSanBay),
+  CONSTRAINT FK_chuyenbay_tenSanBayDi FOREIGN KEY (tenSanBayDi) REFERENCES sanbay(tenSanBay),
+  CONSTRAINT FK_chuyenbay_tenSanBayDen FOREIGN KEY (tenSanBayDen) REFERENCES sanbay(tenSanBay),
   CONSTRAINT FK_chuyenbay_soHieuMayBay FOREIGN KEY (soHieuMayBay) REFERENCES maybay(soHieuMayBay)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 #Tạo bảng giave
 CREATE TABLE giave (
-  maSanBayDi varchar(10) NOT NULL,
-  maSanBayDen varchar(10) NOT NULL,
+  tenSanBayDi varchar(100) NOT NULL,
+  tenSanBayDen varchar(100) NOT NULL,
   hangBay varchar(100) NOT NULL,
-  idHangVe int NOT NULL,
+  hangVe varchar(100) NOT NULL,
   giaVe decimal NOT NULL,
   
-  PRIMARY KEY (maSanBayDi,maSanBayDen,hangBay,idHangVe),
+  PRIMARY KEY (tenSanBayDi,tenSanBayDen,hangBay,hangVe),
   
-  KEY FK_giave_chuyenbay_maSanBayDi_idx (maSanBayDi),
-  KEY FK_giave_chuyenbay_maSanBayDen_idx (maSanBayDen),
+  KEY FK_giave_chuyenbay_tenSanBayDi_idx (tenSanBayDi),
+  KEY FK_giave_chuyenbay_tenSanBayDen_idx (tenSanBayDen),
   KEY FK_giave_maybay_hangBay_idx (hangBay),
-  KEY FK_giave_hangve_idHangVe_idx (idHangVe),
+  KEY FK_giave_hangve_hangVe_idx (hangVe),
   KEY FK_giave_vemaybay_idx (giaVe),
-  CONSTRAINT FK_giave_chuyenbay_maSanBayDi FOREIGN KEY (maSanBayDi) REFERENCES chuyenbay(maSanBayDi),
-  CONSTRAINT FK_giave_chuyenbay_maSanBayDen FOREIGN KEY (maSanBayDen) REFERENCES chuyenbay(maSanBayDen),
+  CONSTRAINT FK_giave_chuyenbay_tenSanBayDi FOREIGN KEY (tenSanBayDi) REFERENCES chuyenbay(tenSanBayDi),
+  CONSTRAINT FK_giave_chuyenbay_tenSanBayDen FOREIGN KEY (tenSanBayDen) REFERENCES chuyenbay(tenSanBayDen),
   CONSTRAINT FK_giave_maybay_hangBay FOREIGN KEY (hangBay) REFERENCES maybay(hangBay),
-  CONSTRAINT FK_giave_hangve_idHangVe FOREIGN KEY (idHangVe) REFERENCES hangve(id)
+  CONSTRAINT FK_giave_hangve_hangVe FOREIGN KEY (hangVe) REFERENCES hangve(hangVe)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 #Tạo bảng loaitk
 CREATE TABLE loaitk (
 	id int NOT NULL,
-    tk varchar(255) NOT NULL,
+    tk varchar(100) NOT NULL,
     
     PRIMARY KEY (id),
 	KEY FK_id_idx (id)
@@ -134,13 +135,13 @@ CREATE TABLE loaitk (
 #Tạo Bảng users
 CREATE TABLE users (
   id int NOT NULL,
-  hoTen varchar(255) NOT NULL,
-  tenTK varchar(255) NOT NULL,
-  matKhau varchar(255) NOT NULL,
+  hoTen varchar(100) NOT NULL,
+  tenTK varchar(100) NOT NULL,
+  matKhau varchar(100) NOT NULL,
   trangThai bool DEFAULT TRUE NOT NULL ,
   idLoaiTK int NOT NULL,
   idCard varchar(12) NOT NULL,
-  email varchar(255) NULL,
+  email varchar(100) NULL,
   sdt varchar(10) NULL,
   
   PRIMARY KEY (id),
@@ -154,7 +155,7 @@ CREATE TABLE users (
 #Tạo Bảng khachhang
 CREATE TABLE khachhang (
   maKH int NOT NULL AUTO_INCREMENT,
-  tenKH varchar(255) NOT NULL,
+  tenKH varchar(100) NOT NULL,
   idCard varchar(12) NOT NULL,
   email varchar(100) NULL,
   sdt varchar(10) NULL,
@@ -167,12 +168,12 @@ CREATE TABLE khachhang (
 #Tạo Bảng vemaybay
 CREATE TABLE vemaybay (
   maVe int NOT NULL AUTO_INCREMENT,
-  hangVe varchar(255) NOT NULL,
+  hangVe varchar(100) NOT NULL,
   giaVe decimal NOT NULL,
   maGhe varchar(5) NOT NULL,
   ngayXuatVe varchar(19) NOT NULL,
-  tenNguoiDat varchar(255) NOT NULL,
-  tenKH varchar(255) NOT NULL,
+  tenNguoiDat varchar(100) NOT NULL,
+  tenKH varchar(100) NOT NULL,
   maChuyenBay varchar(10) NOT NULL,
   
   PRIMARY KEY (maVe),
@@ -196,7 +197,7 @@ CREATE TABLE vemaybay (
 CREATE TABLE phieudatcho (
   maPhieu int NOT NULL AUTO_INCREMENT,
   maVe int NOT NULL,
-  tenKH varchar(255) NOT NULL,
+  tenKH varchar(100) NOT NULL,
   ngayDatVe varchar(19) NOT NULL,
   
   PRIMARY KEY (maPhieu),
@@ -224,35 +225,35 @@ INSERT INTO flight.hangve (id, hangVe) VALUES ('1', 'Phổ thông');
 INSERT INTO flight.hangve (id, hangVe) VALUES ('2', 'Phổ thông đặc biệt');
 INSERT INTO flight.hangve (id, hangVe) VALUES ('3', 'Thương gia');
 
-INSERT INTO flight.ghe (maGhe, trangThai, idHangVe) VALUES ('1', '1', '3');
-INSERT INTO flight.ghe (maGhe, trangThai, idHangVe) VALUES ('2', '1', '1');
-INSERT INTO flight.ghe (maGhe, trangThai, idHangVe) VALUES ('3', '1', '2');
-INSERT INTO flight.ghe (maGhe, trangThai, idHangVe) VALUES ('4', '1', '2');
+INSERT INTO flight.ghe (maGhe, trangThai, hangVe) VALUES ('1', '1', 'Thương gia');
+INSERT INTO flight.ghe (maGhe, trangThai, hangVe) VALUES ('2', '1', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, trangThai, hangVe) VALUES ('3', '1', 'Phổ thông đặc biệt');
+INSERT INTO flight.ghe (maGhe, trangThai, hangVe) VALUES ('4', '1', 'Phổ thông đặc biệt');
 
 INSERT INTO flight.maybay (soHieuMayBay, hangBay) VALUES ('AB1', 'Vietnam Airlines');
 INSERT INTO flight.maybay (soHieuMayBay, hangBay) VALUES ('YZ5', 'Bamboo Airways');
 
-INSERT INTO flight.sanbay (maSanBay, tenSanBay, diaDiem, quocGia, trangThai) VALUES ('1', 'TSN', 'HCM', 'VN', '1');
-INSERT INTO flight.sanbay (maSanBay, tenSanBay, diaDiem, quocGia, trangThai) VALUES ('2', 'MB', 'HN', 'VN', '1');
+INSERT INTO flight.sanbay (maSanBay, tenSanBay, diaDiem, quocGia, trangThai) VALUES ('1', 'Tân Sơn Nhất', 'HCM', 'VN', '1');
+INSERT INTO flight.sanbay (maSanBay, tenSanBay, diaDiem, quocGia, trangThai) VALUES ('2', 'Mộc Bài', 'HN', 'VN', '1');
 
 INSERT INTO flight.maybay_ghe (soHieuMayBay, maGhe) VALUES ('AB1', '1');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, maGhe) VALUES ('YZ5', '2');
 
-INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,maSanBayDi,maSanBayDen,soHieuMayBay) VALUES ('1','07:00:00 2020-05-20','12:00:00 2020-05-20','2','1','AB1');
-INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,maSanBayDi,maSanBayDen,soHieuMayBay) VALUES ('2','17:00:00 2020-06-25','20:00:00 2020-06-27','1','2','YZ5');
+INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,tenSanBayDi,tenSanBayDen,soHieuMayBay) VALUES ('1','07:00:00 2020-05-20','12:00:00 2020-05-20','Mộc Bài','Tân Sơn Nhất','AB1');
+INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,tenSanBayDi,tenSanBayDen,soHieuMayBay) VALUES ('2','17:00:00 2020-06-25','20:00:00 2020-06-27','Tân Sơn Nhất','Mộc Bài','YZ5');
 
-INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES ('1','2','Vietnam Airlines','1','100000');
-INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES ('1','2','Vietnam Airlines','2','120000');
-INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES ('1','2','Vietnam Airlines','3','200000');
-INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES ('2','1','Vietnam Airlines','1','100000');
-INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES ('2','1','Vietnam Airlines','2','120000');
-INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES ('2','1','Vietnam Airlines','3','200000');
-INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES ('2','1','Bamboo Airways','1','90000');
-INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES ('2','1','Bamboo Airways','2','100000');
-INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES ('2','1','Bamboo Airways','3','150000');
-INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES ('1','2','Bamboo Airways','1','90000');
-INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES ('1','2','Bamboo Airways','2','100000');
-INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES ('1','2','Bamboo Airways','3','150000');
+INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Tân Sơn Nhất','Mộc Bài','Vietnam Airlines','Phổ thông','100000');
+INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Tân Sơn Nhất','Mộc Bài','Vietnam Airlines','Phổ thông đặc biệt','120000');
+INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Tân Sơn Nhất','Mộc Bài','Vietnam Airlines','Thương gia','200000');
+INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Mộc Bài','Tân Sơn Nhất','Vietnam Airlines','Phổ thông','100000');
+INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Mộc Bài','Tân Sơn Nhất','Vietnam Airlines','Phổ thông đặc biệt','120000');
+INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Mộc Bài','Tân Sơn Nhất','Vietnam Airlines','Thương gia','200000');
+INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Mộc Bài','Tân Sơn Nhất','Bamboo Airways','Phổ thông','90000');
+INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Mộc Bài','Tân Sơn Nhất','Bamboo Airways','Phổ thông đặc biệt','100000');
+INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Mộc Bài','Tân Sơn Nhất','Bamboo Airways','Thương gia','150000');
+INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Tân Sơn Nhất','Mộc Bài','Bamboo Airways','Phổ thông','90000');
+INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Tân Sơn Nhất','Mộc Bài','Bamboo Airways','Phổ thông đặc biệt','100000');
+INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Tân Sơn Nhất','Mộc Bài','Bamboo Airways','Thương gia','150000');
 
 INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('1', 'AB1', '05:50:002021-03-20');
 INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('2', 'YZ5', '20:30:002021-01-01');

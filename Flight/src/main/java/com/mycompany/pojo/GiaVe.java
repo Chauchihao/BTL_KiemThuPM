@@ -12,38 +12,38 @@ import java.math.BigDecimal;
  * @author Admin
  */
 public class GiaVe {
-    private String maSanBayDi;
-    private String maSanBayDen;
+    private String tenSanBayDi;
+    private String tenSanBayDen;
     private String hangBay;
-    private int idHangVe;
+    private String hangVe;
     private BigDecimal giaVe;
 
     /**
-     * @return the maSanBayDi
+     * @return the tenSanBayDi
      */
-    public String getMaSanBayDi() {
-        return maSanBayDi;
+    public String getTenSanBayDi() {
+        return tenSanBayDi;
     }
 
     /**
-     * @param maSanBayDi the maSanBayDi to set
+     * @param tenSanBayDi the tenSanBayDi to set
      */
-    public void setMaSanBayDi(String maSanBayDi) {
-        this.maSanBayDi = maSanBayDi;
+    public void setTenSanBayDi(String tenSanBayDi) {
+        this.tenSanBayDi = tenSanBayDi;
     }
 
     /**
-     * @return the maSanBayDen
+     * @return the tenSanBayDen
      */
-    public String getMaSanBayDen() {
-        return maSanBayDen;
+    public String getTenSanBayDen() {
+        return tenSanBayDen;
     }
 
     /**
-     * @param maSanBayDen the maSanBayDen to set
+     * @param tenSanBayDen the tenSanBayDen to set
      */
-    public void setMaSanBayDen(String maSanBayDen) {
-        this.maSanBayDen = maSanBayDen;
+    public void setTenSanBayDen(String tenSanBayDen) {
+        this.tenSanBayDen = tenSanBayDen;
     }
 
     /**
@@ -61,17 +61,17 @@ public class GiaVe {
     }
 
     /**
-     * @return the idHangVe
+     * @return the hangVe
      */
-    public int getIdHangVe() {
-        return idHangVe;
+    public String getHangVe() {
+        return hangVe;
     }
 
     /**
-     * @param idHangVe the idHangVe to set
+     * @param hangVe the hangVe to set
      */
-    public void setIdHangVe(int idHangVe) {
-        this.idHangVe = idHangVe;
+    public void setHangVe(String hangVe) {
+        this.hangVe = hangVe;
     }
 
     /**
@@ -88,5 +88,6 @@ public class GiaVe {
         this.giaVe = giaVe;
     }
 
+    
     
 }

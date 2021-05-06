@@ -35,7 +35,7 @@ public class GheService {
             Ghe g = new Ghe();
             g.setMaGhe(r.getString("maGhe"));
             g.setTrangThai(r.getBoolean("trangThai"));
-            g.setIdHangVe(r.getInt("idHangVe"));
+            g.setHangVe(r.getString("hangVe"));
             
             ghe.add(g);
         }

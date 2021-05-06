@@ -111,7 +111,7 @@ public class DatVeTaiQuayController implements Initializable {
                     this.txtGiaTien.setText(gvs.getGiaVeByChuyenBay_HangVe(
                         this.cbMaCB.getSelectionModel().getSelectedItem()
                         .getMaChuyenBay(), this.cbHangVe.getSelectionModel()
-                        .getSelectedItem().getId()).getGiaVe().toString());
+                        .getSelectedItem().getHangVe()).getGiaVe().toString());
                 }          
             } catch (SQLException ex) {
                 Logger.getLogger(DatVeTaiQuayController.class.getName()).log(Level.SEVERE, null, ex);

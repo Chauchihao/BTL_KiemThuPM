@@ -16,8 +16,8 @@ public class ChuyenBay {
     private String soHieuMayBay;
     private String ngayGioKhoiHanh;
     private String ngayGioDen;
-    private String maSanBayDi;
-    private String maSanBayDen;
+    private String tenSanBayDi;
+    private String tenSanBayDen;
     private String sanBayTrungGian; 
 
     @Override
@@ -82,31 +82,31 @@ public class ChuyenBay {
     }
 
     /**
-     * @return the maSanBayDi
+     * @return the tenSanBayDi
      */
-    public String getMaSanBayDi() {
-        return maSanBayDi;
+    public String getTenSanBayDi() {
+        return tenSanBayDi;
     }
 
     /**
-     * @param maSanBayDi the maSanBayDi to set
+     * @param tenSanBayDi the tenSanBayDi to set
      */
-    public void setMaSanBayDi(String maSanBayDi) {
-        this.maSanBayDi = maSanBayDi;
+    public void setTenSanBayDi(String tenSanBayDi) {
+        this.tenSanBayDi = tenSanBayDi;
     }
 
     /**
-     * @return the maSanBayDen
+     * @return the tenSanBayDen
      */
-    public String getMaSanBayDen() {
-        return maSanBayDen;
+    public String getTenSanBayDen() {
+        return tenSanBayDen;
     }
 
     /**
-     * @param maSanBayDen the maSanBayDen to set
+     * @param tenSanBayDen the tenSanBayDen to set
      */
-    public void setMaSanBayDen(String maSanBayDen) {
-        this.maSanBayDen = maSanBayDen;
+    public void setTenSanBayDen(String tenSanBayDen) {
+        this.tenSanBayDen = tenSanBayDen;
     }
 
     /**

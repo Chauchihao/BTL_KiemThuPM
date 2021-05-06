@@ -12,7 +12,7 @@ package com.mycompany.pojo;
 public class Ghe {
     private String maGhe;
     private Boolean trangThai;
-    private int idHangVe;
+    private String hangVe;
 
     @Override
     public String toString() {
@@ -48,20 +48,16 @@ public class Ghe {
     }
 
     /**
-     * @return the idHangVe
+     * @return the hangVe
      */
-    public int getIdHangVe() {
-        return idHangVe;
+    public String getHangVe() {
+        return hangVe;
     }
 
     /**
-     * @param idHangVe the idHangVe to set
+     * @param hangVe the hangVe to set
      */
-    public void setIdHangVe(int idHangVe) {
-        this.idHangVe = idHangVe;
+    public void setHangVe(String hangVe) {
+        this.hangVe = hangVe;
     }
-
-    
-    
-    
 }

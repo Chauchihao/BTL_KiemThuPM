@@ -28,34 +28,34 @@ public class GiaVeService {
         this.conn = conn;
     }
     
-    public GiaVe getGiaVeByChuyenBay_HangVe(String maCB, int idHangVe) throws SQLException {
+    public GiaVe getGiaVeByChuyenBay_HangVe(String maCB, String hangVe) throws SQLException {
         ChuyenBayService cbs = new ChuyenBayService(this.conn);
         ChuyenBay cb = new ChuyenBay();
 //        HangVeService hvs = new HangVeService(this.conn);
 //        HangVe hv = new HangVe();
         cb = cbs.getChuyenBayByMaCB(maCB);
 //        hv = hvs.getHangVeById(idHangVe);
-        String sql = "SELECT giave.maSanBayDi, giave.maSanBayDen, giave.idHangVe, "
+        String sql = "SELECT giave.tenSanBayDi, giave.tenSanBayDen, giave.hangVe, "
                 + "giave.hangBay, giaVe FROM chuyenbay, hangve, giave, "
-                + "maybay WHERE chuyenbay.maSanBayDi = giave.maSanBayDi "
-                + "AND chuyenbay.maSanBayDen = giave.maSanBayDen  "
-                + "AND hangve.id = giave.idHangVe "
+                + "maybay WHERE chuyenbay.tenSanBayDi = giave.tenSanBayDi "
+                + "AND chuyenbay.tenSanBayDen = giave.tenSanBayDen  "
+                + "AND hangve.hangVe = giave.hangVe "
                 + "AND maybay.soHieuMayBay = chuyenbay.soHieuMayBay "
-                + "AND maybay.hangBay = giave.hangBay AND giave.maSanBayDi = ? "
-                + "AND giave.maSanBayDen = ? AND giave.idHangVe = ?";
+                + "AND maybay.hangBay = giave.hangBay AND giave.tenSanBayDi = ? "
+                + "AND giave.tenSanBayDen = ? AND giave.hangVe = ?";
         PreparedStatement stm = this.conn.prepareStatement(sql);
-        stm.setString(1, cb.getMaSanBayDi());
-        stm.setString(2, cb.getMaSanBayDen());
-        stm.setInt(3, idHangVe);
+        stm.setString(1, cb.getTenSanBayDi());
+        stm.setString(2, cb.getTenSanBayDen());
+        stm.setString(3, hangVe);
         ResultSet r = stm.executeQuery();
         
         
         GiaVe gv = null;
         while (r.next()) {
             gv = new GiaVe();
-            gv.setMaSanBayDi(r.getString("maSanBayDi"));
-            gv.setMaSanBayDen(r.getString("maSanBayDen"));
-            gv.setIdHangVe(r.getInt("idHangVe"));
+            gv.setTenSanBayDi(r.getString("tenSanBayDi"));
+            gv.setTenSanBayDen(r.getString("tenSanBayDen"));
+            gv.setHangVe(r.getString("hangVe"));
             gv.setHangBay(r.getString("hangBay"));
             gv.setGiaVe(r.getBigDecimal("giaVe"));
         }

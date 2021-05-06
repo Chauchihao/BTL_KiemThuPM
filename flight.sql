@@ -29,20 +29,20 @@ CREATE TABLE `chuyenbay` (
   `maChuyenBay` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ngayGioKhoiHanh` varchar(19) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ngayGioDen` varchar(19) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `maSanBayDi` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `maSanBayDen` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tenSanBayDi` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tenSanBayDen` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `soHieuMayBay` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sanBayTrungGian` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`maChuyenBay`),
   KEY `FK_chuyenbay_sanBayTrungGian_idx` (`sanBayTrungGian`),
-  KEY `FK_chuyenbay_maSanBayDi_idx` (`maSanBayDi`),
-  KEY `FK_chuyenbay_maSanBayDen_idx` (`maSanBayDen`),
+  KEY `FK_chuyenbay_tenSanBayDi_idx` (`tenSanBayDi`),
+  KEY `FK_chuyenbay_tenSanBayDen_idx` (`tenSanBayDen`),
   KEY `FK_chuyenbay_soHieuMayBay_idx` (`soHieuMayBay`),
   KEY `FK_chuyenbay_maChuyenBay_idx` (`maChuyenBay`),
-  CONSTRAINT `FK_chuyenbay_maSanBayDen` FOREIGN KEY (`maSanBayDen`) REFERENCES `sanbay` (`maSanBay`),
-  CONSTRAINT `FK_chuyenbay_maSanBayDi` FOREIGN KEY (`maSanBayDi`) REFERENCES `sanbay` (`maSanBay`),
   CONSTRAINT `FK_chuyenbay_sanBayTrungGian` FOREIGN KEY (`sanBayTrungGian`) REFERENCES `sanbay` (`maSanBay`),
-  CONSTRAINT `FK_chuyenbay_soHieuMayBay` FOREIGN KEY (`soHieuMayBay`) REFERENCES `maybay` (`soHieuMayBay`)
+  CONSTRAINT `FK_chuyenbay_soHieuMayBay` FOREIGN KEY (`soHieuMayBay`) REFERENCES `maybay` (`soHieuMayBay`),
+  CONSTRAINT `FK_chuyenbay_tenSanBayDen` FOREIGN KEY (`tenSanBayDen`) REFERENCES `sanbay` (`tenSanBay`),
+  CONSTRAINT `FK_chuyenbay_tenSanBayDi` FOREIGN KEY (`tenSanBayDi`) REFERENCES `sanbay` (`tenSanBay`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -52,7 +52,7 @@ CREATE TABLE `chuyenbay` (
 
 LOCK TABLES `chuyenbay` WRITE;
 /*!40000 ALTER TABLE `chuyenbay` DISABLE KEYS */;
-INSERT INTO `chuyenbay` VALUES ('1','07:00:00 2020-05-20','12:00:00 2020-05-20','2','1','AB1',NULL),('2','17:00:00 2020-06-25','20:00:00 2020-06-27','1','2','YZ5',NULL);
+INSERT INTO `chuyenbay` VALUES ('1','07:00:00 2020-05-20','12:00:00 2020-05-20','Mộc Bài','Tân Sơn Nhất','AB1',NULL),('2','17:00:00 2020-06-25','20:00:00 2020-06-27','Tân Sơn Nhất','Mộc Bài','YZ5',NULL);
 /*!40000 ALTER TABLE `chuyenbay` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -66,10 +66,10 @@ DROP TABLE IF EXISTS `ghe`;
 CREATE TABLE `ghe` (
   `maGhe` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
   `trangThai` tinyint(1) NOT NULL,
-  `idHangVe` int NOT NULL,
+  `hangVe` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`maGhe`),
-  KEY `FK_ghe_idHangve_idx` (`idHangVe`),
-  CONSTRAINT `FK_ghe_idHangve` FOREIGN KEY (`idHangVe`) REFERENCES `hangve` (`id`)
+  KEY `FK_ghe_hangVe_idx` (`hangVe`),
+  CONSTRAINT `FK_ghe_hangVe` FOREIGN KEY (`hangVe`) REFERENCES `hangve` (`hangVe`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -79,7 +79,7 @@ CREATE TABLE `ghe` (
 
 LOCK TABLES `ghe` WRITE;
 /*!40000 ALTER TABLE `ghe` DISABLE KEYS */;
-INSERT INTO `ghe` VALUES ('1',1,3),('2',1,1),('3',1,2),('4',1,2);
+INSERT INTO `ghe` VALUES ('1',1,'Thương gia'),('2',1,'Phổ thông'),('3',1,'Phổ thông đặc biệt'),('4',1,'Phổ thông đặc biệt');
 /*!40000 ALTER TABLE `ghe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,20 +91,20 @@ DROP TABLE IF EXISTS `giave`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `giave` (
-  `maSanBayDi` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `maSanBayDen` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tenSanBayDi` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tenSanBayDen` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `hangBay` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `idHangVe` int NOT NULL,
+  `hangVe` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `giaVe` decimal(10,0) NOT NULL,
-  PRIMARY KEY (`maSanBayDi`,`maSanBayDen`,`hangBay`,`idHangVe`),
-  KEY `FK_giave_chuyenbay_maSanBayDi_idx` (`maSanBayDi`),
-  KEY `FK_giave_chuyenbay_maSanBayDen_idx` (`maSanBayDen`),
+  PRIMARY KEY (`tenSanBayDi`,`tenSanBayDen`,`hangBay`,`hangVe`),
+  KEY `FK_giave_chuyenbay_tenSanBayDi_idx` (`tenSanBayDi`),
+  KEY `FK_giave_chuyenbay_tenSanBayDen_idx` (`tenSanBayDen`),
   KEY `FK_giave_maybay_hangBay_idx` (`hangBay`),
-  KEY `FK_giave_hangve_idHangVe_idx` (`idHangVe`),
+  KEY `FK_giave_hangve_hangVe_idx` (`hangVe`),
   KEY `FK_giave_vemaybay_idx` (`giaVe`),
-  CONSTRAINT `FK_giave_chuyenbay_maSanBayDen` FOREIGN KEY (`maSanBayDen`) REFERENCES `chuyenbay` (`maSanBayDen`),
-  CONSTRAINT `FK_giave_chuyenbay_maSanBayDi` FOREIGN KEY (`maSanBayDi`) REFERENCES `chuyenbay` (`maSanBayDi`),
-  CONSTRAINT `FK_giave_hangve_idHangVe` FOREIGN KEY (`idHangVe`) REFERENCES `hangve` (`id`),
+  CONSTRAINT `FK_giave_chuyenbay_tenSanBayDen` FOREIGN KEY (`tenSanBayDen`) REFERENCES `chuyenbay` (`tenSanBayDen`),
+  CONSTRAINT `FK_giave_chuyenbay_tenSanBayDi` FOREIGN KEY (`tenSanBayDi`) REFERENCES `chuyenbay` (`tenSanBayDi`),
+  CONSTRAINT `FK_giave_hangve_hangVe` FOREIGN KEY (`hangVe`) REFERENCES `hangve` (`hangVe`),
   CONSTRAINT `FK_giave_maybay_hangBay` FOREIGN KEY (`hangBay`) REFERENCES `maybay` (`hangBay`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -115,7 +115,7 @@ CREATE TABLE `giave` (
 
 LOCK TABLES `giave` WRITE;
 /*!40000 ALTER TABLE `giave` DISABLE KEYS */;
-INSERT INTO `giave` VALUES ('1','2','Bamboo Airways',1,90000),('2','1','Bamboo Airways',1,90000),('1','2','Bamboo Airways',2,100000),('1','2','Vietnam Airlines',1,100000),('2','1','Bamboo Airways',2,100000),('2','1','Vietnam Airlines',1,100000),('1','2','Vietnam Airlines',2,120000),('2','1','Vietnam Airlines',2,120000),('1','2','Bamboo Airways',3,150000),('2','1','Bamboo Airways',3,150000),('1','2','Vietnam Airlines',3,200000),('2','1','Vietnam Airlines',3,200000);
+INSERT INTO `giave` VALUES ('Mộc Bài','Tân Sơn Nhất','Bamboo Airways','Phổ thông',90000),('Tân Sơn Nhất','Mộc Bài','Bamboo Airways','Phổ thông',90000),('Mộc Bài','Tân Sơn Nhất','Bamboo Airways','Phổ thông đặc biệt',100000),('Mộc Bài','Tân Sơn Nhất','Vietnam Airlines','Phổ thông',100000),('Tân Sơn Nhất','Mộc Bài','Bamboo Airways','Phổ thông đặc biệt',100000),('Tân Sơn Nhất','Mộc Bài','Vietnam Airlines','Phổ thông',100000),('Mộc Bài','Tân Sơn Nhất','Vietnam Airlines','Phổ thông đặc biệt',120000),('Tân Sơn Nhất','Mộc Bài','Vietnam Airlines','Phổ thông đặc biệt',120000),('Mộc Bài','Tân Sơn Nhất','Bamboo Airways','Thương gia',150000),('Tân Sơn Nhất','Mộc Bài','Bamboo Airways','Thương gia',150000),('Mộc Bài','Tân Sơn Nhất','Vietnam Airlines','Thương gia',200000),('Tân Sơn Nhất','Mộc Bài','Vietnam Airlines','Thương gia',200000);
 /*!40000 ALTER TABLE `giave` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,7 +128,7 @@ DROP TABLE IF EXISTS `hangve`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `hangve` (
   `id` int NOT NULL,
-  `hangVe` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hangVe` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_id_idx` (`id`),
   KEY `FK_hangVe_idx` (`hangVe`)
@@ -154,13 +154,13 @@ DROP TABLE IF EXISTS `khachhang`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `khachhang` (
   `maKH` int NOT NULL AUTO_INCREMENT,
-  `tenKH` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tenKH` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `idCard` varchar(12) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sdt` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`tenKH`),
   KEY `FK_khachhang_maKH_idx` (`maKH`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,7 +169,7 @@ CREATE TABLE `khachhang` (
 
 LOCK TABLES `khachhang` WRITE;
 /*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
-INSERT INTO `khachhang` VALUES (8,'3123','000900000','ewe@','9990000000'),(5,'33re3wer','7657','dsfgds','5756'),(6,'eq3e','324','daadsa','324'),(2,'Nguyễn Thị Diễm M','012345678911','nguyenthidiemm@gmail.com','0345678922'),(3,'Nguyễn Văn A','012345678999','nguyenvana@gmail.com','0988775544'),(1,'Phạm Anh D','012345678910','phamanhdg@gmail.com','0345678921'),(4,'Trần Thị C','012345678888',NULL,NULL),(7,'wewqe','142','dsfsa','342');
+INSERT INTO `khachhang` VALUES (2,'Nguyễn Thị Diễm M','012345678911','nguyenthidiemm@gmail.com','0345678922'),(3,'Nguyễn Văn A','012345678999','nguyenvana@gmail.com','0988775544'),(1,'Phạm Anh D','012345678910','phamanhdg@gmail.com','0345678921'),(4,'Trần Thị C','012345678888',NULL,NULL);
 /*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,7 +182,7 @@ DROP TABLE IF EXISTS `loaitk`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `loaitk` (
   `id` int NOT NULL,
-  `tk` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tk` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_id_idx` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -261,14 +261,14 @@ DROP TABLE IF EXISTS `phieudatcho`;
 CREATE TABLE `phieudatcho` (
   `maPhieu` int NOT NULL AUTO_INCREMENT,
   `maVe` int NOT NULL,
-  `tenKH` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tenKH` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ngayDatVe` varchar(19) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`maPhieu`),
   KEY `FK_phieudatcho_maVe_idx` (`maVe`),
   KEY `FK_phieudatcho_tenKH_idx` (`tenKH`),
   CONSTRAINT `FK_phieudatcho_maVe` FOREIGN KEY (`maVe`) REFERENCES `vemaybay` (`maVe`),
   CONSTRAINT `FK_phieudatcho_tenKH` FOREIGN KEY (`tenKH`) REFERENCES `khachhang` (`tenKH`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -277,7 +277,7 @@ CREATE TABLE `phieudatcho` (
 
 LOCK TABLES `phieudatcho` WRITE;
 /*!40000 ALTER TABLE `phieudatcho` DISABLE KEYS */;
-INSERT INTO `phieudatcho` VALUES (1,1,'Phạm Anh D','05:50:00 2021-03-20'),(2,2,'Nguyễn Thị Diễm M','09:40:00 2021-01-30'),(3,7,'wewqe','21:04:47 06-05-2021'),(4,14,'3123','21:59:24 06-05-2021');
+INSERT INTO `phieudatcho` VALUES (1,1,'Phạm Anh D','05:50:00 2021-03-20'),(2,2,'Nguyễn Thị Diễm M','09:40:00 2021-01-30');
 /*!40000 ALTER TABLE `phieudatcho` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -290,12 +290,13 @@ DROP TABLE IF EXISTS `sanbay`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sanbay` (
   `maSanBay` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tenSanBay` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `diaDiem` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `quocGia` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tenSanBay` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `diaDiem` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quocGia` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `trangThai` tinyint(1) NOT NULL,
   PRIMARY KEY (`maSanBay`),
-  KEY `FK_sanbay_maSanBay_idx` (`maSanBay`)
+  KEY `FK_sanbay_maSanBay_idx` (`maSanBay`),
+  KEY `FK_sanbay_tenSanBay_idx` (`tenSanBay`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -305,7 +306,7 @@ CREATE TABLE `sanbay` (
 
 LOCK TABLES `sanbay` WRITE;
 /*!40000 ALTER TABLE `sanbay` DISABLE KEYS */;
-INSERT INTO `sanbay` VALUES ('1','TSN','HCM','VN',1),('2','MB','HN','VN',1);
+INSERT INTO `sanbay` VALUES ('1','Tân Sơn Nhất','HCM','VN',1),('2','Mộc Bài','HN','VN',1);
 /*!40000 ALTER TABLE `sanbay` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -347,13 +348,13 @@ DROP TABLE IF EXISTS `users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `id` int NOT NULL,
-  `hoTen` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tenTK` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `matKhau` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hoTen` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tenTK` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `matKhau` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `trangThai` tinyint(1) NOT NULL DEFAULT '1',
   `idLoaiTK` int NOT NULL,
   `idCard` varchar(12) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sdt` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_users_id_idx` (`id`),
@@ -382,12 +383,12 @@ DROP TABLE IF EXISTS `vemaybay`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vemaybay` (
   `maVe` int NOT NULL AUTO_INCREMENT,
-  `hangVe` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hangVe` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `giaVe` decimal(10,0) NOT NULL,
   `maGhe` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ngayXuatVe` varchar(19) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tenNguoiDat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tenKH` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tenNguoiDat` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tenKH` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `maChuyenBay` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`maVe`),
   KEY `FK_vemaybay_maGhe_idx` (`maGhe`),
@@ -403,7 +404,7 @@ CREATE TABLE `vemaybay` (
   CONSTRAINT `FK_vemaybay_maChuyenBay` FOREIGN KEY (`maChuyenBay`) REFERENCES `chuyenbay` (`maChuyenBay`),
   CONSTRAINT `FK_vemaybay_maGhe` FOREIGN KEY (`maGhe`) REFERENCES `ghe` (`maGhe`),
   CONSTRAINT `FK_vemaybay_users_tenNguoiDat` FOREIGN KEY (`tenNguoiDat`) REFERENCES `users` (`hoTen`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -412,7 +413,7 @@ CREATE TABLE `vemaybay` (
 
 LOCK TABLES `vemaybay` WRITE;
 /*!40000 ALTER TABLE `vemaybay` DISABLE KEYS */;
-INSERT INTO `vemaybay` VALUES (1,'Phổ thông',100000,'1','05:50:00 2021-03-10','Phạm Anh D','Phạm Anh D','1'),(2,'Thương gia',150000,'4','22:20:21 2021-03-15','Nguyễn Thị Diễm M','Nguyễn Thị Diễm M','2'),(3,'Phổ thông đặc biệt',100000,'4','12:30:00 2021-04-01','Nguyễn Thị Diễm M','Nguyễn Văn A','2'),(4,'Thương gia',200000,'4','18:22:31 2021-04-20','Phạm Anh D','Trần Thị C','1'),(5,'Phổ thông',100000,'2','21:02:13 06-05-2021','Nhân Viên 01','eq3e','1'),(6,'Phổ thông',100000,'1','21:04:17 06-05-2021','Nguyễn Thị Diễm M','Nguyễn Thị Diễm M','1'),(7,'Phổ thông',100000,'2','21:04:47 06-05-2021','Nhân Viên 01','wewqe','1'),(8,'Phổ thông',100000,'3','21:05:34 06-05-2021','Phạm Anh D','Phạm Anh D','1'),(9,'Phổ thông đặc biệt',100000,'1','21:43:36 06-05-2021','Phạm Anh D','Phạm Anh D','2'),(10,'Phổ thông đặc biệt',120000,'2','21:44:16 06-05-2021','Phạm Anh D','Phạm Anh D','1'),(11,'Phổ thông',90000,'1','21:44:27 06-05-2021','Phạm Anh D','Phạm Anh D','2'),(12,'Phổ thông',90000,'1','21:44:36 06-05-2021','Phạm Anh D','Phạm Anh D','2'),(13,'Phổ thông',100000,'2','21:55:16 06-05-2021','Phạm Anh D','Phạm Anh D','1'),(14,'Phổ thông đặc biệt',120000,'2','21:59:24 06-05-2021','Nhân Viên 01','3123','1');
+INSERT INTO `vemaybay` VALUES (1,'Phổ thông',100000,'1','05:50:00 2021-03-10','Phạm Anh D','Phạm Anh D','1'),(2,'Thương gia',150000,'4','22:20:21 2021-03-15','Nguyễn Thị Diễm M','Nguyễn Thị Diễm M','2'),(3,'Phổ thông đặc biệt',100000,'4','12:30:00 2021-04-01','Nguyễn Thị Diễm M','Nguyễn Văn A','2'),(4,'Thương gia',200000,'4','18:22:31 2021-04-20','Phạm Anh D','Trần Thị C','1');
 /*!40000 ALTER TABLE `vemaybay` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -425,4 +426,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-06 22:11:14
+-- Dump completed on 2021-05-06 23:38:35

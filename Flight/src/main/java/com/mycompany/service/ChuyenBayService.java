@@ -38,8 +38,8 @@ public class ChuyenBayService {
             cb.setSoHieuMayBay(r.getString("soHieuMayBay"));
             cb.setNgayGioKhoiHanh(r.getString("ngayGioKhoiHanh"));
             cb.setNgayGioDen(r.getString("ngayGioDen"));
-            cb.setMaSanBayDi(r.getString("maSanBayDi"));
-            cb.setMaSanBayDen(r.getString("maSanBayDen"));
+            cb.setTenSanBayDi(r.getString("tenSanBayDi"));
+            cb.setTenSanBayDen(r.getString("tenSanBayDen"));
             cb.setSanBayTrungGian(r.getString("sanBayTrungGian"));
             
             chuyenbay.add(cb);
@@ -60,8 +60,8 @@ public class ChuyenBayService {
             cb.setSoHieuMayBay(r.getString("soHieuMayBay"));
             cb.setNgayGioKhoiHanh(r.getString("ngayGioKhoiHanh"));
             cb.setNgayGioDen(r.getString("ngayGioDen"));
-            cb.setMaSanBayDi(r.getString("maSanBayDi"));
-            cb.setMaSanBayDen(r.getString("maSanBayDen"));
+            cb.setTenSanBayDi(r.getString("tenSanBayDi"));
+            cb.setTenSanBayDen(r.getString("tenSanBayDen"));
             cb.setSanBayTrungGian(r.getString("sanBayTrungGian"));
             
         }
