@@ -15,12 +15,12 @@ import java.util.Calendar;
  */
 public class VeMayBay {
     private int maVe;
-    private int idHangVe;
+    private String hangVe;
     private BigDecimal giaVe;
     private String maGhe;
     private String ngayXuatVe;
-    private int maNguoiDat;
-    private int maKH;
+    private String tenNguoiDat;
+    private String tenKH;
     private String maCB;
 
     
@@ -44,17 +44,17 @@ public class VeMayBay {
     }
 
     /**
-     * @return the idHangVe
+     * @return the hangVe
      */
-    public int getIdHangVe() {
-        return idHangVe;
+    public String getHangVe() {
+        return hangVe;
     }
 
     /**
-     * @param idHangVe the idHangVe to set
+     * @param hangVe the hangVe to set
      */
-    public void setIdHangVe(int idHangVe) {
-        this.idHangVe = idHangVe;
+    public void setHangVe(String hangVe) {
+        this.hangVe = hangVe;
     }
 
     /**
@@ -100,31 +100,31 @@ public class VeMayBay {
     }
 
     /**
-     * @return the maNguoiDat
+     * @return the tenNguoiDat
      */
-    public int getMaNguoiDat() {
-        return maNguoiDat;
+    public String getTenNguoiDat() {
+        return tenNguoiDat;
     }
 
     /**
-     * @param maNguoiDat the maNguoiDat to set
+     * @param tenNguoiDat the tenNguoiDat to set
      */
-    public void setMaNguoiDat(int maNguoiDat) {
-        this.maNguoiDat = maNguoiDat;
+    public void setTenNguoiDat(String tenNguoiDat) {
+        this.tenNguoiDat = tenNguoiDat;
     }
 
     /**
-     * @return the maKH
+     * @return the tenKH
      */
-    public int getMaKH() {
-        return maKH;
+    public String getTenKH() {
+        return tenKH;
     }
 
     /**
-     * @param maKH the maKH to set
+     * @param tenKH the tenKH to set
      */
-    public void setMaKH(int maKH) {
-        this.maKH = maKH;
+    public void setTenKH(String tenKH) {
+        this.tenKH = tenKH;
     }
 
     /**

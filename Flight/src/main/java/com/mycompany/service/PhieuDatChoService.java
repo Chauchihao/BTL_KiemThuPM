@@ -33,7 +33,7 @@ public class PhieuDatChoService {
         List<PhieuDatCho> phieudatcho = new ArrayList<>();
         while (rs.next()) {
             PhieuDatCho pdc = new PhieuDatCho();
-            pdc.setMaKH(rs.getInt("maKH"));
+            pdc.setTenKH(rs.getString("tenKH"));
             pdc.setMaPhieu(rs.getInt("maPhieuDatCho"));
             pdc.setMaVe(rs.getInt("maVe"));
             pdc.setNgayDatVe(rs.getString("ngayDatVe"));
@@ -44,10 +44,10 @@ public class PhieuDatChoService {
     }
     
     public boolean addPhieuDatCho(PhieuDatCho pdc) throws SQLException {
-        String sql = "INSERT INTO phieudatcho(maVe, maKH, ngayDatVe) VALUES(?, ?, ?)";
+        String sql = "INSERT INTO phieudatcho(maVe, tenKH, ngayDatVe) VALUES(?, ?, ?)";
         PreparedStatement stm = this.conn.prepareStatement(sql);
         stm.setInt(1, pdc.getMaVe());
-        stm.setInt(2, pdc.getMaKH());
+        stm.setString(2, pdc.getTenKH());
         stm.setString(3, pdc.getNgayDatVe());
         
         int row = stm.executeUpdate();

@@ -45,9 +45,9 @@ public class TrangChuController implements Initializable {
             UsersService us = new UsersService(conn);
             nd = us.getUsers(u.getTenTK());
             if (u.getIdLoaiTK() == 1)
-                lbNhanVien.setText(nd.getHoTen());
+                this.lbNhanVien.setText(nd.getHoTen());
             if (u.getIdLoaiTK() == 2)
-                lbKhachHang.setText(nd.getHoTen());
+                this.lbKhachHang.setText(nd.getHoTen());
         } catch (SQLException ex) {
             Logger.getLogger(TraCuuChuyenBayController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -78,6 +78,8 @@ public class TrangChuController implements Initializable {
             loader.setLocation(getClass().getResource("tracuuve.fxml"));
             tcv = loader.load();
             Scene scene = new Scene(tcv);
+            TraCuuVeController controller = loader.getController();
+            controller.setTTUser(nd);
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {

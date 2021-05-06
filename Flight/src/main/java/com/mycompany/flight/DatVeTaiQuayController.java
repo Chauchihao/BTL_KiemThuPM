@@ -82,7 +82,7 @@ public class DatVeTaiQuayController implements Initializable {
     
     public void setTTUser(Users u){
             nd = u;
-            txtNhanVien.setText(u.getHoTen());
+            this.txtNhanVien.setText(u.getHoTen());
     }
     
     public void chonComboBoxMaCB(ActionEvent evt){
@@ -146,53 +146,55 @@ public class DatVeTaiQuayController implements Initializable {
                                         Utils.getBox("Vui lòng nhập email!!!", Alert.AlertType.WARNING).show();
                                     else if (this.txtSDT.getText().isEmpty())
                                             Utils.getBox("Vui lòng nhập số điện thoại!!!", Alert.AlertType.WARNING).show();
-                                        else if (this.txtIDCard.getText().length() > 12)
-                                                Utils.getBox("CMND/CCCD có tối đa 12 số. Vui lòng nhập lại!!!", Alert.AlertType.WARNING).show();
-                                            else if (this.txtSDT.getText().length() > 10)
-                                                    Utils.getBox("Số điện thoại có tối đa 10 số. Vui lòng nhập lại!!!", Alert.AlertType.WARNING).show();
-                                                else {
-                                                    vmb.setMaCB(this.cbMaCB.getSelectionModel().getSelectedItem().getMaChuyenBay());
-                                                    vmb.setIdHangVe(this.cbHangVe.getSelectionModel().getSelectedItem().getId());
-                                                    vmb.setMaGhe(this.cbViTri.getSelectionModel().getSelectedItem().getMaGhe());
-                                                    vmb.setGiaVe(new BigDecimal(this.txtGiaTien.getText()));
-                                                    cal = Calendar.getInstance();
-                                                    ngay = simpleformat.format(cal.getTime());
-                                                    vmb.setNgayXuatVe(ngay);
-                                                    kh = khs.getKhachHang(this.txtHoTen.getText());
-                                                    if (kh == null) {
-                                                        KhachHang k = new KhachHang();
-                                                        k.setTenKH(this.txtHoTen.getText());
-                                                        k.setIdCard(this.txtIDCard.getText());
-                                                        k.setEmail(this.txtEmail.getText());
-                                                        k.setSdt(this.txtSDT.getText());
-                                                        if (khs.addKhachHang(k) == true)
-                                                            kh = khs.getKhachHang(this.txtHoTen.getText());
-                                                    }
-                                                    vmb.setMaKH(kh.getMaKH());
-                                                    vmb.setMaNguoiDat(nd.getId());
-
-                                                    if (vmbs.addVeMayBay(vmb) == true ){
-                                                        pdc.setMaVe(vmbs.getVeMayBay(ngay, kh.getMaKH()).getMaVe());
-                                                        pdc.setNgayDatVe(ngay);
-                                                        pdc.setMaKH(kh.getMaKH());
-                                                        if (pdcs.addPhieuDatCho(pdc) == true) {
-                                                            Utils.getBox("Đặt vé thành công!", Alert.AlertType.INFORMATION).show();
-
-                                                            Parent dvtq;
-                                                            Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
-                                                            FXMLLoader loader = new FXMLLoader();
-                                                            loader.setLocation(getClass().getResource("datvetaiquay.fxml"));
-                                                            dvtq = loader.load();
-                                                            Scene scene = new Scene(dvtq);
-                                                            DatVeTaiQuayController controller = loader.getController();
-                                                            controller.setTTUser(nd);
-                                                            stage.setScene(scene);
-                                                            stage.show();
+                                        else if (this.txtIDCard.getText().length() != 12 && this.txtIDCard.getText().length() != 9)
+                                                Utils.getBox("CMND có 9 số hoặc 12 số, CCCD có 12 số. Vui lòng nhập lại!!!", Alert.AlertType.WARNING).show();
+                                            else if (this.txtSDT.getText().length() != 10)
+                                                    Utils.getBox("Số điện thoại có 10 số. Vui lòng nhập lại!!!", Alert.AlertType.WARNING).show();
+                                                else if (this.txtEmail.getText().indexOf("@") < 0)
+                                                        Utils.getBox("Email không hợp lệ. Vui lòng nhập lại!!!", Alert.AlertType.WARNING).show();
+                                                    else {
+                                                        vmb.setMaCB(this.cbMaCB.getSelectionModel().getSelectedItem().getMaChuyenBay());
+                                                        vmb.setHangVe(this.cbHangVe.getSelectionModel().getSelectedItem().getHangVe());
+                                                        vmb.setMaGhe(this.cbViTri.getSelectionModel().getSelectedItem().getMaGhe());
+                                                        vmb.setGiaVe(new BigDecimal(this.txtGiaTien.getText()));
+                                                        cal = Calendar.getInstance();
+                                                        ngay = simpleformat.format(cal.getTime());
+                                                        vmb.setNgayXuatVe(ngay);
+                                                        kh = khs.getKhachHang(this.txtHoTen.getText());
+                                                        if (kh == null) {
+                                                            KhachHang k = new KhachHang();
+                                                            k.setTenKH(this.txtHoTen.getText());
+                                                            k.setIdCard(this.txtIDCard.getText());
+                                                            k.setEmail(this.txtEmail.getText());
+                                                            k.setSdt(this.txtSDT.getText());
+                                                            if (khs.addKhachHang(k) == true)
+                                                                kh = khs.getKhachHang(this.txtHoTen.getText());
                                                         }
+                                                        vmb.setTenKH(kh.getTenKH());
+                                                        vmb.setTenNguoiDat(nd.getHoTen());
+
+                                                        if (vmbs.addVeMayBay(vmb) == true ){
+                                                            pdc.setMaVe(vmbs.getVeMayBay(ngay, kh.getTenKH()).getMaVe());
+                                                            pdc.setNgayDatVe(ngay);
+                                                            pdc.setTenKH(kh.getTenKH());
+                                                            if (pdcs.addPhieuDatCho(pdc) == true) {
+                                                                Utils.getBox("Đặt vé thành công!", Alert.AlertType.INFORMATION).show();
+
+                                                                Parent dvtq;
+                                                                Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
+                                                                FXMLLoader loader = new FXMLLoader();
+                                                                loader.setLocation(getClass().getResource("datvetaiquay.fxml"));
+                                                                dvtq = loader.load();
+                                                                Scene scene = new Scene(dvtq);
+                                                                DatVeTaiQuayController controller = loader.getController();
+                                                                controller.setTTUser(nd);
+                                                                stage.setScene(scene);
+                                                                stage.show();
+                                                            }
+                                                        }
+                                                        else 
+                                                            Utils.getBox("Đặt vé thất bại!!!", Alert.AlertType.ERROR).show();
                                                     }
-                                                    else 
-                                                        Utils.getBox("Đặt vé thất bại!!!", Alert.AlertType.ERROR).show();
-                                                }
             conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(DatVeTaiQuayController.class.getName()).log(Level.SEVERE, null, ex);

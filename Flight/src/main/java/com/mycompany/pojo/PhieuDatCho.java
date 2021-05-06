@@ -14,7 +14,7 @@ import java.sql.Date;
 public class PhieuDatCho {
     private int maPhieu;
     private int maVe;
-    private int maKH;
+    private String tenKH;
     private String ngayDatVe;
 
     /**
@@ -46,17 +46,17 @@ public class PhieuDatCho {
     }
 
     /**
-     * @return the maKH
+     * @return the tenKH
      */
-    public int getMaKH() {
-        return maKH;
+    public String getTenKH() {
+        return tenKH;
     }
 
     /**
-     * @param maKH the maKH to set
+     * @param tenKH the tenKH to set
      */
-    public void setMaKH(int maKH) {
-        this.maKH = maKH;
+    public void setTenKH(String tenKH) {
+        this.tenKH = tenKH;
     }
 
     /**
@@ -72,4 +72,6 @@ public class PhieuDatCho {
     public void setNgayDatVe(String ngayDatVe) {
         this.ngayDatVe = ngayDatVe;
     }
+
+    
 }

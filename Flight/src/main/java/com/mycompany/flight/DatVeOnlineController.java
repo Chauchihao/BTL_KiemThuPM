@@ -94,7 +94,6 @@ public class DatVeOnlineController implements Initializable {
                 txtSDT.setText(u.getSdt());
             if (u.getIdCard().isEmpty() == false)
                 txtIDCard.setText(u.getIdCard());
-          
     }
     
     public void chonComboBoxMaCB(ActionEvent evt){
@@ -185,50 +184,52 @@ public class DatVeOnlineController implements Initializable {
                                         Utils.getBox("Vui lòng nhập email!!!", Alert.AlertType.WARNING).show();
                                     else if (this.txtSDT.getText().isEmpty())
                                             Utils.getBox("Vui lòng nhập số điện thoại!!!", Alert.AlertType.WARNING).show();
-                                        else if (this.txtIDCard.getText().length() > 12)
-                                                Utils.getBox("CMND/CCCD có tối đa 12 số. Vui lòng nhập lại!!!", Alert.AlertType.WARNING).show();
-                                            else if (this.txtSDT.getText().length() > 10)
-                                                    Utils.getBox("Số điện thoại có tối đa 10 số. Vui lòng nhập lại!!!", Alert.AlertType.WARNING).show();
-                                                else {
-                                                    vmb.setMaCB(this.cbMaCB.getSelectionModel().getSelectedItem().getMaChuyenBay());
-                                                    vmb.setIdHangVe(this.cbHangVe.getSelectionModel().getSelectedItem().getId());
-                                                    vmb.setMaGhe(this.cbViTri.getSelectionModel().getSelectedItem().getMaGhe());
-                                                    vmb.setGiaVe(new BigDecimal(this.txtGiaTien.getText()));
-                                                    cal = Calendar.getInstance();
-                                                    ngay = simpleformat.format(cal.getTime());
-                                                    vmb.setNgayXuatVe(ngay);
-                                                    kh = khs.getKhachHang(this.txtHoTen.getText());
+                                        else if (this.txtIDCard.getText().length() != 12 && this.txtIDCard.getText().length() != 9)
+                                                Utils.getBox("CMND có 9 số hoặc 12 số, CCCD có 12 số. Vui lòng nhập lại!!!", Alert.AlertType.WARNING).show();
+                                            else if (this.txtSDT.getText().length() != 10)
+                                                    Utils.getBox("Số điện thoại có 10 số. Vui lòng nhập lại!!!", Alert.AlertType.WARNING).show();
+                                                else if (this.txtEmail.getText().indexOf("@") < 0)
+                                                        Utils.getBox("Email không hợp lệ. Vui lòng nhập lại!!!", Alert.AlertType.WARNING).show();
+                                                    else {
+                                                        vmb.setMaCB(this.cbMaCB.getSelectionModel().getSelectedItem().getMaChuyenBay());
+                                                        vmb.setHangVe(this.cbHangVe.getSelectionModel().getSelectedItem().getHangVe());
+                                                        vmb.setMaGhe(this.cbViTri.getSelectionModel().getSelectedItem().getMaGhe());
+                                                        vmb.setGiaVe(new BigDecimal(this.txtGiaTien.getText()));
+                                                        cal = Calendar.getInstance();
+                                                        ngay = simpleformat.format(cal.getTime());
+                                                        vmb.setNgayXuatVe(ngay);
+                                                        kh = khs.getKhachHang(this.txtHoTen.getText());
 
-                                                    if (kh == null){
-                                                        KhachHang k = new KhachHang();
-                                                        k.setTenKH(this.txtHoTen.getText());
-                                                        k.setIdCard(this.txtIDCard.getText());
-                                                        k.setEmail(this.txtEmail.getText());
-                                                        k.setSdt(this.txtSDT.getText());
+                                                        if (kh == null){
+                                                            KhachHang k = new KhachHang();
+                                                            k.setTenKH(this.txtHoTen.getText());
+                                                            k.setIdCard(this.txtIDCard.getText());
+                                                            k.setEmail(this.txtEmail.getText());
+                                                            k.setSdt(this.txtSDT.getText());
 
-                                                        if (khs.addKhachHang(k) == true)
-                                                            kh = khs.getKhachHang(this.txtHoTen.getText());
+                                                            if (khs.addKhachHang(k) == true)
+                                                                kh = khs.getKhachHang(this.txtHoTen.getText());
+                                                        }
+                                                        vmb.setTenKH(kh.getTenKH());
+                                                        vmb.setTenNguoiDat(nd.getHoTen());
+
+                                                        if (vmbs.addVeMayBay(vmb) == true ) {
+                                                            Utils.getBox("Đặt vé thành công!", Alert.AlertType.INFORMATION).show();
+
+                                                            Parent dvo;
+                                                            Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
+                                                            FXMLLoader loader = new FXMLLoader();
+                                                            loader.setLocation(getClass().getResource("datveonline.fxml"));
+                                                            dvo = loader.load();
+                                                            Scene scene = new Scene(dvo);
+                                                            DatVeOnlineController controller = loader.getController();
+                                                            controller.setTTUser(nd);
+                                                            stage.setScene(scene);
+                                                            stage.show();
+                                                        }
+                                                        else 
+                                                            Utils.getBox("Đặt vé thất bại!!!", Alert.AlertType.ERROR).show();
                                                     }
-                                                    vmb.setMaKH(kh.getMaKH());
-                                                    vmb.setMaNguoiDat(nd.getId());
-
-                                                    if (vmbs.addVeMayBay(vmb) == true ) {
-                                                        Utils.getBox("Đặt vé thành công!", Alert.AlertType.INFORMATION).show();
-
-                                                        Parent dvo;
-                                                        Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
-                                                        FXMLLoader loader = new FXMLLoader();
-                                                        loader.setLocation(getClass().getResource("datveonline.fxml"));
-                                                        dvo = loader.load();
-                                                        Scene scene = new Scene(dvo);
-                                                        DatVeOnlineController controller = loader.getController();
-                                                        controller.setTTUser(nd);
-                                                        stage.setScene(scene);
-                                                        stage.show();
-                                                    }
-                                                    else 
-                                                        Utils.getBox("Đặt vé thất bại!!!", Alert.AlertType.ERROR).show();
-                                                }
             conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(DatVeOnlineController.class.getName()).log(Level.SEVERE, null, ex);

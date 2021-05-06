@@ -20,10 +20,10 @@ E:\GitHub\BTL_KiemThuPM\Flight\src\main\java\com\mycompany\pojo\ChuyenBay.java
 E:\GitHub\BTL_KiemThuPM\Flight\src\main\java\com\mycompany\service\KhachHangService.java
 E:\GitHub\BTL_KiemThuPM\Flight\src\main\java\com\mycompany\service\VeMayBayService.java
 E:\GitHub\BTL_KiemThuPM\Flight\src\main\java\com\mycompany\service\JdbcUtils.java
-E:\GitHub\BTL_KiemThuPM\Flight\src\main\java\com\mycompany\flight\DatVeTaiQuay.java
 E:\GitHub\BTL_KiemThuPM\Flight\src\main\java\com\mycompany\service\SanBayService.java
 E:\GitHub\BTL_KiemThuPM\Flight\src\main\java\com\mycompany\pojo\VeMayBay.java
 E:\GitHub\BTL_KiemThuPM\Flight\src\main\java\com\mycompany\pojo\GiaVe.java
+E:\GitHub\BTL_KiemThuPM\Flight\src\main\java\com\mycompany\flight\DatVeTaiQuayController.java
 E:\GitHub\BTL_KiemThuPM\Flight\src\main\java\com\mycompany\service\GheService.java
 E:\GitHub\BTL_KiemThuPM\Flight\src\main\java\com\mycompany\service\LoaiTKService.java
 E:\GitHub\BTL_KiemThuPM\Flight\src\main\java\com\mycompany\flight\TraCuuChuyenBayController.java

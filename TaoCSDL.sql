@@ -17,7 +17,9 @@ CREATE TABLE hangve (
     hangVe varchar(255) NOT NULL,
     
     PRIMARY KEY (id),
-	KEY FK_id_idx (id)
+	KEY FK_id_idx (id),
+    KEY FK_hangVe_idx (hangVe)
+    
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 #Tạo Bảng ghe
@@ -144,6 +146,7 @@ CREATE TABLE users (
   PRIMARY KEY (id),
   
   KEY FK_users_id_idx (id),
+  KEY FK_users_hoTen_idx (hoTen),
   KEY FK_users_idLoaiTK_idx (idLoaiTK),
   CONSTRAINT FK_users_loaitk FOREIGN KEY (idLoaiTK) REFERENCES loaitk(id)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -156,7 +159,7 @@ CREATE TABLE khachhang (
   email varchar(100) NULL,
   sdt varchar(10) NULL,
   
-  PRIMARY KEY (maKH),
+  PRIMARY KEY (tenKH),
   
   KEY FK_khachhang_maKH_idx (maKH)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -164,28 +167,28 @@ CREATE TABLE khachhang (
 #Tạo Bảng vemaybay
 CREATE TABLE vemaybay (
   maVe int NOT NULL AUTO_INCREMENT,
-  idHangVe int NOT NULL,
+  hangVe varchar(255) NOT NULL,
   giaVe decimal NOT NULL,
   maGhe varchar(5) NOT NULL,
   ngayXuatVe varchar(19) NOT NULL,
-  maNguoiDat int NOT NULL,
-  maKH int NOT NULL,
+  tenNguoiDat varchar(255) NOT NULL,
+  tenKH varchar(255) NOT NULL,
   maChuyenBay varchar(10) NOT NULL,
   
   PRIMARY KEY (maVe),
   
   KEY FK_vemaybay_maGhe_idx (maGhe),
   KEY FK_vemaybay_maChuyenBay_idx (maChuyenBay),
-  KEY FK_vemaybay_khachhang_maKH_idx (maKH),
-  KEY FK_vemaybay_maNguoiDat_idx (maNguoiDat),
+  KEY FK_vemaybay_khachhang_tenKH_idx (tenKH),
+  KEY FK_vemaybay_users_tenNguoiDat_idx (tenNguoiDat),
   KEY FK_vemaybay_maVe_idx (maVe),
-  KEY FK_vemaybay_idHangVe_idx (idHangVe),
+  KEY FK_vemaybay_hangVe_idx (hangVe),
   KEY FK_vemaybay_giaVe_idx (giaVe),
   CONSTRAINT FK_vemaybay_maGhe FOREIGN KEY (maGhe) REFERENCES ghe(maGhe),
   CONSTRAINT FK_vemaybay_maChuyenBay FOREIGN KEY (maChuyenBay) REFERENCES chuyenbay(maChuyenBay),
-  CONSTRAINT FK_vemaybay_khachhang_maKH FOREIGN KEY (maKH) REFERENCES khachhang(maKH),
-  CONSTRAINT FK_vemaybay_maNguoiDat FOREIGN KEY (maNguoiDat) REFERENCES users(id),
-  CONSTRAINT FK_vemaybay_hangVe FOREIGN KEY (idHangVe) REFERENCES hangve(id),
+  CONSTRAINT FK_vemaybay_khachhang_tenKH FOREIGN KEY (tenKH) REFERENCES khachhang(tenKH),
+  CONSTRAINT FK_vemaybay_users_tenNguoiDat FOREIGN KEY (tenNguoiDat) REFERENCES users(hoTen),
+  CONSTRAINT FK_vemaybay_hangVe FOREIGN KEY (hangVe) REFERENCES hangve(hangVe),
   CONSTRAINT FK_vemaybay_giaVe FOREIGN KEY (giaVe) REFERENCES giave(giaVe)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -193,15 +196,15 @@ CREATE TABLE vemaybay (
 CREATE TABLE phieudatcho (
   maPhieu int NOT NULL AUTO_INCREMENT,
   maVe int NOT NULL,
-  maKH int NOT NULL,
+  tenKH varchar(255) NOT NULL,
   ngayDatVe varchar(19) NOT NULL,
   
   PRIMARY KEY (maPhieu),
   
   KEY FK_phieudatcho_maVe_idx (maVe),
-  KEY FK_phieudatcho_maKH_idx (maKH),
+  KEY FK_phieudatcho_tenKH_idx (tenKH),
   CONSTRAINT FK_phieudatcho_maVe FOREIGN KEY (maVe) REFERENCES vemaybay(maVe),
-  CONSTRAINT FK_phieudatcho_maKH FOREIGN KEY (maKH) REFERENCES khachhang(maKH)
+  CONSTRAINT FK_phieudatcho_tenKH FOREIGN KEY (tenKH) REFERENCES khachhang(tenKH)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO flight.loaitk (id, tk) VALUES ('1', 'Nhân Viên');
@@ -254,12 +257,12 @@ INSERT INTO flight.giave (maSanBayDi,maSanBayDen,hangBay,idHangVe,giaVe) VALUES 
 INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('1', 'AB1', '05:50:002021-03-20');
 INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('2', 'YZ5', '20:30:002021-01-01');
 
-INSERT INTO flight.vemaybay (idHangVe, giaVe, maGhe, ngayXuatVe, maNguoiDat, maKH, maChuyenBay) VALUES ('1', '100000', '1', '05:50:00 2021-03-10', '3', '1', '1');
-INSERT INTO flight.vemaybay (idHangVe, giaVe, maGhe, ngayXuatVe, maNguoiDat, maKH, maChuyenBay) VALUES ('3', '150000', '4', '22:20:21 2021-03-15', '4', '2', '2');
-INSERT INTO flight.vemaybay (idHangVe, giaVe, maGhe, ngayXuatVe, maNguoiDat, maKH, maChuyenBay) VALUES ('2', '100000', '4', '12:30:00 2021-04-01', '4', '3', '2');
-INSERT INTO flight.vemaybay (idHangVe, giaVe, maGhe, ngayXuatVe, maNguoiDat, maKH, maChuyenBay) VALUES ('3', '200000', '4', '18:22:31 2021-04-20', '3', '4', '1');
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông', '100000', '1', '05:50:00 2021-03-10', 'Phạm Anh D', 'Phạm Anh D', '1');
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Thương gia', '150000', '4', '22:20:21 2021-03-15', 'Nguyễn Thị Diễm M', 'Nguyễn Thị Diễm M', '2');
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông đặc biệt', '100000', '4', '12:30:00 2021-04-01', 'Nguyễn Thị Diễm M', 'Nguyễn Văn A', '2');
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Thương gia', '200000', '4', '18:22:31 2021-04-20', 'Phạm Anh D', 'Trần Thị C', '1');
 
-INSERT INTO flight.phieudatcho (maVe, maKH, ngayDatVe) VALUES ('1', '1', '05:50:00 2021-03-20');
-INSERT INTO flight.phieudatcho (maVe, maKH, ngayDatVe) VALUES ('2', '2', '09:40:00 2021-01-30');
+INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('1', 'Phạm Anh D', '05:50:00 2021-03-20');
+INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('2', 'Nguyễn Thị Diễm M', '09:40:00 2021-01-30');
 
 
