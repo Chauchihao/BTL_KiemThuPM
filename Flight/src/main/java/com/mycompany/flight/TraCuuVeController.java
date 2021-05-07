@@ -108,7 +108,7 @@ public class TraCuuVeController implements Initializable {
             Connection conn = JdbcUtils.getConn();
             UsersService us = new UsersService(conn);
             this.lbHidden.setText(u.getTenTK());
-            //nd = us.getUsers(u.getTenTK());
+            nd = us.getUsers(u.getTenTK());
         } catch (SQLException ex) {
             Logger.getLogger(TraCuuVeController.class.getName()).log(Level.SEVERE, null, ex);
         }

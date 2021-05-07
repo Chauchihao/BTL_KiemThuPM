@@ -20,6 +20,11 @@ public class Users {
     private String email;
     private String sdt;
 
+    @Override
+    public String toString() {
+        return this.getTenTK();
+    }
+    
     /**
      * @return the id
      */
