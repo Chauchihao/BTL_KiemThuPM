@@ -43,6 +43,22 @@ public class PhieuDatChoService {
         return phieudatcho;
     }
     
+    public PhieuDatCho getPhieuDatChoByMaVe(int maVe) throws SQLException {
+        String sql = "SELECT * FROM phieudatcho WHERE maVe = ?";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setInt(1, maVe);
+        ResultSet rs = stm.executeQuery();
+        PhieuDatCho pdc = null;
+        while (rs.next()) {
+            pdc = new PhieuDatCho();
+            pdc.setMaPhieu(rs.getInt("maPhieu"));
+            pdc.setMaVe(rs.getInt("maVe"));
+            pdc.setTenKH(rs.getString("tenKH"));
+            pdc.setNgayDatVe(rs.getString("ngayDatVe"));
+        }
+        return pdc;
+    }
+    
     public boolean addPhieuDatCho(PhieuDatCho pdc) throws SQLException {
         String sql = "INSERT INTO phieudatcho(maVe, tenKH, ngayDatVe) VALUES(?, ?, ?)";
         PreparedStatement stm = this.conn.prepareStatement(sql);
@@ -55,4 +71,13 @@ public class PhieuDatChoService {
         return row > 0;
     }
     
+    public boolean delelePhieuDatCho(int maVe) throws SQLException {
+        String sql = "DELETE FROM phieudatcho WHERE maVe=?";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setInt(1, maVe);
+        
+        int row = stm.executeUpdate();
+        
+        return row > 0;
+    }
 }

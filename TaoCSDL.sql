@@ -218,8 +218,9 @@ INSERT INTO flight.users (id, hoTen, tenTK, matKhau, idLoaiTK, idCard, email, sd
 
 INSERT INTO flight.khachhang (tenKH, idCard, email, sdt) VALUES ('Phạm Anh D', '012345678910', 'phamanhdg@gmail.com', '0345678921');
 INSERT INTO flight.khachhang (tenKH, idCard, email, sdt) VALUES ('Nguyễn Thị Diễm M', '012345678911', 'nguyenthidiemm@gmail.com', '0345678922');
+INSERT INTO flight.khachhang (tenKH, idCard, email, sdt) VALUES ('Lê Thị B', '012345678777', 'lethib@gmail.com', '0988775555');
 INSERT INTO flight.khachhang (tenKH, idCard, email, sdt) VALUES ('Nguyễn Văn A', '012345678999', 'nguyenvana@gmail.com', '0988775544');
-INSERT INTO flight.khachhang (tenKH, idCard) VALUES ('Trần Thị C', '012345678888');
+INSERT INTO flight.khachhang (tenKH, idCard, email, sdt) VALUES ('Trần Thị C', '012345678888', 'tranthic@gmail.com', '0988775511');
 
 INSERT INTO flight.hangve (id, hangVe) VALUES ('1', 'Phổ thông');
 INSERT INTO flight.hangve (id, hangVe) VALUES ('2', 'Phổ thông đặc biệt');
@@ -230,17 +231,17 @@ INSERT INTO flight.ghe (maGhe, trangThai, hangVe) VALUES ('2', '1', 'Phổ thôn
 INSERT INTO flight.ghe (maGhe, trangThai, hangVe) VALUES ('3', '1', 'Phổ thông đặc biệt');
 INSERT INTO flight.ghe (maGhe, trangThai, hangVe) VALUES ('4', '1', 'Phổ thông đặc biệt');
 
-INSERT INTO flight.maybay (soHieuMayBay, hangBay) VALUES ('AB1', 'Vietnam Airlines');
-INSERT INTO flight.maybay (soHieuMayBay, hangBay) VALUES ('YZ5', 'Bamboo Airways');
+INSERT INTO flight.maybay (soHieuMayBay, hangBay) VALUES ('VNA01', 'Vietnam Airlines');
+INSERT INTO flight.maybay (soHieuMayBay, hangBay) VALUES ('BA01', 'Bamboo Airways');
 
 INSERT INTO flight.sanbay (maSanBay, tenSanBay, diaDiem, quocGia, trangThai) VALUES ('1', 'Tân Sơn Nhất', 'HCM', 'VN', '1');
 INSERT INTO flight.sanbay (maSanBay, tenSanBay, diaDiem, quocGia, trangThai) VALUES ('2', 'Mộc Bài', 'HN', 'VN', '1');
 
-INSERT INTO flight.maybay_ghe (soHieuMayBay, maGhe) VALUES ('AB1', '1');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, maGhe) VALUES ('YZ5', '2');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, maGhe) VALUES ('VNA01', '1');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, maGhe) VALUES ('BA01', '2');
 
-INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,tenSanBayDi,tenSanBayDen,soHieuMayBay) VALUES ('1','07:00:00 2020-05-20','12:00:00 2020-05-20','Mộc Bài','Tân Sơn Nhất','AB1');
-INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,tenSanBayDi,tenSanBayDen,soHieuMayBay) VALUES ('2','17:00:00 2020-06-25','20:00:00 2020-06-27','Tân Sơn Nhất','Mộc Bài','YZ5');
+INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,tenSanBayDi,tenSanBayDen,soHieuMayBay) VALUES ('1','07:00:00 2020-05-20','12:00:00 2020-05-20','Mộc Bài','Tân Sơn Nhất','VNA01');
+INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,tenSanBayDi,tenSanBayDen,soHieuMayBay) VALUES ('2','17:00:00 2020-06-25','20:00:00 2020-06-27','Tân Sơn Nhất','Mộc Bài','BA01');
 
 INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Tân Sơn Nhất','Mộc Bài','Vietnam Airlines','Phổ thông','100000');
 INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Tân Sơn Nhất','Mộc Bài','Vietnam Airlines','Phổ thông đặc biệt','120000');
@@ -255,15 +256,17 @@ INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES 
 INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Tân Sơn Nhất','Mộc Bài','Bamboo Airways','Phổ thông đặc biệt','100000');
 INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Tân Sơn Nhất','Mộc Bài','Bamboo Airways','Thương gia','150000');
 
-INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('1', 'AB1', '05:50:002021-03-20');
-INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('2', 'YZ5', '20:30:002021-01-01');
+INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('1', 'VNA01', '05:50:002021-03-20');
+INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('2', 'BA01', '20:30:002021-01-01');
 
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông đặc biệt', '120000', '4', '04:00:00 2021-01-20', 'Nhân Viên 01', 'Lê Thị B', '1');
 INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông', '100000', '1', '05:50:00 2021-03-10', 'Phạm Anh D', 'Phạm Anh D', '1');
 INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Thương gia', '150000', '4', '22:20:21 2021-03-15', 'Nguyễn Thị Diễm M', 'Nguyễn Thị Diễm M', '2');
 INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông đặc biệt', '100000', '4', '12:30:00 2021-04-01', 'Nguyễn Thị Diễm M', 'Nguyễn Văn A', '2');
 INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Thương gia', '200000', '4', '18:22:31 2021-04-20', 'Phạm Anh D', 'Trần Thị C', '1');
 
-INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('1', 'Phạm Anh D', '05:50:00 2021-03-20');
-INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('2', 'Nguyễn Thị Diễm M', '09:40:00 2021-01-30');
+INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('1', 'Lê Thị B', '04:00:00 2021-01-20');
+INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('4', 'Nguyễn Văn A', '12:30:00 2021-04-01');
+INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('5', 'Trần Thị C', '18:22:31 2021-04-20');
 
 

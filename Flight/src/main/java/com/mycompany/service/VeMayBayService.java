@@ -6,6 +6,7 @@
 package com.mycompany.service;
 
 import com.mycompany.flight.Utils;
+import com.mycompany.pojo.Users;
 import com.mycompany.pojo.VeMayBay;
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -28,33 +29,41 @@ public class VeMayBayService {
     public VeMayBayService(Connection conn) {
         this.conn = conn;
     }
-    public List<VeMayBay> getVeMayBays(int maVe, String maCB, String tenKH, String ngayXuatVe) throws SQLException{
-//        if (maVe <= 0 || maCB == null || tenKH == null || ngayXuatVe == null)
+    public List<VeMayBay> getVeMayBays(int maVe, String maCB, String tenKH, String tenNguoiDat) throws SQLException{
+//        if (maVe <= 0 || maCB == null || tenKH == null || tenNguoiDat == null)
 //            throw new SQLDataException();
-        
+//        UsersService us = new UsersService(conn);
+//        Users u = us.getUsers(tenTK);
+//        if (u.getIdLoaiTK() == 2)
+//            tenNguoiDat = u.getHoTen();
+            
         String sql = "SELECT * FROM vemaybay"
-                + " WHERE maVe like concat('%', ?, '%')"
+                + " WHERE (maVe like concat('%', ?, '%')"
                 + " OR tenKH like concat('%', ?, '%')"
                 + " OR maChuyenBay like concat('%', ?, '%')"
-                + " OR ngayXuatVe like concat('%', ?, '%')";
+                + " OR tenNguoiDat like concat('%', ?, '%'))"
+//                + " AND idLoaiTK = ? AND tenNguoiDat = hoTen"
+                + " ORDER BY maVe ASC";
+        
         PreparedStatement stm = this.conn.prepareStatement(sql);
         if (maVe == 0)
             stm.setString(1, null);
         else
             stm.setInt(1, maVe);
-        if (maCB == "")
+        if (tenKH == "")
             stm.setString(2, null);
         else
-            stm.setString(2, maCB);
-        if (tenKH == "")
+            stm.setString(2, tenKH);
+        if (maCB == "")
             stm.setString(3, null);
         else
-            stm.setString(3, tenKH);
-        if (ngayXuatVe == "")
+            stm.setString(3, maCB);
+        if (tenNguoiDat == "")
             stm.setString(4, null);
         else
-            stm.setString(4, ngayXuatVe);
-        
+            stm.setString(4, tenNguoiDat);
+//        stm.setInt(5, u.getIdLoaiTK());
+//        
         ResultSet rs = stm.executeQuery();
         
         List<VeMayBay> veMayBay = new ArrayList<>();
@@ -145,4 +154,13 @@ public class VeMayBayService {
         return vmb.getGiaVe();
     }
     
+    public boolean deleleVeMayBay(int maVe) throws SQLException {
+        String sql = "DELETE FROM vemaybay WHERE maVe=?";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setInt(1, maVe);
+        
+        int row = stm.executeUpdate();
+        
+        return row > 0;
+    }
 }

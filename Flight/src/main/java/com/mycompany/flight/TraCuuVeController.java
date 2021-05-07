@@ -11,6 +11,8 @@ import com.mycompany.pojo.VeMayBay;
 import com.mycompany.service.ChuyenBayService;
 import com.mycompany.service.JdbcUtils;
 import com.mycompany.service.KhachHangService;
+import com.mycompany.service.PhieuDatChoService;
+import com.mycompany.service.UsersService;
 import com.mycompany.service.VeMayBayService;
 import java.io.IOException;
 import java.net.URL;
@@ -31,8 +33,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -47,7 +53,8 @@ public class TraCuuVeController implements Initializable {
     @FXML private TextField txtMaVe;
     @FXML private TextField txtMaCB;
     @FXML private TextField txtTenKH;
-    @FXML private DatePicker dpNgayXuatVe;
+    @FXML private TextField txtTenNguoiDat;
+    @FXML private Label lbHidden;
     @FXML private TableView<VeMayBay> tbVeMayBay;
     Users nd;
     
@@ -57,76 +64,64 @@ public class TraCuuVeController implements Initializable {
         loadTable();
         loadVeMayBay(0, "", "", "");
             
+        
             
+//        this.txtMaVe.textProperty().addListener((obj) -> {
+//                int maVe = 0;
+//                String maCB = "";
+//                String tenKH = "";
+//                String tenNguoiDat = "";
+////
+////                VeMayBay vmb = (VeMayBay) this.cbMaVe.getSelectionModel().getSelectedItem();
+////                ChuyenBay cb = (ChuyenBay) this.cbMaCB.getSelectionModel().getSelectedItem();
+//                if (this.txtMaVe.getText().isEmpty() == false)
+//                    maVe = Integer.parseInt(this.txtMaVe.getText());
+//                if (this.txtMaCB.getText().isEmpty() == false)
+//                    maCB = this.txtMaCB.getText();
+//                if (this.txtTenKH.getText().isEmpty() == false)
+//                    tenKH = this.txtTenKH.getText();
+//                if (this.txtTenNguoiDat.getText() != null)
+//                    tenNguoiDat = this.txtTenNguoiDat.getText();
+//                
+//                loadVeMayBay(maVe, maCB, tenKH, tenNguoiDat);
+//        });
+        
         this.txtMaVe.textProperty().addListener((obj) -> {
-                int maVe = 0;
-                String maCB = "";
-                String tenKH = "";
-                String ngayXuatVe = "";
-//
-//                VeMayBay vmb = (VeMayBay) this.cbMaVe.getSelectionModel().getSelectedItem();
-//                ChuyenBay cb = (ChuyenBay) this.cbMaCB.getSelectionModel().getSelectedItem();
-                if (this.txtMaVe.getText().isEmpty() == false)
-                    maVe = Integer.parseInt(this.txtMaVe.getText());
-                if (this.txtMaCB.getText().isEmpty() == false)
-                    maCB = this.txtMaCB.getText();
-                if (this.txtTenKH.getText().isEmpty() == false)
-                    tenKH = this.txtTenKH.getText();
-                if (this.dpNgayXuatVe.getValue() != null)
-                    ngayXuatVe = this.dpNgayXuatVe.getValue().toString();
-                
-                loadVeMayBay(maVe, maCB, tenKH, ngayXuatVe);
+            nhapDL();
         });
         
         this.txtMaCB.textProperty().addListener((obj) -> {
-                int maVe = 0;
-                String maCB = "";
-                String tenKH = "";
-                String ngayXuatVe = "";
-                
-                if (this.txtMaVe.getText().isEmpty() == false)
-                    maVe = Integer.parseInt(this.txtMaVe.getText());
-                if (this.txtMaCB.getText().isEmpty() == false)
-                    maCB = this.txtMaCB.getText();
-                if (this.txtTenKH.getText().isEmpty() == false)
-                    tenKH = this.txtTenKH.getText();
-                if (this.dpNgayXuatVe.getValue() != null)
-                    ngayXuatVe = this.dpNgayXuatVe.getValue().toString();
-                
-                loadVeMayBay(maVe, maCB, tenKH, ngayXuatVe);
+            nhapDL();
+        });
+        this.txtTenKH.textProperty().addListener((obj) -> {
+            nhapDL();
+        });
+        this.txtTenNguoiDat.textProperty().addListener((obj) -> {
+            nhapDL();
         });
         
-        this.txtTenKH.textProperty().addListener((obj) -> {
-                int maVe = 0;
-                String maCB = "";
-                String tenKH = "";
-                String ngayXuatVe = "";
-                
-                if (this.txtMaVe.getText().isEmpty() == false)
-                    maVe = Integer.parseInt(this.txtMaVe.getText());
-                if (this.txtMaCB.getText().isEmpty() == false)
-                    maCB = this.txtMaCB.getText();
-                if (this.txtTenKH.getText().isEmpty() == false)
-                    tenKH = this.txtTenKH.getText();
-                if (this.dpNgayXuatVe.getValue() != null)
-                    ngayXuatVe = this.dpNgayXuatVe.getValue().toString();
-                
-                loadVeMayBay(maVe, maCB, tenKH, ngayXuatVe);
-        });
+        
     }
     
     public void setTTUser(Users u){
-       nd = u; 
+        try {
+            Connection conn = JdbcUtils.getConn();
+            UsersService us = new UsersService(conn);
+            this.lbHidden.setText(u.getTenTK());
+            //nd = us.getUsers(u.getTenTK());
+        } catch (SQLException ex) {
+            Logger.getLogger(TraCuuVeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-    public void loadVeMayBay(int maVe, String maCB, String tenKH, String ngayXuatVe){
+    public void loadVeMayBay(int maVe, String maCB, String tenKH, String tenNguoiDat){
         
         try {
             this.tbVeMayBay.getItems().clear();
             Connection conn = JdbcUtils.getConn();
             VeMayBayService vmbs = new VeMayBayService(conn);
             this.tbVeMayBay.setItems(FXCollections.observableList(
-                    vmbs.getVeMayBays(maVe, maCB, tenKH, ngayXuatVe)));
+                    vmbs.getVeMayBays(maVe, maCB, tenKH, tenNguoiDat)));
             conn.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -139,8 +134,8 @@ public class TraCuuVeController implements Initializable {
         TableColumn colMaVe = new TableColumn("Mã Vé");
         colMaVe.setCellValueFactory(new PropertyValueFactory("maVe"));
         
-        TableColumn colIdHangVe = new TableColumn("Hạng Vé");
-        colIdHangVe.setCellValueFactory(new PropertyValueFactory("idHangVe"));
+        TableColumn colHangVe = new TableColumn("Hạng Vé");
+        colHangVe.setCellValueFactory(new PropertyValueFactory("hangVe"));
         
         TableColumn colGiaVe = new TableColumn("Giá Vé");
         colGiaVe.setCellValueFactory(new PropertyValueFactory("giaVe"));
@@ -151,8 +146,8 @@ public class TraCuuVeController implements Initializable {
         TableColumn colNgayXuatVe = new TableColumn("Ngày Xuất Vé");
         colNgayXuatVe.setCellValueFactory(new PropertyValueFactory("ngayXuatVe"));
         
-        TableColumn colMaNguoiDat = new TableColumn("Tên Người Đặt");
-        colMaNguoiDat.setCellValueFactory(new PropertyValueFactory("tenNguoiDat"));
+        TableColumn colTenNguoiDat = new TableColumn("Tên Người Đặt");
+        colTenNguoiDat.setCellValueFactory(new PropertyValueFactory("tenNguoiDat"));
         
         TableColumn colTenKH = new TableColumn("Tên Khách Hàng");
         colTenKH.setCellValueFactory(new PropertyValueFactory("tenKH"));
@@ -160,40 +155,80 @@ public class TraCuuVeController implements Initializable {
         TableColumn colMaCB = new TableColumn("Mã Chuyến Bay");
         colMaCB.setCellValueFactory(new PropertyValueFactory("maCB"));
         
+        TableColumn colAction = new TableColumn();
+        colAction.setCellFactory((obj) -> {
+            Button btn = new Button("Hủy Vé");
+            
+            btn.setOnAction(evt -> {
+                Utils.getBox("Bạn có xác nhận hủy không?", Alert.AlertType.CONFIRMATION)
+                     .showAndWait().ifPresent(bt -> {
+                         if (bt == ButtonType.OK) {
+                             try {
+                                 TableCell cell = (TableCell) ((Button) evt.getSource()).getParent();
+                                 VeMayBay vmb = (VeMayBay) cell.getTableRow().getItem();
+                                 
+                                 Connection conn = JdbcUtils.getConn();
+                                 VeMayBayService vmbs = new VeMayBayService(conn);
+                                 PhieuDatChoService pdcs = new PhieuDatChoService(conn);
+                                 
+                                 if (pdcs.getPhieuDatChoByMaVe(vmb.getMaVe()) != null)
+                                 {
+                                    if (pdcs.delelePhieuDatCho(vmb.getMaVe())){
+                                       if (vmbs.deleleVeMayBay(vmb.getMaVe())) {
+                                           Utils.getBox("SUCCESSFUL", Alert.AlertType.INFORMATION).show();
+                                           loadVeMayBay(0, "", "", "");
+                                       } else
+                                           Utils.getBox("FAILED", Alert.AlertType.ERROR).show();
+                                    }
+                                 }
+                                else {
+                                    if (vmbs.deleleVeMayBay(vmb.getMaVe())) {
+                                       Utils.getBox("SUCCESSFUL", Alert.AlertType.INFORMATION).show();
+                                       loadVeMayBay(0, "", "", "");
+                                   } else
+                                       Utils.getBox("FAILED", Alert.AlertType.ERROR).show();
+                                 }
+                                 
+                                 conn.close();
+                             } catch (SQLException ex) {
+                                 
+                                 ex.printStackTrace();
+                                 Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
+                             }
+                         }
+                     });
+                
+                
+               
+            });
+            
+            TableCell cell = new TableCell();
+            cell.setGraphic(btn);
+            return cell;
+        });
         
-        this.tbVeMayBay.getColumns().addAll(colMaVe, colGiaVe, colIdHangVe, colNgayXuatVe, colMaGhe, colMaCB, colTenKH, colMaNguoiDat);
+        
+        this.tbVeMayBay.getColumns().addAll(colMaVe, colMaCB, colHangVe, colMaGhe, colTenKH, colTenNguoiDat, colGiaVe, colNgayXuatVe, colAction);
     }
     
     
-//    public void nhapTXTMaVe(ActionEvent evt){
-//        if (evt.getSource() == this.txtMaVe) {
-//            try {
-//                    if (this.txtMaVe.getText().isEmpty() == false) {
-//                        Connection conn = JdbcUtils.getConn();
-//                        KhachHangService khs = new KhachHangService(conn);
-//                        
-//                        int maVe = 0;
-//                        String maCB = "";
-//                        int maKH = 0;
-//                        String ngayXuatVe = "";
-//                        
-//                        if (this.txtMaVe.getText().isEmpty() == false)
-//                            maVe = Integer.parseInt(this.txtMaVe.getText());
-//                        if (this.txtMaCB.getText().isEmpty() == false)
-//                            maCB = this.txtMaCB.getText();
-//                        if (this.txtTenKH.getText().isEmpty() == false)
-//                            maKH = khs.getKhachHang(this.txtTenKH.getText()).getMaKH();
-//                        if (this.dpNgayXuatVe.getValue() != null)
-//                            ngayXuatVe = this.dpNgayXuatVe.getValue().toString();
-//                        
-//                        loadVeMayBay(maVe, maCB, maKH, ngayXuatVe);
-//                    }
-//                        
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(TraCuuVeController.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//        }
-//    }
+    public void nhapDL() {
+        int maVe = 0;
+        String maCB = "";
+        String tenKH = "";
+        String tenNguoiDat = "";
+
+        if (this.txtMaVe.getText().isEmpty() == false)
+            maVe = Integer.parseInt(this.txtMaVe.getText());
+        if (this.txtMaCB.getText().isEmpty() == false)
+            maCB = this.txtMaCB.getText();
+        if (this.txtTenKH.getText().isEmpty() == false)
+            tenKH = this.txtTenKH.getText();
+        if (this.txtTenNguoiDat.getText() != null)
+            tenNguoiDat = this.txtTenNguoiDat.getText();
+
+        loadVeMayBay(maVe, maCB, tenKH, tenNguoiDat);
+    }
     
     public void logoutHandler(ActionEvent evt) throws IOException {
         Parent dangnhap;

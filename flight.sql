@@ -6,7 +6,6 @@
 CREATE DATABASE flight /*!40100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
 USE flight;
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -52,7 +51,7 @@ CREATE TABLE `chuyenbay` (
 
 LOCK TABLES `chuyenbay` WRITE;
 /*!40000 ALTER TABLE `chuyenbay` DISABLE KEYS */;
-INSERT INTO `chuyenbay` VALUES ('1','07:00:00 2020-05-20','12:00:00 2020-05-20','Mộc Bài','Tân Sơn Nhất','AB1',NULL),('2','17:00:00 2020-06-25','20:00:00 2020-06-27','Tân Sơn Nhất','Mộc Bài','YZ5',NULL);
+INSERT INTO `chuyenbay` VALUES ('1','07:00:00 2020-05-20','12:00:00 2020-05-20','Mộc Bài','Tân Sơn Nhất','VNA01',NULL),('2','17:00:00 2020-06-25','20:00:00 2020-06-27','Tân Sơn Nhất','Mộc Bài','BA01',NULL);
 /*!40000 ALTER TABLE `chuyenbay` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -160,7 +159,7 @@ CREATE TABLE `khachhang` (
   `sdt` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`tenKH`),
   KEY `FK_khachhang_maKH_idx` (`maKH`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,7 +168,7 @@ CREATE TABLE `khachhang` (
 
 LOCK TABLES `khachhang` WRITE;
 /*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
-INSERT INTO `khachhang` VALUES (2,'Nguyễn Thị Diễm M','012345678911','nguyenthidiemm@gmail.com','0345678922'),(3,'Nguyễn Văn A','012345678999','nguyenvana@gmail.com','0988775544'),(1,'Phạm Anh D','012345678910','phamanhdg@gmail.com','0345678921'),(4,'Trần Thị C','012345678888',NULL,NULL);
+INSERT INTO `khachhang` VALUES (3,'Lê Thị B','012345678777','lethib@gmail.com','0988775555'),(2,'Nguyễn Thị Diễm M','012345678911','nguyenthidiemm@gmail.com','0345678922'),(4,'Nguyễn Văn A','012345678999','nguyenvana@gmail.com','0988775544'),(1,'Phạm Anh D','012345678910','phamanhdg@gmail.com','0345678921'),(5,'Trần Thị C','012345678888','tranthic@gmail.com','0988775511');
 /*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,7 +218,7 @@ CREATE TABLE `maybay` (
 
 LOCK TABLES `maybay` WRITE;
 /*!40000 ALTER TABLE `maybay` DISABLE KEYS */;
-INSERT INTO `maybay` VALUES ('YZ5','Bamboo Airways'),('AB1','Vietnam Airlines');
+INSERT INTO `maybay` VALUES ('BA01','Bamboo Airways'),('VNA01','Vietnam Airlines');
 /*!40000 ALTER TABLE `maybay` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +246,7 @@ CREATE TABLE `maybay_ghe` (
 
 LOCK TABLES `maybay_ghe` WRITE;
 /*!40000 ALTER TABLE `maybay_ghe` DISABLE KEYS */;
-INSERT INTO `maybay_ghe` VALUES ('AB1','1'),('YZ5','2');
+INSERT INTO `maybay_ghe` VALUES ('VNA01','1'),('BA01','2');
 /*!40000 ALTER TABLE `maybay_ghe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,7 +267,7 @@ CREATE TABLE `phieudatcho` (
   KEY `FK_phieudatcho_tenKH_idx` (`tenKH`),
   CONSTRAINT `FK_phieudatcho_maVe` FOREIGN KEY (`maVe`) REFERENCES `vemaybay` (`maVe`),
   CONSTRAINT `FK_phieudatcho_tenKH` FOREIGN KEY (`tenKH`) REFERENCES `khachhang` (`tenKH`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -277,7 +276,7 @@ CREATE TABLE `phieudatcho` (
 
 LOCK TABLES `phieudatcho` WRITE;
 /*!40000 ALTER TABLE `phieudatcho` DISABLE KEYS */;
-INSERT INTO `phieudatcho` VALUES (1,1,'Phạm Anh D','05:50:00 2021-03-20'),(2,2,'Nguyễn Thị Diễm M','09:40:00 2021-01-30');
+INSERT INTO `phieudatcho` VALUES (1,1,'Lê Thị B','04:00:00 2021-01-20'),(2,4,'Nguyễn Văn A','12:30:00 2021-04-01'),(3,5,'Trần Thị C','18:22:31 2021-04-20');
 /*!40000 ALTER TABLE `phieudatcho` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -335,7 +334,7 @@ CREATE TABLE `sanbay_maybay` (
 
 LOCK TABLES `sanbay_maybay` WRITE;
 /*!40000 ALTER TABLE `sanbay_maybay` DISABLE KEYS */;
-INSERT INTO `sanbay_maybay` VALUES ('1','AB1','05:50:002021-03-20'),('2','YZ5','20:30:002021-01-01');
+INSERT INTO `sanbay_maybay` VALUES ('1','VNA01','05:50:002021-03-20'),('2','BA01','20:30:002021-01-01');
 /*!40000 ALTER TABLE `sanbay_maybay` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -404,7 +403,7 @@ CREATE TABLE `vemaybay` (
   CONSTRAINT `FK_vemaybay_maChuyenBay` FOREIGN KEY (`maChuyenBay`) REFERENCES `chuyenbay` (`maChuyenBay`),
   CONSTRAINT `FK_vemaybay_maGhe` FOREIGN KEY (`maGhe`) REFERENCES `ghe` (`maGhe`),
   CONSTRAINT `FK_vemaybay_users_tenNguoiDat` FOREIGN KEY (`tenNguoiDat`) REFERENCES `users` (`hoTen`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -413,7 +412,7 @@ CREATE TABLE `vemaybay` (
 
 LOCK TABLES `vemaybay` WRITE;
 /*!40000 ALTER TABLE `vemaybay` DISABLE KEYS */;
-INSERT INTO `vemaybay` VALUES (1,'Phổ thông',100000,'1','05:50:00 2021-03-10','Phạm Anh D','Phạm Anh D','1'),(2,'Thương gia',150000,'4','22:20:21 2021-03-15','Nguyễn Thị Diễm M','Nguyễn Thị Diễm M','2'),(3,'Phổ thông đặc biệt',100000,'4','12:30:00 2021-04-01','Nguyễn Thị Diễm M','Nguyễn Văn A','2'),(4,'Thương gia',200000,'4','18:22:31 2021-04-20','Phạm Anh D','Trần Thị C','1');
+INSERT INTO `vemaybay` VALUES (1,'Phổ thông đặc biệt',120000,'4','04:00:00 2021-01-20','Nhân Viên 01','Lê Thị B','1'),(2,'Phổ thông',100000,'1','05:50:00 2021-03-10','Phạm Anh D','Phạm Anh D','1'),(3,'Thương gia',150000,'4','22:20:21 2021-03-15','Nguyễn Thị Diễm M','Nguyễn Thị Diễm M','2'),(4,'Phổ thông đặc biệt',100000,'4','12:30:00 2021-04-01','Nguyễn Thị Diễm M','Nguyễn Văn A','2'),(5,'Thương gia',200000,'4','18:22:31 2021-04-20','Phạm Anh D','Trần Thị C','1');
 /*!40000 ALTER TABLE `vemaybay` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -426,4 +425,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-06 23:38:35
+-- Dump completed on 2021-05-07 15:21:39
