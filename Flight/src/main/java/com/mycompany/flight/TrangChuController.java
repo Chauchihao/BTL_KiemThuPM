@@ -63,6 +63,8 @@ public class TrangChuController implements Initializable {
             loader.setLocation(getClass().getResource("tracuuchuyenbay.fxml"));
             tccb = loader.load();
             Scene scene = new Scene(tccb);
+            TraCuuChuyenBayController controller = loader.getController();
+            controller.setTTUser(nd);
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {

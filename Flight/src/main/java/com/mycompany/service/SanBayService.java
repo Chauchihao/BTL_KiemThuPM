@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,10 +27,9 @@ import java.util.List;
     }
     
     public List<SanBay> getSanBay() throws SQLException {
-        String sql = "SELECT * FROM sanbay WHERE maSanBay like concat(?) ORDER BY maSanBay DESC";
-        PreparedStatement stm = this.conn.prepareStatement(sql);
+        Statement stm = this.conn.createStatement();
+        ResultSet rs = stm.executeQuery("SELECT * FROM sanbay");
         
-        ResultSet rs = stm.executeQuery();
         List<SanBay> sanbay = new ArrayList<>();
         while (rs.next()) {
             SanBay sb = new SanBay();

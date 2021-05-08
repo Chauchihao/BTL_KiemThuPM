@@ -25,14 +25,16 @@ public class GheService {
         this.conn = conn;
     }
     
-    public List<Ghe> getGhe(String soHieuMB) throws SQLException {
+    public List<Ghe> getGhe(String soHieuMB, String hangVe) throws SQLException {
         String sql = "SELECT maybay_ghe.maGhe, hangVe"
                 + " FROM maybay_ghe, ghe, chuyenbay"
                 + " WHERE trangThai = false AND ghe.maGhe = maybay_ghe.maGhe"
                 + " AND chuyenbay.soHieuMaybay = maybay_ghe.soHieuMaybay"
-                + " AND chuyenbay.soHieuMaybay = ?";
+                + " AND chuyenbay.soHieuMaybay = ?"
+                + " AND hangVe = ?";
         PreparedStatement stm = this.conn.prepareStatement(sql);
         stm.setString(1, soHieuMB);
+        stm.setString(2, hangVe);
         
         ResultSet rs = stm.executeQuery();
         
@@ -47,14 +49,15 @@ public class GheService {
         return ghe;
     }
     
-    public boolean updateGhe(String maGhe, String soHieuMB) throws SQLException{
+    public boolean updateGhe(String maGhe, String soHieuMB, boolean trangThai) throws SQLException{
         String sql = "UPDATE maybay_ghe"
-                + " SET trangThai = true"
+                + " SET trangThai = ?"
                 + " WHERE soHieuMayBay = ?"
                 + " AND maGhe = ?";
         PreparedStatement stm = this.conn.prepareStatement(sql);
-        stm.setString(1, soHieuMB);
-        stm.setString(2, maGhe);
+        stm.setBoolean(1, trangThai);
+        stm.setString(2, soHieuMB);
+        stm.setString(3, maGhe);
         
         int row = stm.executeUpdate();
         

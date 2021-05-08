@@ -9,6 +9,7 @@ import com.mycompany.pojo.ChuyenBay;
 import com.mycompany.pojo.Users;
 import com.mycompany.pojo.VeMayBay;
 import com.mycompany.service.ChuyenBayService;
+import com.mycompany.service.GheService;
 import com.mycompany.service.JdbcUtils;
 import com.mycompany.service.KhachHangService;
 import com.mycompany.service.PhieuDatChoService;
@@ -59,9 +60,6 @@ public class TraCuuVeController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        TrangChuController tc = new TrangChuController();
-        
-        //Utils.getBox("initialize loaiTk  " + tc.nd.getIdLoaiTK(), Alert.AlertType.INFORMATION).show();
         loadTable();
         
         
@@ -139,20 +137,29 @@ public class TraCuuVeController implements Initializable {
                                  Connection conn = JdbcUtils.getConn();
                                  VeMayBayService vmbs = new VeMayBayService(conn);
                                  PhieuDatChoService pdcs = new PhieuDatChoService(conn);
+                                 GheService gs = new GheService(conn);
+                                 ChuyenBayService cbs = new ChuyenBayService(conn);
                                  UsersService us = new UsersService(conn);
+                                 
                                  int idLoaiTK = us.getUsersByTenNguoiDatVe(vmb.getTenNguoiDat()).getIdLoaiTK();
                                  int idNguoiDat = us.getUsersByTenNguoiDatVe(vmb.getTenNguoiDat()).getId();
                                  if ((nd.getIdLoaiTK() == 1 && idLoaiTK != 2) || idNguoiDat == nd.getId()) {
                                     if (pdcs.getPhieuDatChoByMaVe(vmb.getMaVe()) != null) {
                                        if (pdcs.delelePhieuDatCho(vmb.getMaVe())){
-                                          if (vmbs.deleleVeMayBay(vmb.getMaVe())) {
-                                              Utils.getBox("Đã hủy vé thành công", Alert.AlertType.INFORMATION).show();
+                                          if (vmbs.deleleVeMayBay(vmb.getMaVe())) 
+                                              if (gs.updateGhe(vmb.getMaGhe()
+                                                , cbs.getChuyenBayByMaCB(vmb.getMaCB())
+                                                .getSoHieuMayBay(), false) == true) {
+                                                Utils.getBox("Đã hủy vé thành công", Alert.AlertType.INFORMATION).show();
                                           } else
                                               Utils.getBox("Đã hủy vé thất bại", Alert.AlertType.ERROR).show();
                                        }
                                     } else {
-                                       if (vmbs.deleleVeMayBay(vmb.getMaVe())) {
-                                          Utils.getBox("Đã hủy vé thành công", Alert.AlertType.INFORMATION).show();
+                                       if (vmbs.deleleVeMayBay(vmb.getMaVe()))
+                                           if (gs.updateGhe(vmb.getMaGhe()
+                                                , cbs.getChuyenBayByMaCB(vmb.getMaCB())
+                                                .getSoHieuMayBay(), false) == true) {
+                                            Utils.getBox("Đã hủy vé thành công", Alert.AlertType.INFORMATION).show();
                                       } else
                                           Utils.getBox("Đã hủy vé thất bại", Alert.AlertType.ERROR).show();
                                     }

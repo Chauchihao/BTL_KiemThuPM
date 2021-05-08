@@ -58,7 +58,6 @@ public class DatVeOnlineController implements Initializable {
     @FXML private ComboBox<ChuyenBay> cbMaCB;
     @FXML private ComboBox<HangVe> cbHangVe;
     @FXML private ComboBox<Ghe> cbViTri;
-    @FXML private TextField txtNgayGioDat;
     @FXML private TextField txtGiaTien;
     @FXML private TextField txtHoTen;
     @FXML private TextField txtIDCard;
@@ -74,9 +73,6 @@ public class DatVeOnlineController implements Initializable {
             ChuyenBayService s = new ChuyenBayService(conn);
             VeMayBayService ss = new VeMayBayService(conn);
             this.cbMaCB.setItems(FXCollections.observableList(s.getChuyenBay()));
-            Calendar cal = Calendar.getInstance();
-            SimpleDateFormat simpleformat = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
-            this.txtNgayGioDat.setText(simpleformat.format(cal.getTime()));
             
             conn.close();
         } catch (SQLException ex) {
@@ -138,10 +134,11 @@ public class DatVeOnlineController implements Initializable {
                         GiaVeService gvs = new GiaVeService(conn);
                         ChuyenBayService cbs = new ChuyenBayService(conn);
                         String soHieuMB = cbs.getChuyenBayByMaCB(
-                                this.cbMaCB.getSelectionModel().getSelectedItem()
-                                .getMaChuyenBay()).getSoHieuMayBay();
+                            this.cbMaCB.getSelectionModel().getSelectedItem()
+                            .getMaChuyenBay()).getSoHieuMayBay();
                         this.cbViTri.setItems(FXCollections.observableList(
-                                gs.getGhe(soHieuMB)));
+                            gs.getGhe(soHieuMB, this.cbHangVe.getSelectionModel()
+                            .getSelectedItem().getHangVe())));
                         this.txtGiaTien.setText(gvs.getGiaVeByChuyenBay_HangVe(
                             this.cbMaCB.getSelectionModel().getSelectedItem()
                             .getMaChuyenBay(), this.cbHangVe.getSelectionModel()
@@ -220,20 +217,21 @@ public class DatVeOnlineController implements Initializable {
                                                         vmb.setTenNguoiDat(nd.getHoTen());
 
                                                         if (vmbs.addVeMayBay(vmb) == true) {
-                                                            Utils.getBox("Đặt vé thành công!", Alert.AlertType.INFORMATION).show();
-                                                            gs.updateGhe(this.cbHangVe.getSelectionModel().getSelectedItem().getHangVe()
-                                                                    , cbs.getChuyenBayByMaCB(this.cbMaCB.getSelectionModel().getSelectedItem()
-                                                                    .getMaChuyenBay()).getSoHieuMayBay());
-                                                            Parent dvo;
-                                                            Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
-                                                            FXMLLoader loader = new FXMLLoader();
-                                                            loader.setLocation(getClass().getResource("datveonline.fxml"));
-                                                            dvo = loader.load();
-                                                            Scene scene = new Scene(dvo);
-                                                            DatVeOnlineController controller = loader.getController();
-                                                            controller.setTTUser(nd);
-                                                            stage.setScene(scene);
-                                                            stage.show();
+                                                            if (gs.updateGhe(vmb.getMaGhe()
+                                                                    , cbs.getChuyenBayByMaCB(vmb.getMaCB())
+                                                                    .getSoHieuMayBay(), true) == true) {
+                                                                Utils.getBox("Đặt vé thành công!", Alert.AlertType.INFORMATION).show();
+                                                                Parent dvo;
+                                                                Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
+                                                                FXMLLoader loader = new FXMLLoader();
+                                                                loader.setLocation(getClass().getResource("datveonline.fxml"));
+                                                                dvo = loader.load();
+                                                                Scene scene = new Scene(dvo);
+                                                                DatVeOnlineController controller = loader.getController();
+                                                                controller.setTTUser(nd);
+                                                                stage.setScene(scene);
+                                                                stage.show();
+                                                            }
                                                         }
                                                         else 
                                                             Utils.getBox("Đặt vé thất bại!!!", Alert.AlertType.ERROR).show();

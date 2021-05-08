@@ -16,6 +16,11 @@ public class SanBay {
     private String quocGia;
     private Boolean trangThai;
 
+    @Override
+    public String toString() {
+        return this.getTenSanBay();
+    }
+    
     /**
      * @return the maSanBay
      */

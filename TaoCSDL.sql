@@ -216,7 +216,7 @@ INSERT INTO flight.users (id, hoTen, tenTK, matKhau, idLoaiTK, idCard, email, sd
 INSERT INTO flight.users (id, hoTen, tenTK, matKhau, idLoaiTK, idCard, email, sdt) VALUES ('1', 'Nhân Viên 01', 'NV01', '123456', '1', '023456789', 'nhanvien01@gmail.com', '0987654321');
 INSERT INTO flight.users (id, hoTen, tenTK, matKhau, idLoaiTK, idCard, email, sdt) VALUES ('2', 'Nhân Viên 02', 'NV02', '123456', '1', '023456799', 'nhanvien02@gmail.com', '0987654322');
 INSERT INTO flight.users (id, hoTen, tenTK, matKhau, idLoaiTK, idCard, email, sdt) VALUES ('3', 'Phạm Anh D', 'DPham', '123456', '2', '012345678910', 'phamanhdg@gmail.com', '0345678921');
-INSERT INTO flight.users (id, hoTen, tenTK, matKhau, idLoaiTK, idCard, email, sdt) VALUES ('4', 'Nguyễn Thị Diễm M', 'MNguyen', '1234', '2', '012345678911', 'nguyenthidiemm@gmail.com', '0345678922');
+INSERT INTO flight.users (id, hoTen, tenTK, matKhau, idLoaiTK, idCard, email, sdt) VALUES ('4', 'Nguyễn Thị Diễm M', 'MNguyen', '123456', '2', '012345678911', 'nguyenthidiemm@gmail.com', '0345678922');
 
 INSERT INTO flight.khachhang (tenKH, idCard, email, sdt) VALUES ('Lê Thị B', '012345678777', 'lethib@gmail.com', '0988775555');
 INSERT INTO flight.khachhang (tenKH, idCard, email, sdt) VALUES ('Hoành Văn E', '012345678666', 'hoangvane@gmail.com', '0988775444');
@@ -227,9 +227,8 @@ INSERT INTO flight.khachhang (tenKH, idCard, email, sdt) VALUES ('Nguyễn Thị
 INSERT INTO flight.khachhang (tenKH, idCard, email, sdt) VALUES ('Nguyễn Văn A', '012345678999', 'nguyenvana@gmail.com', '0988775544');
 INSERT INTO flight.khachhang (tenKH, idCard, email, sdt) VALUES ('Trần Thị C', '012345678888', 'tranthic@gmail.com', '0988775511');
 
-INSERT INTO flight.hangve (id, hangVe) VALUES ('1', 'Phổ thông');
-INSERT INTO flight.hangve (id, hangVe) VALUES ('2', 'Phổ thông đặc biệt');
-INSERT INTO flight.hangve (id, hangVe) VALUES ('3', 'Thương gia');
+INSERT INTO flight.hangve (id, hangVe) VALUES ('1', 'Thương gia');
+INSERT INTO flight.hangve (id, hangVe) VALUES ('2', 'Phổ thông');
 
 INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('S01', 'Thương gia');
 INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('S02', 'Thương gia');
@@ -251,58 +250,58 @@ INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('S17', 'Thương gia');
 INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('S18', 'Thương gia');
 INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('S19', 'Thương gia');
 INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('S20', 'Thương gia');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('S21', 'Thương gia');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('S22', 'Thương gia');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('S23', 'Thương gia');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('S24', 'Thương gia');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('S25', 'Thương gia');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('S26', 'Thương gia');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('S27', 'Thương gia');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('S28', 'Thương gia');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('S29', 'Thương gia');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('S30', 'Thương gia');
 
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A01', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A02', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A03', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A04', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A05', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A06', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A07', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A08', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A09', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A10', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A11', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A12', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A13', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A14', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A15', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A16', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A17', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A18', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A19', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A20', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A21', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A22', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A23', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A24', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A25', 'Phổ thông đặc biệt');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A01', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A02', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A03', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A04', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A05', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A06', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A07', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A08', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A09', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A10', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A11', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A12', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A13', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A14', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A15', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A16', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A17', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A18', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A19', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('A20', 'Phổ thông');
 
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B01', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B02', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B03', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B04', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B05', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B06', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B07', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B08', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B09', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B10', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B11', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B12', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B13', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B14', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B15', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B16', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B17', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B18', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B19', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B20', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B21', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B22', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B23', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B24', 'Phổ thông đặc biệt');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B25', 'Phổ thông đặc biệt');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B01', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B02', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B03', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B04', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B05', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B06', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B07', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B08', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B09', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B10', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B11', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B12', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B13', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B14', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B15', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B16', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B17', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B18', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B19', 'Phổ thông');
+INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('B20', 'Phổ thông');
 
 INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('C01', 'Phổ Thông');
 INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('C02', 'Phổ Thông');
@@ -324,11 +323,6 @@ INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('C17', 'Phổ Thông');
 INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('C18', 'Phổ Thông');
 INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('C19', 'Phổ Thông');
 INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('C20', 'Phổ Thông');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('C21', 'Phổ Thông');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('C22', 'Phổ Thông');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('C23', 'Phổ Thông');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('C24', 'Phổ Thông');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('C25', 'Phổ Thông');
 
 INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('D01', 'Phổ Thông');
 INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('D02', 'Phổ Thông');
@@ -350,18 +344,13 @@ INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('D17', 'Phổ Thông');
 INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('D18', 'Phổ Thông');
 INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('D19', 'Phổ Thông');
 INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('D20', 'Phổ Thông');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('D21', 'Phổ Thông');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('D22', 'Phổ Thông');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('D23', 'Phổ Thông');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('D24', 'Phổ Thông');
-INSERT INTO flight.ghe (maGhe, hangVe) VALUES ('D25', 'Phổ Thông');
 
 
 INSERT INTO flight.maybay (soHieuMayBay, hangBay) VALUES ('VNA01', 'Vietnam Airlines');
 INSERT INTO flight.maybay (soHieuMayBay, hangBay) VALUES ('BA01', 'Bamboo Airways');
 
-INSERT INTO flight.sanbay (maSanBay, tenSanBay, diaDiem, quocGia, trangThai) VALUES ('1', 'Tân Sơn Nhất', 'HCM', 'VN', '1');
-INSERT INTO flight.sanbay (maSanBay, tenSanBay, diaDiem, quocGia, trangThai) VALUES ('2', 'Mộc Bài', 'HN', 'VN', '1');
+INSERT INTO flight.sanbay (maSanBay, tenSanBay, diaDiem, quocGia, trangThai) VALUES ('1', 'Tân Sơn Nhất', 'TP.Hồ Chí Minh', 'Việt Nam', 1);
+INSERT INTO flight.sanbay (maSanBay, tenSanBay, diaDiem, quocGia, trangThai) VALUES ('2', 'Mộc Bài', 'Hà Nội', 'Việt Nam', 1);
 
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'S01');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'S02');
@@ -383,6 +372,16 @@ INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'S18');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'S19');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'S20');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'S21');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'S22');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'S23');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'S24');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'S25');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'S26');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'S27');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'S28');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'S29');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'S30');
 
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 1, 'A01');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'A02');
@@ -404,11 +403,6 @@ INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'A18');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'A19');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'A20');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'A21');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'A22');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'A23');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'A24');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'A25');
 
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'B01');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'B02');
@@ -430,11 +424,6 @@ INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'B18');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'B19');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'B20');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'B21');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'B22');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'B23');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'B24');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'B25');
 
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 1, 'C01');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'C02');
@@ -456,11 +445,6 @@ INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'C18');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'C19');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'C20');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'C21');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'C22');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'C23');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'C24');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'C25');
 
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 1, 'D01');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'D02');
@@ -482,11 +466,6 @@ INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'D18');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'D19');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'D20');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'D21');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'D22');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'D23');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'D24');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('VNA01', 0, 'D25');
 
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 1, 'S01');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 1, 'S02');
@@ -508,6 +487,16 @@ INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'S18');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'S19');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'S20');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'S21');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'S22');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'S23');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'S24');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'S25');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'S26');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'S27');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'S28');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'S29');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'S30');
 
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'A01');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 1, 'A02');
@@ -529,14 +518,9 @@ INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'A18');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'A19');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'A20');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'A21');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'A22');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'A23');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'A24');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'A25');
 
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'B01');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 1, 'B02');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 1, 'B01');
+INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'B02');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'B03');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'B04');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'B05');
@@ -554,12 +538,6 @@ INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'B17');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'B18');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'B19');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'B20');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'B21');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'B22');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'B23');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'B24');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'B25');
 
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'C01');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'C02');
@@ -581,11 +559,6 @@ INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'C18');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'C19');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'C20');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'C21');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'C22');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'C23');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'C24');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'C25');
 
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'D01');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'D02');
@@ -606,46 +579,35 @@ INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'D17');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'D18');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'D19');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'D20');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'D21');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'D22');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'D23');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'D24');
-INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'D25');
 
 
-INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,tenSanBayDi,tenSanBayDen,soHieuMayBay) VALUES ('1','07:00:00 2020-05-20','12:00:00 2020-05-20','Mộc Bài','Tân Sơn Nhất','VNA01');
-INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,tenSanBayDi,tenSanBayDen,soHieuMayBay) VALUES ('2','17:00:00 2020-06-25','20:00:00 2020-06-27','Tân Sơn Nhất','Mộc Bài','BA01');
+INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,tenSanBayDi,tenSanBayDen,soHieuMayBay) VALUES ('1','07:00:00 20-05-2020','12:00:00 20-05-2020','Mộc Bài','Tân Sơn Nhất','VNA01');
+INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,tenSanBayDi,tenSanBayDen,soHieuMayBay) VALUES ('2','17:00:00 26-06-2020','20:00:00 26-06-2020','Tân Sơn Nhất','Mộc Bài','BA01');
 
 INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Tân Sơn Nhất','Mộc Bài','Vietnam Airlines','Phổ thông','100000');
-INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Tân Sơn Nhất','Mộc Bài','Vietnam Airlines','Phổ thông đặc biệt','120000');
 INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Tân Sơn Nhất','Mộc Bài','Vietnam Airlines','Thương gia','200000');
 INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Mộc Bài','Tân Sơn Nhất','Vietnam Airlines','Phổ thông','100000');
-INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Mộc Bài','Tân Sơn Nhất','Vietnam Airlines','Phổ thông đặc biệt','120000');
 INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Mộc Bài','Tân Sơn Nhất','Vietnam Airlines','Thương gia','200000');
 INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Mộc Bài','Tân Sơn Nhất','Bamboo Airways','Phổ thông','90000');
-INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Mộc Bài','Tân Sơn Nhất','Bamboo Airways','Phổ thông đặc biệt','100000');
 INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Mộc Bài','Tân Sơn Nhất','Bamboo Airways','Thương gia','150000');
 INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Tân Sơn Nhất','Mộc Bài','Bamboo Airways','Phổ thông','90000');
-INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Tân Sơn Nhất','Mộc Bài','Bamboo Airways','Phổ thông đặc biệt','100000');
 INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES ('Tân Sơn Nhất','Mộc Bài','Bamboo Airways','Thương gia','150000');
 
-INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('1', 'VNA01', '05:50:002021-03-20');
-INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('2', 'BA01', '20:30:002021-01-01');
+INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('1', 'VNA01', '05:50:00 20-03-2021');
+INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('2', 'BA01', '20:30:00 01-01-2021');
 
-INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông đặc biệt', '120000', 'A01', '04:00:00 2021-01-20', 'Nhân Viên 01', 'Lê Thị B', '1');
-INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông', '100000', 'C01', '05:00:00 2021-02-15', 'Nhân Viên 02', 'Hoành Văn E', '1');
-INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Thương gia', '150000', 'S01', '06:00:00 2021-02-27', 'Nhân Viên 01', 'Trương G', '2');
-INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông đặc biệt', '100000', 'B01', '07:00:00 2021-03-02', 'Nhân Viên 02', 'Huỳnh N', '2');
-INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông', '100000', 'D01', '05:50:00 2021-03-10', 'Phạm Anh D', 'Phạm Anh D', '1');
-INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Thương gia', '150000', 'S02', '22:20:21 2021-03-15', 'Nguyễn Thị Diễm M', 'Nguyễn Thị Diễm M', '2');
-INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông đặc biệt', '100000', 'A02', '12:30:00 2021-04-01', 'Phạm Anh D', 'Nguyễn Văn A', '2');
-INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Thương gia', '200000', 'S03', '18:22:31 2021-04-20', 'Nguyễn Thị Diễm M', 'Trần Thị C', '1');
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Thương gia', '200000', 'A01', '04:00:00 20-01-2021', 'Nhân Viên 01', 'Lê Thị B', '1');
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông', '100000', 'C01', '05:00:00 15-02-2021', 'Nhân Viên 02', 'Hoành Văn E', '1');
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Thương gia', '150000', 'S01', '06:00:00 27-02-2021', 'Nhân Viên 01', 'Trương G', '2');
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông', '90000', 'B01', '07:00:00 02-03-2021', 'Nhân Viên 02', 'Huỳnh N', '2');
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông', '100000', 'D01', '05:50:00 10-03-2021', 'Phạm Anh D', 'Phạm Anh D', '1');
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Thương gia', '150000', 'S02', '22:20:21 15-03-2021', 'Nguyễn Thị Diễm M', 'Nguyễn Thị Diễm M', '2');
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông', '90000', 'S03', '18:22:31 20-04-2021', 'Nguyễn Thị Diễm M', 'Trần Thị C', '1');
 
-INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('1', 'Lê Thị B', '04:00:00 2021-01-20');
-INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('2', 'Hoành Văn E', '05:00:00 2021-02-15');
-INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('3', 'Trương G', '06:00:00 2021-02-27');
-INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('4', 'Huỳnh N', '07:00:00 2021-03-02');
+INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('1', 'Lê Thị B', '04:00:00 20-01-2021');
+INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('2', 'Hoành Văn E', '05:00:00 15-02-2021');
+INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('3', 'Trương G', '06:00:00 27-02-2021');
+INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('4', 'Huỳnh N', '07:00:00 02-03-2021');
 
 
 

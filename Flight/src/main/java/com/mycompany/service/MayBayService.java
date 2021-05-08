@@ -25,7 +25,7 @@ public class MayBayService {
     }
     
     public List<MayBay> getMayBay() throws SQLException {
-        String sql = "SELECT * FROM maybay WHERE soHieuMayBay like concat(?) ORDER BY soHieuMayBay DESC";
+        String sql = "SELECT * FROM maybay";
         PreparedStatement stm = this.conn.prepareStatement(sql);
         
         ResultSet rs = stm.executeQuery();
