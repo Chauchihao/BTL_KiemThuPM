@@ -11,7 +11,6 @@ package com.mycompany.pojo;
  */
 public class Ghe {
     private String maGhe;
-    private Boolean trangThai;
     private String hangVe;
 
     @Override
@@ -34,20 +33,6 @@ public class Ghe {
     }
 
     /**
-     * @return the trangThai
-     */
-    public Boolean getTrangThai() {
-        return trangThai;
-    }
-
-    /**
-     * @param trangThai the trangThai to set
-     */
-    public void setTrangThai(Boolean trangThai) {
-        this.trangThai = trangThai;
-    }
-
-    /**
      * @return the hangVe
      */
     public String getHangVe() {
@@ -60,4 +45,6 @@ public class Ghe {
     public void setHangVe(String hangVe) {
         this.hangVe = hangVe;
     }
+    
+    
 }

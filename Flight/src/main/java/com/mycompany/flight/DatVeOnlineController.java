@@ -74,7 +74,6 @@ public class DatVeOnlineController implements Initializable {
             ChuyenBayService s = new ChuyenBayService(conn);
             VeMayBayService ss = new VeMayBayService(conn);
             this.cbMaCB.setItems(FXCollections.observableList(s.getChuyenBay()));
-
             Calendar cal = Calendar.getInstance();
             SimpleDateFormat simpleformat = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
             this.txtNgayGioDat.setText(simpleformat.format(cal.getTime()));
@@ -137,7 +136,12 @@ public class DatVeOnlineController implements Initializable {
                         Connection conn = JdbcUtils.getConn();
                         GheService gs = new GheService(conn);
                         GiaVeService gvs = new GiaVeService(conn);
-                        this.cbViTri.setItems(FXCollections.observableList(gs.getGhe()));
+                        ChuyenBayService cbs = new ChuyenBayService(conn);
+                        String soHieuMB = cbs.getChuyenBayByMaCB(
+                                this.cbMaCB.getSelectionModel().getSelectedItem()
+                                .getMaChuyenBay()).getSoHieuMayBay();
+                        this.cbViTri.setItems(FXCollections.observableList(
+                                gs.getGhe(soHieuMB)));
                         this.txtGiaTien.setText(gvs.getGiaVeByChuyenBay_HangVe(
                             this.cbMaCB.getSelectionModel().getSelectedItem()
                             .getMaChuyenBay(), this.cbHangVe.getSelectionModel()
@@ -162,6 +166,8 @@ public class DatVeOnlineController implements Initializable {
             conn = JdbcUtils.getConn();
             VeMayBayService vmbs = new VeMayBayService(conn);
             VeMayBay vmb = new VeMayBay();
+            GheService gs = new GheService(conn);
+            ChuyenBayService cbs = new ChuyenBayService(conn);
             PhieuDatChoService pdcs = new PhieuDatChoService(conn);
             PhieuDatCho pdc = new PhieuDatCho();
             KhachHangService khs = new KhachHangService(conn);
@@ -213,9 +219,11 @@ public class DatVeOnlineController implements Initializable {
                                                         vmb.setTenKH(kh.getTenKH());
                                                         vmb.setTenNguoiDat(nd.getHoTen());
 
-                                                        if (vmbs.addVeMayBay(vmb) == true ) {
+                                                        if (vmbs.addVeMayBay(vmb) == true) {
                                                             Utils.getBox("Đặt vé thành công!", Alert.AlertType.INFORMATION).show();
-
+                                                            gs.updateGhe(this.cbHangVe.getSelectionModel().getSelectedItem().getHangVe()
+                                                                    , cbs.getChuyenBayByMaCB(this.cbMaCB.getSelectionModel().getSelectedItem()
+                                                                    .getMaChuyenBay()).getSoHieuMayBay());
                                                             Parent dvo;
                                                             Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
                                                             FXMLLoader loader = new FXMLLoader();

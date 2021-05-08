@@ -6,6 +6,7 @@
 CREATE DATABASE flight /*!40100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
 USE flight;
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -64,7 +65,6 @@ DROP TABLE IF EXISTS `ghe`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ghe` (
   `maGhe` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `trangThai` tinyint(1) NOT NULL,
   `hangVe` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`maGhe`),
   KEY `FK_ghe_hangVe_idx` (`hangVe`),
@@ -78,7 +78,7 @@ CREATE TABLE `ghe` (
 
 LOCK TABLES `ghe` WRITE;
 /*!40000 ALTER TABLE `ghe` DISABLE KEYS */;
-INSERT INTO `ghe` VALUES ('1',1,'Thương gia'),('2',1,'Phổ thông'),('3',1,'Phổ thông đặc biệt'),('4',1,'Phổ thông đặc biệt');
+INSERT INTO `ghe` VALUES ('C01','Phổ Thông'),('C02','Phổ Thông'),('C03','Phổ Thông'),('C04','Phổ Thông'),('C05','Phổ Thông'),('C06','Phổ Thông'),('C07','Phổ Thông'),('C08','Phổ Thông'),('C09','Phổ Thông'),('C10','Phổ Thông'),('C11','Phổ Thông'),('C12','Phổ Thông'),('C13','Phổ Thông'),('C14','Phổ Thông'),('C15','Phổ Thông'),('C16','Phổ Thông'),('C17','Phổ Thông'),('C18','Phổ Thông'),('C19','Phổ Thông'),('C20','Phổ Thông'),('C21','Phổ Thông'),('C22','Phổ Thông'),('C23','Phổ Thông'),('C24','Phổ Thông'),('C25','Phổ Thông'),('D01','Phổ Thông'),('D02','Phổ Thông'),('D03','Phổ Thông'),('D04','Phổ Thông'),('D05','Phổ Thông'),('D06','Phổ Thông'),('D07','Phổ Thông'),('D08','Phổ Thông'),('D09','Phổ Thông'),('D10','Phổ Thông'),('D11','Phổ Thông'),('D12','Phổ Thông'),('D13','Phổ Thông'),('D14','Phổ Thông'),('D15','Phổ Thông'),('D16','Phổ Thông'),('D17','Phổ Thông'),('D18','Phổ Thông'),('D19','Phổ Thông'),('D20','Phổ Thông'),('D21','Phổ Thông'),('D22','Phổ Thông'),('D23','Phổ Thông'),('D24','Phổ Thông'),('D25','Phổ Thông'),('A01','Phổ thông đặc biệt'),('A02','Phổ thông đặc biệt'),('A03','Phổ thông đặc biệt'),('A04','Phổ thông đặc biệt'),('A05','Phổ thông đặc biệt'),('A06','Phổ thông đặc biệt'),('A07','Phổ thông đặc biệt'),('A08','Phổ thông đặc biệt'),('A09','Phổ thông đặc biệt'),('A10','Phổ thông đặc biệt'),('A11','Phổ thông đặc biệt'),('A12','Phổ thông đặc biệt'),('A13','Phổ thông đặc biệt'),('A14','Phổ thông đặc biệt'),('A15','Phổ thông đặc biệt'),('A16','Phổ thông đặc biệt'),('A17','Phổ thông đặc biệt'),('A18','Phổ thông đặc biệt'),('A19','Phổ thông đặc biệt'),('A20','Phổ thông đặc biệt'),('A21','Phổ thông đặc biệt'),('A22','Phổ thông đặc biệt'),('A23','Phổ thông đặc biệt'),('A24','Phổ thông đặc biệt'),('A25','Phổ thông đặc biệt'),('B01','Phổ thông đặc biệt'),('B02','Phổ thông đặc biệt'),('B03','Phổ thông đặc biệt'),('B04','Phổ thông đặc biệt'),('B05','Phổ thông đặc biệt'),('B06','Phổ thông đặc biệt'),('B07','Phổ thông đặc biệt'),('B08','Phổ thông đặc biệt'),('B09','Phổ thông đặc biệt'),('B10','Phổ thông đặc biệt'),('B11','Phổ thông đặc biệt'),('B12','Phổ thông đặc biệt'),('B13','Phổ thông đặc biệt'),('B14','Phổ thông đặc biệt'),('B15','Phổ thông đặc biệt'),('B16','Phổ thông đặc biệt'),('B17','Phổ thông đặc biệt'),('B18','Phổ thông đặc biệt'),('B19','Phổ thông đặc biệt'),('B20','Phổ thông đặc biệt'),('B21','Phổ thông đặc biệt'),('B22','Phổ thông đặc biệt'),('B23','Phổ thông đặc biệt'),('B24','Phổ thông đặc biệt'),('B25','Phổ thông đặc biệt'),('S01','Thương gia'),('S02','Thương gia'),('S03','Thương gia'),('S04','Thương gia'),('S05','Thương gia'),('S06','Thương gia'),('S07','Thương gia'),('S08','Thương gia'),('S09','Thương gia'),('S10','Thương gia'),('S11','Thương gia'),('S12','Thương gia'),('S13','Thương gia'),('S14','Thương gia'),('S15','Thương gia'),('S16','Thương gia'),('S17','Thương gia'),('S18','Thương gia'),('S19','Thương gia'),('S20','Thương gia');
 /*!40000 ALTER TABLE `ghe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,7 +159,7 @@ CREATE TABLE `khachhang` (
   `sdt` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`tenKH`),
   KEY `FK_khachhang_maKH_idx` (`maKH`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,7 +168,7 @@ CREATE TABLE `khachhang` (
 
 LOCK TABLES `khachhang` WRITE;
 /*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
-INSERT INTO `khachhang` VALUES (3,'Lê Thị B','012345678777','lethib@gmail.com','0988775555'),(2,'Nguyễn Thị Diễm M','012345678911','nguyenthidiemm@gmail.com','0345678922'),(4,'Nguyễn Văn A','012345678999','nguyenvana@gmail.com','0988775544'),(1,'Phạm Anh D','012345678910','phamanhdg@gmail.com','0345678921'),(5,'Trần Thị C','012345678888','tranthic@gmail.com','0988775511');
+INSERT INTO `khachhang` VALUES (2,'Hoành Văn E','012345678666','hoangvane@gmail.com','0988775444'),(4,'Huỳnh N','012345678444','huynhn@gmail.com','0988775222'),(1,'Lê Thị B','012345678777','lethib@gmail.com','0988775555'),(6,'Nguyễn Thị Diễm M','012345678911','nguyenthidiemm@gmail.com','0345678922'),(7,'Nguyễn Văn A','012345678999','nguyenvana@gmail.com','0988775544'),(5,'Phạm Anh D','012345678910','phamanhdg@gmail.com','0345678921'),(8,'Trần Thị C','012345678888','tranthic@gmail.com','0988775511'),(3,'Trương G','012345678555','truongg@gmail.com','0988775333');
 /*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,7 +193,7 @@ CREATE TABLE `loaitk` (
 
 LOCK TABLES `loaitk` WRITE;
 /*!40000 ALTER TABLE `loaitk` DISABLE KEYS */;
-INSERT INTO `loaitk` VALUES (1,'Nhân Viên'),(2,'Khách Hàng');
+INSERT INTO `loaitk` VALUES (1,'Nhân Viên'),(2,'Khách Hàng'),(3,'Admin');
 /*!40000 ALTER TABLE `loaitk` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -232,6 +232,7 @@ DROP TABLE IF EXISTS `maybay_ghe`;
 CREATE TABLE `maybay_ghe` (
   `soHieuMayBay` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `maGhe` varchar(5) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `trangThai` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`soHieuMayBay`,`maGhe`),
   KEY `FK_maybay_ghe_soHieuMayBay_idx` (`soHieuMayBay`),
   KEY `FK_maybay_ghe_maGhe_idx` (`maGhe`),
@@ -246,7 +247,7 @@ CREATE TABLE `maybay_ghe` (
 
 LOCK TABLES `maybay_ghe` WRITE;
 /*!40000 ALTER TABLE `maybay_ghe` DISABLE KEYS */;
-INSERT INTO `maybay_ghe` VALUES ('VNA01','1'),('BA01','2');
+INSERT INTO `maybay_ghe` VALUES ('BA01','A01',0),('BA01','A02',1),('BA01','A03',0),('BA01','A04',0),('BA01','A05',0),('BA01','A06',0),('BA01','A07',0),('BA01','A08',0),('BA01','A09',0),('BA01','A10',0),('BA01','A11',0),('BA01','A12',0),('BA01','A13',0),('BA01','A14',0),('BA01','A15',0),('BA01','A16',0),('BA01','A17',0),('BA01','A18',0),('BA01','A19',0),('BA01','A20',0),('BA01','A21',0),('BA01','A22',0),('BA01','A23',0),('BA01','A24',0),('BA01','A25',0),('BA01','B01',0),('BA01','B02',1),('BA01','B03',0),('BA01','B04',0),('BA01','B05',0),('BA01','B06',0),('BA01','B07',0),('BA01','B08',0),('BA01','B09',0),('BA01','B10',0),('BA01','B11',0),('BA01','B12',0),('BA01','B13',0),('BA01','B14',0),('BA01','B15',0),('BA01','B16',0),('BA01','B17',0),('BA01','B18',0),('BA01','B19',0),('BA01','B20',0),('BA01','B21',0),('BA01','B22',0),('BA01','B23',0),('BA01','B24',0),('BA01','B25',0),('BA01','C01',0),('BA01','C02',0),('BA01','C03',0),('BA01','C04',0),('BA01','C05',0),('BA01','C06',0),('BA01','C07',0),('BA01','C08',0),('BA01','C09',0),('BA01','C10',0),('BA01','C11',0),('BA01','C12',0),('BA01','C13',0),('BA01','C14',0),('BA01','C15',0),('BA01','C16',0),('BA01','C17',0),('BA01','C18',0),('BA01','C19',0),('BA01','C20',0),('BA01','C21',0),('BA01','C22',0),('BA01','C23',0),('BA01','C24',0),('BA01','C25',0),('BA01','D01',0),('BA01','D02',0),('BA01','D03',0),('BA01','D04',0),('BA01','D05',0),('BA01','D06',0),('BA01','D07',0),('BA01','D08',0),('BA01','D09',0),('BA01','D10',0),('BA01','D11',0),('BA01','D12',0),('BA01','D13',0),('BA01','D14',0),('BA01','D15',0),('BA01','D16',0),('BA01','D17',0),('BA01','D18',0),('BA01','D19',0),('BA01','D20',0),('BA01','D21',0),('BA01','D22',0),('BA01','D23',0),('BA01','D24',0),('BA01','D25',0),('BA01','S01',1),('BA01','S02',1),('BA01','S03',0),('BA01','S04',0),('BA01','S05',0),('BA01','S06',0),('BA01','S07',0),('BA01','S08',0),('BA01','S09',0),('BA01','S10',0),('BA01','S11',0),('BA01','S12',0),('BA01','S13',0),('BA01','S14',0),('BA01','S15',0),('BA01','S16',0),('BA01','S17',0),('BA01','S18',0),('BA01','S19',0),('BA01','S20',0),('VNA01','A01',1),('VNA01','A02',0),('VNA01','A03',0),('VNA01','A04',0),('VNA01','A05',0),('VNA01','A06',0),('VNA01','A07',0),('VNA01','A08',0),('VNA01','A09',0),('VNA01','A10',0),('VNA01','A11',0),('VNA01','A12',0),('VNA01','A13',0),('VNA01','A14',0),('VNA01','A15',0),('VNA01','A16',0),('VNA01','A17',0),('VNA01','A18',0),('VNA01','A19',0),('VNA01','A20',0),('VNA01','A21',0),('VNA01','A22',0),('VNA01','A23',0),('VNA01','A24',0),('VNA01','A25',0),('VNA01','B01',0),('VNA01','B02',0),('VNA01','B03',0),('VNA01','B04',0),('VNA01','B05',0),('VNA01','B06',0),('VNA01','B07',0),('VNA01','B08',0),('VNA01','B09',0),('VNA01','B10',0),('VNA01','B11',0),('VNA01','B12',0),('VNA01','B13',0),('VNA01','B14',0),('VNA01','B15',0),('VNA01','B16',0),('VNA01','B17',0),('VNA01','B18',0),('VNA01','B19',0),('VNA01','B20',0),('VNA01','B21',0),('VNA01','B22',0),('VNA01','B23',0),('VNA01','B24',0),('VNA01','B25',0),('VNA01','C01',1),('VNA01','C02',0),('VNA01','C03',0),('VNA01','C04',0),('VNA01','C05',0),('VNA01','C06',0),('VNA01','C07',0),('VNA01','C08',0),('VNA01','C09',0),('VNA01','C10',0),('VNA01','C11',0),('VNA01','C12',0),('VNA01','C13',0),('VNA01','C14',0),('VNA01','C15',0),('VNA01','C16',0),('VNA01','C17',0),('VNA01','C18',0),('VNA01','C19',0),('VNA01','C20',0),('VNA01','C21',0),('VNA01','C22',0),('VNA01','C23',0),('VNA01','C24',0),('VNA01','C25',0),('VNA01','D01',1),('VNA01','D02',0),('VNA01','D03',0),('VNA01','D04',0),('VNA01','D05',0),('VNA01','D06',0),('VNA01','D07',0),('VNA01','D08',0),('VNA01','D09',0),('VNA01','D10',0),('VNA01','D11',0),('VNA01','D12',0),('VNA01','D13',0),('VNA01','D14',0),('VNA01','D15',0),('VNA01','D16',0),('VNA01','D17',0),('VNA01','D18',0),('VNA01','D19',0),('VNA01','D20',0),('VNA01','D21',0),('VNA01','D22',0),('VNA01','D23',0),('VNA01','D24',0),('VNA01','D25',0),('VNA01','S01',0),('VNA01','S02',0),('VNA01','S03',1),('VNA01','S04',0),('VNA01','S05',0),('VNA01','S06',0),('VNA01','S07',0),('VNA01','S08',0),('VNA01','S09',0),('VNA01','S10',0),('VNA01','S11',0),('VNA01','S12',0),('VNA01','S13',0),('VNA01','S14',0),('VNA01','S15',0),('VNA01','S16',0),('VNA01','S17',0),('VNA01','S18',0),('VNA01','S19',0),('VNA01','S20',0);
 /*!40000 ALTER TABLE `maybay_ghe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,7 +268,7 @@ CREATE TABLE `phieudatcho` (
   KEY `FK_phieudatcho_tenKH_idx` (`tenKH`),
   CONSTRAINT `FK_phieudatcho_maVe` FOREIGN KEY (`maVe`) REFERENCES `vemaybay` (`maVe`),
   CONSTRAINT `FK_phieudatcho_tenKH` FOREIGN KEY (`tenKH`) REFERENCES `khachhang` (`tenKH`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -276,7 +277,7 @@ CREATE TABLE `phieudatcho` (
 
 LOCK TABLES `phieudatcho` WRITE;
 /*!40000 ALTER TABLE `phieudatcho` DISABLE KEYS */;
-INSERT INTO `phieudatcho` VALUES (1,1,'Lê Thị B','04:00:00 2021-01-20'),(2,4,'Nguyễn Văn A','12:30:00 2021-04-01'),(3,5,'Trần Thị C','18:22:31 2021-04-20');
+INSERT INTO `phieudatcho` VALUES (1,1,'Lê Thị B','04:00:00 2021-01-20'),(2,2,'Hoành Văn E','05:00:00 2021-02-15'),(3,3,'Trương G','06:00:00 2021-02-27'),(4,4,'Huỳnh N','07:00:00 2021-03-02');
 /*!40000 ALTER TABLE `phieudatcho` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -369,7 +370,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Nhân Viên 01','NV01','1234',1,1,'023456789','nhanvien01@gmail.com','0987654321'),(2,'Nhân Viên 02','NV02','1234',1,1,'023456799','nhanvien02@gmail.com','0987654322'),(3,'Phạm Anh D','DPham','1234',1,2,'012345678910','phamanhdg@gmail.com','0345678921'),(4,'Nguyễn Thị Diễm M','MNguyen','1234',1,2,'012345678911','nguyenthidiemm@gmail.com','0345678922');
+INSERT INTO `users` VALUES (0,'ADMIN','Admin','123456',1,3,'000000000000','admin@gmail.com','1111111111'),(1,'Nhân Viên 01','NV01','123456',1,1,'023456789','nhanvien01@gmail.com','0987654321'),(2,'Nhân Viên 02','NV02','123456',1,1,'023456799','nhanvien02@gmail.com','0987654322'),(3,'Phạm Anh D','DPham','123456',1,2,'012345678910','phamanhdg@gmail.com','0345678921'),(4,'Nguyễn Thị Diễm M','MNguyen','1234',1,2,'012345678911','nguyenthidiemm@gmail.com','0345678922');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -403,7 +404,7 @@ CREATE TABLE `vemaybay` (
   CONSTRAINT `FK_vemaybay_maChuyenBay` FOREIGN KEY (`maChuyenBay`) REFERENCES `chuyenbay` (`maChuyenBay`),
   CONSTRAINT `FK_vemaybay_maGhe` FOREIGN KEY (`maGhe`) REFERENCES `ghe` (`maGhe`),
   CONSTRAINT `FK_vemaybay_users_tenNguoiDat` FOREIGN KEY (`tenNguoiDat`) REFERENCES `users` (`hoTen`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -412,7 +413,7 @@ CREATE TABLE `vemaybay` (
 
 LOCK TABLES `vemaybay` WRITE;
 /*!40000 ALTER TABLE `vemaybay` DISABLE KEYS */;
-INSERT INTO `vemaybay` VALUES (1,'Phổ thông đặc biệt',120000,'4','04:00:00 2021-01-20','Nhân Viên 01','Lê Thị B','1'),(2,'Phổ thông',100000,'1','05:50:00 2021-03-10','Phạm Anh D','Phạm Anh D','1'),(3,'Thương gia',150000,'4','22:20:21 2021-03-15','Nguyễn Thị Diễm M','Nguyễn Thị Diễm M','2'),(4,'Phổ thông đặc biệt',100000,'4','12:30:00 2021-04-01','Nguyễn Thị Diễm M','Nguyễn Văn A','2'),(5,'Thương gia',200000,'4','18:22:31 2021-04-20','Phạm Anh D','Trần Thị C','1');
+INSERT INTO `vemaybay` VALUES (1,'Phổ thông đặc biệt',120000,'A01','04:00:00 2021-01-20','Nhân Viên 01','Lê Thị B','1'),(2,'Phổ thông',100000,'C01','05:00:00 2021-02-15','Nhân Viên 02','Hoành Văn E','1'),(3,'Thương gia',150000,'S01','06:00:00 2021-02-27','Nhân Viên 01','Trương G','2'),(4,'Phổ thông đặc biệt',100000,'B01','07:00:00 2021-03-02','Nhân Viên 02','Huỳnh N','2'),(5,'Phổ thông',100000,'D01','05:50:00 2021-03-10','Phạm Anh D','Phạm Anh D','1'),(6,'Thương gia',150000,'S02','22:20:21 2021-03-15','Nguyễn Thị Diễm M','Nguyễn Thị Diễm M','2'),(7,'Phổ thông đặc biệt',100000,'A02','12:30:00 2021-04-01','Phạm Anh D','Nguyễn Văn A','2'),(8,'Thương gia',200000,'S03','18:22:31 2021-04-20','Nguyễn Thị Diễm M','Trần Thị C','1');
 /*!40000 ALTER TABLE `vemaybay` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -425,4 +426,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-07 15:21:39
+-- Dump completed on 2021-05-08 18:16:07

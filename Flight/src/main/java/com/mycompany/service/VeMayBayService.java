@@ -29,21 +29,28 @@ public class VeMayBayService {
     public VeMayBayService(Connection conn) {
         this.conn = conn;
     }
-    public List<VeMayBay> getVeMayBays(int maVe, String maCB, String tenKH, String tenNguoiDat) throws SQLException{
+    public List<VeMayBay> getVeMayBays(int maVe, String maCB, String tenKH, Users u) throws SQLException{
 //        if (maVe <= 0 || maCB == null || tenKH == null || tenNguoiDat == null)
 //            throw new SQLDataException();
 //        UsersService us = new UsersService(conn);
 //        Users u = us.getUsers(tenTK);
-//        if (u.getIdLoaiTK() == 2)
-//            tenNguoiDat = u.getHoTen();
+        String sql="";
+        if ((maVe == 0 && maCB == "" && tenKH == "") || u.getIdLoaiTK() == 1) {
+            sql = "SELECT * FROM vemaybay"
+                    + " WHERE (maVe like concat('%', ?, '%')"
+                    + " OR tenKH like concat('%', ?, '%')"
+                    + " OR maChuyenBay like concat('%', ?, '%')"
+                    + " OR tenNguoiDat like concat('%', ?, '%'))"
+                    + " ORDER BY maVe ASC";
+        }
+        else if (u.getIdLoaiTK() == 2) 
+            sql = "SELECT vemaybay.* FROM vemaybay, users"
+                    + " WHERE (maVe like concat('%', ?, '%')"
+                    + " OR vemaybay.tenKH like concat('%', ?, '%')"
+                    + " OR maChuyenBay like concat('%', ?, '%'))"
+                    + " AND idLoaiTK = 2 AND tenNguoiDat = hoTen AND tenNguoiDat=?"
+                    + " ORDER BY maVe ASC";
             
-        String sql = "SELECT * FROM vemaybay"
-                + " WHERE (maVe like concat('%', ?, '%')"
-                + " OR tenKH like concat('%', ?, '%')"
-                + " OR maChuyenBay like concat('%', ?, '%')"
-                + " OR tenNguoiDat like concat('%', ?, '%'))"
-//                + " AND idLoaiTK = ? AND tenNguoiDat = hoTen"
-                + " ORDER BY maVe ASC";
         
         PreparedStatement stm = this.conn.prepareStatement(sql);
         if (maVe == 0)
@@ -58,12 +65,10 @@ public class VeMayBayService {
             stm.setString(3, null);
         else
             stm.setString(3, maCB);
-        if (tenNguoiDat == "")
+        if (u == null)
             stm.setString(4, null);
         else
-            stm.setString(4, tenNguoiDat);
-//        stm.setInt(5, u.getIdLoaiTK());
-//        
+            stm.setString(4, u.getHoTen());
         ResultSet rs = stm.executeQuery();
         
         List<VeMayBay> veMayBay = new ArrayList<>();

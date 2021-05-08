@@ -53,38 +53,17 @@ public class TraCuuVeController implements Initializable {
     @FXML private TextField txtMaVe;
     @FXML private TextField txtMaCB;
     @FXML private TextField txtTenKH;
-    @FXML private TextField txtTenNguoiDat;
     @FXML private Label lbHidden;
     @FXML private TableView<VeMayBay> tbVeMayBay;
     Users nd;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        TrangChuController tc = new TrangChuController();
         
+        //Utils.getBox("initialize loaiTk  " + tc.nd.getIdLoaiTK(), Alert.AlertType.INFORMATION).show();
         loadTable();
-        loadVeMayBay(0, "", "", "");
-            
         
-            
-//        this.txtMaVe.textProperty().addListener((obj) -> {
-//                int maVe = 0;
-//                String maCB = "";
-//                String tenKH = "";
-//                String tenNguoiDat = "";
-////
-////                VeMayBay vmb = (VeMayBay) this.cbMaVe.getSelectionModel().getSelectedItem();
-////                ChuyenBay cb = (ChuyenBay) this.cbMaCB.getSelectionModel().getSelectedItem();
-//                if (this.txtMaVe.getText().isEmpty() == false)
-//                    maVe = Integer.parseInt(this.txtMaVe.getText());
-//                if (this.txtMaCB.getText().isEmpty() == false)
-//                    maCB = this.txtMaCB.getText();
-//                if (this.txtTenKH.getText().isEmpty() == false)
-//                    tenKH = this.txtTenKH.getText();
-//                if (this.txtTenNguoiDat.getText() != null)
-//                    tenNguoiDat = this.txtTenNguoiDat.getText();
-//                
-//                loadVeMayBay(maVe, maCB, tenKH, tenNguoiDat);
-//        });
         
         this.txtMaVe.textProperty().addListener((obj) -> {
             nhapDL();
@@ -96,32 +75,22 @@ public class TraCuuVeController implements Initializable {
         this.txtTenKH.textProperty().addListener((obj) -> {
             nhapDL();
         });
-        this.txtTenNguoiDat.textProperty().addListener((obj) -> {
-            nhapDL();
-        });
         
         
     }
-    
+
     public void setTTUser(Users u){
-        try {
-            Connection conn = JdbcUtils.getConn();
-            UsersService us = new UsersService(conn);
-            this.lbHidden.setText(u.getTenTK());
-            nd = us.getUsers(u.getTenTK());
-        } catch (SQLException ex) {
-            Logger.getLogger(TraCuuVeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        nd = u;
+        loadVeMayBay(0, "", "", nd);
     }
     
-    public void loadVeMayBay(int maVe, String maCB, String tenKH, String tenNguoiDat){
-        
+    public void loadVeMayBay(int maVe, String maCB, String tenKH, Users u){
         try {
             this.tbVeMayBay.getItems().clear();
             Connection conn = JdbcUtils.getConn();
             VeMayBayService vmbs = new VeMayBayService(conn);
             this.tbVeMayBay.setItems(FXCollections.observableList(
-                    vmbs.getVeMayBays(maVe, maCB, tenKH, tenNguoiDat)));
+                    vmbs.getVeMayBays(maVe, maCB, tenKH, u)));
             conn.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -170,30 +139,34 @@ public class TraCuuVeController implements Initializable {
                                  Connection conn = JdbcUtils.getConn();
                                  VeMayBayService vmbs = new VeMayBayService(conn);
                                  PhieuDatChoService pdcs = new PhieuDatChoService(conn);
-                                 
-                                 if (pdcs.getPhieuDatChoByMaVe(vmb.getMaVe()) != null)
-                                 {
-                                    if (pdcs.delelePhieuDatCho(vmb.getMaVe())){
+                                 UsersService us = new UsersService(conn);
+                                 int idLoaiTK = us.getUsersByTenNguoiDatVe(vmb.getTenNguoiDat()).getIdLoaiTK();
+                                 int idNguoiDat = us.getUsersByTenNguoiDatVe(vmb.getTenNguoiDat()).getId();
+                                 if ((nd.getIdLoaiTK() == 1 && idLoaiTK != 2) || idNguoiDat == nd.getId()) {
+                                    if (pdcs.getPhieuDatChoByMaVe(vmb.getMaVe()) != null) {
+                                       if (pdcs.delelePhieuDatCho(vmb.getMaVe())){
+                                          if (vmbs.deleleVeMayBay(vmb.getMaVe())) {
+                                              Utils.getBox("Đã hủy vé thành công", Alert.AlertType.INFORMATION).show();
+                                          } else
+                                              Utils.getBox("Đã hủy vé thất bại", Alert.AlertType.ERROR).show();
+                                       }
+                                    } else {
                                        if (vmbs.deleleVeMayBay(vmb.getMaVe())) {
-                                           Utils.getBox("SUCCESSFUL", Alert.AlertType.INFORMATION).show();
-                                           loadVeMayBay(0, "", "", "");
-                                       } else
-                                           Utils.getBox("FAILED", Alert.AlertType.ERROR).show();
+                                          Utils.getBox("Đã hủy vé thành công", Alert.AlertType.INFORMATION).show();
+                                      } else
+                                          Utils.getBox("Đã hủy vé thất bại", Alert.AlertType.ERROR).show();
                                     }
-                                 }
-                                else {
-                                    if (vmbs.deleleVeMayBay(vmb.getMaVe())) {
-                                       Utils.getBox("SUCCESSFUL", Alert.AlertType.INFORMATION).show();
-                                       loadVeMayBay(0, "", "", "");
-                                   } else
-                                       Utils.getBox("FAILED", Alert.AlertType.ERROR).show();
-                                 }
+                                    loadVeMayBay(vmb.getMaVe(), vmb.getMaCB(), vmb.getTenKH(), nd);
+                                 } else
+                                        Utils.getBox("Bạn không được phép hủy vé này", Alert.AlertType.ERROR).show();
+                                 if (vmb == null)
+                                     Utils.getBox("Không có vé để hủy tại đây", Alert.AlertType.ERROR).show();
                                  
                                  conn.close();
                              } catch (SQLException ex) {
                                  
                                  ex.printStackTrace();
-                                 Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
+                                 Logger.getLogger(TraCuuVeController.class.getName()).log(Level.SEVERE, null, ex);
                              }
                          }
                      });
@@ -216,7 +189,6 @@ public class TraCuuVeController implements Initializable {
         int maVe = 0;
         String maCB = "";
         String tenKH = "";
-        String tenNguoiDat = "";
 
         if (this.txtMaVe.getText().isEmpty() == false)
             maVe = Integer.parseInt(this.txtMaVe.getText());
@@ -224,10 +196,8 @@ public class TraCuuVeController implements Initializable {
             maCB = this.txtMaCB.getText();
         if (this.txtTenKH.getText().isEmpty() == false)
             tenKH = this.txtTenKH.getText();
-        if (this.txtTenNguoiDat.getText() != null)
-            tenNguoiDat = this.txtTenNguoiDat.getText();
-
-        loadVeMayBay(maVe, maCB, tenKH, tenNguoiDat);
+        
+        loadVeMayBay(maVe, maCB, tenKH, nd);
     }
     
     public void logoutHandler(ActionEvent evt) throws IOException {
@@ -243,7 +213,7 @@ public class TraCuuVeController implements Initializable {
     }
     
     public void continueHandler(ActionEvent evt) throws IOException {
-        Parent trangChuKhach;
+        Parent trangchu;
         var path="";
         if (nd.getIdLoaiTK() == 1)
             path = "UInhanvien.fxml";
@@ -252,8 +222,8 @@ public class TraCuuVeController implements Initializable {
         Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(path));
-        trangChuKhach = loader.load();
-        Scene scene = new Scene(trangChuKhach);
+        trangchu = loader.load();
+        Scene scene = new Scene(trangchu);
         TrangChuController controller = loader.getController();
         controller.setTenTK(nd);
         stage.setScene(scene);

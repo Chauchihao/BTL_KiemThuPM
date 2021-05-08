@@ -25,38 +25,39 @@ public class GheService {
         this.conn = conn;
     }
     
-    public List<Ghe> getGhe() throws SQLException {
-        Statement stm = this.conn.createStatement();
-        ResultSet r = stm.executeQuery("SELECT * FROM ghe");
+    public List<Ghe> getGhe(String soHieuMB) throws SQLException {
+        String sql = "SELECT maybay_ghe.maGhe, hangVe"
+                + " FROM maybay_ghe, ghe, chuyenbay"
+                + " WHERE trangThai = false AND ghe.maGhe = maybay_ghe.maGhe"
+                + " AND chuyenbay.soHieuMaybay = maybay_ghe.soHieuMaybay"
+                + " AND chuyenbay.soHieuMaybay = ?";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setString(1, soHieuMB);
         
+        ResultSet rs = stm.executeQuery();
         
         List<Ghe> ghe = new ArrayList<>();
-        while (r.next()) {
+        while (rs.next()) {
             Ghe g = new Ghe();
-            g.setMaGhe(r.getString("maGhe"));
-            g.setTrangThai(r.getBoolean("trangThai"));
-            g.setHangVe(r.getString("hangVe"));
+            g.setMaGhe(rs.getString("maGhe"));
+            g.setHangVe(rs.getString("hangVe"));
             
             ghe.add(g);
         }
         return ghe;
     }
     
-    //    public List<VeMayBay> getVeMayBayByMaCB(String maChuyenBay) throws SQLException {
-//        String sql = "SELECT * FROM vemaybay WHERE maChuyenBay=?";
-//        PreparedStatement stm = this.conn.prepareStatement(sql);
-//        stm.setString(1, maChuyenBay);
-//        
-//        ResultSet rs = stm.executeQuery();
-//        List<VeMayBay> vmb = new ArrayList<>();
-//        while (rs.next()) {
-//            VeMayBay v = new VeMayBay();
-//            v.setHangVe(rs.getInt("hangVe"));
-//            v.setMaGhe(rs.getString("maGhe"));
-//            
-//            vmb.add(v);
-//        }
-//        
-//        return vmb;
-//    }
+    public boolean updateGhe(String maGhe, String soHieuMB) throws SQLException{
+        String sql = "UPDATE maybay_ghe"
+                + " SET trangThai = true"
+                + " WHERE soHieuMayBay = ?"
+                + " AND maGhe = ?";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setString(1, soHieuMB);
+        stm.setString(2, maGhe);
+        
+        int row = stm.executeUpdate();
+        
+        return row > 0;
+    }
 }

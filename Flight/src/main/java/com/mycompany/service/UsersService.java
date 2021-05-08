@@ -58,4 +58,24 @@ public class UsersService {
         }
         return u;
     }
+    
+    public Users getUsersByTenNguoiDatVe(String tenNguoiDat) throws SQLException {
+        String sql = "SELECT users.* FROM vemaybay, users WHERE hoTen = tenNguoiDat AND tenNguoiDat = ?";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setString(1, tenNguoiDat);
+        
+        ResultSet rs = stm.executeQuery();
+        Users u = null;
+        while (rs.next()) {
+            u = new Users();
+            u.setId(rs.getInt("id"));
+            u.setHoTen(rs.getString("hoTen"));
+            u.setTenTK(rs.getString("tenTK"));
+            u.setIdLoaiTK(rs.getInt("idLoaiTK"));
+            u.setIdCard(rs.getString("idCard"));
+            u.setEmail(rs.getString("email"));
+            u.setSdt(rs.getString("sdt"));
+        }
+        return u;
+    }
 }

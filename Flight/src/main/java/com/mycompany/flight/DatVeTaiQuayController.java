@@ -107,11 +107,16 @@ public class DatVeTaiQuayController implements Initializable {
                     Connection conn = JdbcUtils.getConn();
                     GheService gs = new GheService(conn);
                     GiaVeService gvs = new GiaVeService(conn);
-                    this.cbViTri.setItems(FXCollections.observableList(gs.getGhe()));
-                    this.txtGiaTien.setText(gvs.getGiaVeByChuyenBay_HangVe(
-                        this.cbMaCB.getSelectionModel().getSelectedItem()
-                        .getMaChuyenBay(), this.cbHangVe.getSelectionModel()
-                        .getSelectedItem().getHangVe()).getGiaVe().toString());
+                    ChuyenBayService cbs = new ChuyenBayService(conn);
+                        String soHieuMB = cbs.getChuyenBayByMaCB(
+                                this.cbMaCB.getSelectionModel().getSelectedItem()
+                                .getMaChuyenBay()).getSoHieuMayBay();
+                        this.cbViTri.setItems(FXCollections.observableList(
+                                gs.getGhe(soHieuMB)));
+                        this.txtGiaTien.setText(gvs.getGiaVeByChuyenBay_HangVe(
+                            this.cbMaCB.getSelectionModel().getSelectedItem()
+                            .getMaChuyenBay(), this.cbHangVe.getSelectionModel()
+                            .getSelectedItem().getHangVe()).getGiaVe().toString());
                 }          
             } catch (SQLException ex) {
                 Logger.getLogger(DatVeTaiQuayController.class.getName()).log(Level.SEVERE, null, ex);
@@ -125,6 +130,8 @@ public class DatVeTaiQuayController implements Initializable {
             conn = JdbcUtils.getConn();
             VeMayBayService vmbs = new VeMayBayService(conn);
             VeMayBay vmb = new VeMayBay();
+            GheService gs = new GheService(conn);
+            ChuyenBayService cbs = new ChuyenBayService(conn);
             PhieuDatChoService pdcs = new PhieuDatChoService(conn);
             PhieuDatCho pdc = new PhieuDatCho();
             KhachHangService khs = new KhachHangService(conn);
@@ -179,7 +186,9 @@ public class DatVeTaiQuayController implements Initializable {
                                                             pdc.setTenKH(kh.getTenKH());
                                                             if (pdcs.addPhieuDatCho(pdc) == true) {
                                                                 Utils.getBox("Đặt vé thành công!", Alert.AlertType.INFORMATION).show();
-
+                                                                gs.updateGhe(this.cbHangVe.getSelectionModel().getSelectedItem().getHangVe()
+                                                                    , cbs.getChuyenBayByMaCB(this.cbMaCB.getSelectionModel().getSelectedItem()
+                                                                    .getMaChuyenBay()).getSoHieuMayBay());
                                                                 Parent dvtq;
                                                                 Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
                                                                 FXMLLoader loader = new FXMLLoader();
