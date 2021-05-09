@@ -30,10 +30,6 @@ public class VeMayBayService {
         this.conn = conn;
     }
     public List<VeMayBay> getVeMayBays(int maVe, String maCB, String tenKH, Users u) throws SQLException{
-//        if (maVe <= 0 || maCB == null || tenKH == null || tenNguoiDat == null)
-//            throw new SQLDataException();
-//        UsersService us = new UsersService(conn);
-//        Users u = us.getUsers(tenTK);
         String sql="";
         if ((maVe == 0 && maCB == "" && tenKH == "") || u.getIdLoaiTK() == 1) {
             sql = "SELECT * FROM vemaybay"
@@ -82,6 +78,7 @@ public class VeMayBayService {
             vmb.setTenNguoiDat(rs.getString("tenNguoiDat"));
             vmb.setTenKH(rs.getString("tenKH"));
             vmb.setMaCB(rs.getString("maChuyenBay"));
+            vmb.setTrangThai(rs.getString("trangThai"));
             
             veMayBay.add(vmb);
         }
@@ -132,7 +129,7 @@ public class VeMayBayService {
     
     public boolean addVeMayBay(VeMayBay vmb) throws SQLException {
         String sql = "INSERT INTO vemaybay(hangVe, giaVe, maGhe, ngayXuatVe"
-                + ", tenNguoiDat, tenKH, maChuyenBay) VALUES(?, ?, ?, ?, ?, ?, ?)";
+                + ", tenNguoiDat, tenKH, maChuyenBay, trangThai) VALUES(?, ?, ?, ?, ?, ?, ?, 'Chưa thanh toán')";
         PreparedStatement stm = this.conn.prepareStatement(sql);
         stm.setString(1, vmb.getHangVe());
         stm.setBigDecimal(2, vmb.getGiaVe());

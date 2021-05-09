@@ -122,6 +122,9 @@ public class TraCuuVeController implements Initializable {
         TableColumn colMaCB = new TableColumn("Mã Chuyến Bay");
         colMaCB.setCellValueFactory(new PropertyValueFactory("maCB"));
         
+        TableColumn colTrangThai = new TableColumn("Trạng Thái");
+        colTrangThai.setCellValueFactory(new PropertyValueFactory("trangThai"));
+        
         TableColumn colAction = new TableColumn();
         colAction.setCellFactory((obj) -> {
             Button btn = new Button("Hủy Vé");
@@ -188,7 +191,7 @@ public class TraCuuVeController implements Initializable {
         });
         
         
-        this.tbVeMayBay.getColumns().addAll(colMaVe, colMaCB, colHangVe, colMaGhe, colTenKH, colTenNguoiDat, colGiaVe, colNgayXuatVe, colAction);
+        this.tbVeMayBay.getColumns().addAll(colMaVe, colMaCB, colHangVe, colMaGhe, colTenKH, colTenNguoiDat, colGiaVe, colNgayXuatVe, colTrangThai, colAction);
     }
     
     

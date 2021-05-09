@@ -165,6 +165,16 @@ CREATE TABLE khachhang (
   KEY FK_khachhang_maKH_idx (maKH)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+#Tạo bảng trangThaiVe
+CREATE TABLE trangthaive (
+	loaiTrangThai bool NOT NULL DEFAULT FALSE,
+    trangThai varchar(100) NOT NULL,
+    
+    PRIMARY KEY (loaiTrangThai),
+    KEY FK_trangThai_idx (trangThai)
+    
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 #Tạo Bảng vemaybay
 CREATE TABLE vemaybay (
   maVe int NOT NULL AUTO_INCREMENT,
@@ -175,6 +185,7 @@ CREATE TABLE vemaybay (
   tenNguoiDat varchar(100) NOT NULL,
   tenKH varchar(100) NOT NULL,
   maChuyenBay varchar(10) NOT NULL,
+  trangThai varchar(100) NOT NULL,
   
   PRIMARY KEY (maVe),
   
@@ -185,12 +196,14 @@ CREATE TABLE vemaybay (
   KEY FK_vemaybay_maVe_idx (maVe),
   KEY FK_vemaybay_hangVe_idx (hangVe),
   KEY FK_vemaybay_giaVe_idx (giaVe),
+  KEY FK_vemaybay_trangThai_idx (trangThai),
   CONSTRAINT FK_vemaybay_maGhe FOREIGN KEY (maGhe) REFERENCES ghe(maGhe),
   CONSTRAINT FK_vemaybay_maChuyenBay FOREIGN KEY (maChuyenBay) REFERENCES chuyenbay(maChuyenBay),
   CONSTRAINT FK_vemaybay_khachhang_tenKH FOREIGN KEY (tenKH) REFERENCES khachhang(tenKH),
   CONSTRAINT FK_vemaybay_users_tenNguoiDat FOREIGN KEY (tenNguoiDat) REFERENCES users(hoTen),
   CONSTRAINT FK_vemaybay_hangVe FOREIGN KEY (hangVe) REFERENCES hangve(hangVe),
-  CONSTRAINT FK_vemaybay_giaVe FOREIGN KEY (giaVe) REFERENCES giave(giaVe)
+  CONSTRAINT FK_vemaybay_giaVe FOREIGN KEY (giaVe) REFERENCES giave(giaVe),
+  CONSTRAINT FK_vemaybay_trangThai FOREIGN KEY (trangThai) REFERENCES trangthaive(trangThai)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 #Tạo Bảng phieudatcho
@@ -580,7 +593,6 @@ INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'D18');
 INSERT INTO flight.maybay_ghe (soHieuMayBay, trangThai, maGhe) VALUES ('BA01', 0, 'D19');
 
-
 INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,tenSanBayDi,tenSanBayDen,soHieuMayBay) VALUES ('1','07:00:00 20-05-2020','12:00:00 20-05-2020','Mộc Bài','Tân Sơn Nhất','VNA01');
 INSERT INTO flight.chuyenbay (maChuyenBay,ngayGioKhoiHanh,ngayGioDen,tenSanBayDi,tenSanBayDen,soHieuMayBay) VALUES ('2','17:00:00 26-06-2020','20:00:00 26-06-2020','Tân Sơn Nhất','Mộc Bài','BA01');
 
@@ -596,13 +608,16 @@ INSERT INTO flight.giave (tenSanBayDi,tenSanBayDen,hangBay,hangVe,giaVe) VALUES 
 INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('1', 'VNA01', '05:50:00 20-03-2021');
 INSERT INTO flight.sanbay_maybay (maSanBay, soHieuMayBay, ngayDauTaiSanBay) VALUES ('2', 'BA01', '20:30:00 01-01-2021');
 
-INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Thương gia', '200000', 'A01', '04:00:00 20-01-2021', 'Nhân Viên 01', 'Lê Thị B', '1');
-INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông', '100000', 'C01', '05:00:00 15-02-2021', 'Nhân Viên 02', 'Hoành Văn E', '1');
-INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Thương gia', '150000', 'S01', '06:00:00 27-02-2021', 'Nhân Viên 01', 'Trương G', '2');
-INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông', '90000', 'B01', '07:00:00 02-03-2021', 'Nhân Viên 02', 'Huỳnh N', '2');
-INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông', '100000', 'D01', '05:50:00 10-03-2021', 'Phạm Anh D', 'Phạm Anh D', '1');
-INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Thương gia', '150000', 'S02', '22:20:21 15-03-2021', 'Nguyễn Thị Diễm M', 'Nguyễn Thị Diễm M', '2');
-INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay) VALUES ('Phổ thông', '90000', 'S03', '18:22:31 20-04-2021', 'Nguyễn Thị Diễm M', 'Trần Thị C', '1');
+INSERT INTO flight.trangthaive (loaiTrangThai, trangThai) VALUES (TRUE, 'Đã thanh toán');
+INSERT INTO flight.trangthaive (loaiTrangThai, trangThai) VALUES (FALSE, 'Chưa thanh toán');
+
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay, trangThai) VALUES ('Thương gia', '200000', 'A01', '04:00:00 20-01-2021', 'Nhân Viên 01', 'Lê Thị B', '1', 'Đã thanh toán');
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay, trangThai) VALUES ('Phổ thông', '100000', 'C01', '05:00:00 15-02-2021', 'Nhân Viên 02', 'Hoành Văn E', '1', 'Đã thanh toán');
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay, trangThai) VALUES ('Thương gia', '150000', 'S01', '06:00:00 27-02-2021', 'Nhân Viên 01', 'Trương G', '2', 'Đã thanh toán');
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay, trangThai) VALUES ('Phổ thông', '90000', 'B01', '07:00:00 02-03-2021', 'Nhân Viên 02', 'Huỳnh N', '2', 'Đã thanh toán');
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay, trangThai) VALUES ('Phổ thông', '100000', 'D01', '05:50:00 10-03-2021', 'Phạm Anh D', 'Phạm Anh D', '1', 'Đã thanh toán');
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay, trangThai) VALUES ('Thương gia', '150000', 'S02', '22:20:21 15-03-2021', 'Nguyễn Thị Diễm M', 'Nguyễn Thị Diễm M', '2', 'Chưa thanh toán');
+INSERT INTO flight.vemaybay (hangVe, giaVe, maGhe, ngayXuatVe, tenNguoiDat, tenKH, maChuyenBay, trangThai) VALUES ('Phổ thông', '90000', 'S03', '18:22:31 20-04-2021', 'Nguyễn Thị Diễm M', 'Trần Thị C', '1', 'Chưa thanh toán');
 
 INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('1', 'Lê Thị B', '04:00:00 20-01-2021');
 INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('2', 'Hoành Văn E', '05:00:00 15-02-2021');

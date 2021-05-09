@@ -159,7 +159,7 @@ CREATE TABLE `khachhang` (
   `sdt` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`tenKH`),
   KEY `FK_khachhang_maKH_idx` (`maKH`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,7 +168,7 @@ CREATE TABLE `khachhang` (
 
 LOCK TABLES `khachhang` WRITE;
 /*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
-INSERT INTO `khachhang` VALUES (2,'Hoành Văn E','012345678666','hoangvane@gmail.com','0988775444'),(4,'Huỳnh N','012345678444','huynhn@gmail.com','0988775222'),(1,'Lê Thị B','012345678777','lethib@gmail.com','0988775555'),(6,'Nguyễn Thị Diễm M','012345678911','nguyenthidiemm@gmail.com','0345678922'),(7,'Nguyễn Văn A','012345678999','nguyenvana@gmail.com','0988775544'),(5,'Phạm Anh D','012345678910','phamanhdg@gmail.com','0345678921'),(8,'Trần Thị C','012345678888','tranthic@gmail.com','0988775511'),(3,'Trương G','012345678555','truongg@gmail.com','0988775333');
+INSERT INTO `khachhang` VALUES (9,'fds','324545454','@','4543544444'),(2,'Hoành Văn E','012345678666','hoangvane@gmail.com','0988775444'),(4,'Huỳnh N','012345678444','huynhn@gmail.com','0988775222'),(1,'Lê Thị B','012345678777','lethib@gmail.com','0988775555'),(6,'Nguyễn Thị Diễm M','012345678911','nguyenthidiemm@gmail.com','0345678922'),(7,'Nguyễn Văn A','012345678999','nguyenvana@gmail.com','0988775544'),(5,'Phạm Anh D','012345678910','phamanhdg@gmail.com','0345678921'),(8,'Trần Thị C','012345678888','tranthic@gmail.com','0988775511'),(3,'Trương G','012345678555','truongg@gmail.com','0988775333');
 /*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +247,7 @@ CREATE TABLE `maybay_ghe` (
 
 LOCK TABLES `maybay_ghe` WRITE;
 /*!40000 ALTER TABLE `maybay_ghe` DISABLE KEYS */;
-INSERT INTO `maybay_ghe` VALUES ('BA01','A01',0),('BA01','A02',1),('BA01','A03',0),('BA01','A04',0),('BA01','A05',0),('BA01','A06',0),('BA01','A07',0),('BA01','A08',0),('BA01','A09',0),('BA01','A10',0),('BA01','A11',0),('BA01','A12',0),('BA01','A13',0),('BA01','A14',0),('BA01','A15',0),('BA01','A16',0),('BA01','A17',0),('BA01','A18',0),('BA01','A19',0),('BA01','A20',0),('BA01','B01',1),('BA01','B02',0),('BA01','B03',0),('BA01','B04',0),('BA01','B05',0),('BA01','B06',0),('BA01','B07',0),('BA01','B08',0),('BA01','B09',0),('BA01','B10',0),('BA01','B11',0),('BA01','B12',0),('BA01','B13',0),('BA01','B14',0),('BA01','B15',0),('BA01','B16',0),('BA01','B17',0),('BA01','B18',0),('BA01','B19',0),('BA01','C01',0),('BA01','C02',0),('BA01','C03',0),('BA01','C04',0),('BA01','C05',0),('BA01','C06',0),('BA01','C07',0),('BA01','C08',0),('BA01','C09',0),('BA01','C10',0),('BA01','C11',0),('BA01','C12',0),('BA01','C13',0),('BA01','C14',0),('BA01','C15',0),('BA01','C16',0),('BA01','C17',0),('BA01','C18',0),('BA01','C19',0),('BA01','C20',0),('BA01','D01',0),('BA01','D02',0),('BA01','D03',0),('BA01','D04',0),('BA01','D05',0),('BA01','D06',0),('BA01','D07',0),('BA01','D08',0),('BA01','D09',0),('BA01','D10',0),('BA01','D11',0),('BA01','D12',0),('BA01','D13',0),('BA01','D14',0),('BA01','D15',0),('BA01','D16',0),('BA01','D17',0),('BA01','D18',0),('BA01','D19',0),('BA01','S01',1),('BA01','S02',1),('BA01','S03',0),('BA01','S04',0),('BA01','S05',0),('BA01','S06',0),('BA01','S07',0),('BA01','S08',0),('BA01','S09',0),('BA01','S10',0),('BA01','S11',0),('BA01','S12',0),('BA01','S13',0),('BA01','S14',0),('BA01','S15',0),('BA01','S16',0),('BA01','S17',0),('BA01','S18',0),('BA01','S19',0),('BA01','S20',0),('BA01','S21',0),('BA01','S22',0),('BA01','S23',0),('BA01','S24',0),('BA01','S25',0),('BA01','S26',0),('BA01','S27',0),('BA01','S28',0),('BA01','S29',0),('BA01','S30',0),('VNA01','A01',1),('VNA01','A02',0),('VNA01','A03',0),('VNA01','A04',0),('VNA01','A05',0),('VNA01','A06',0),('VNA01','A07',0),('VNA01','A08',0),('VNA01','A09',0),('VNA01','A10',0),('VNA01','A11',0),('VNA01','A12',0),('VNA01','A13',0),('VNA01','A14',0),('VNA01','A15',0),('VNA01','A16',0),('VNA01','A17',0),('VNA01','A18',0),('VNA01','A19',0),('VNA01','A20',0),('VNA01','B01',0),('VNA01','B02',0),('VNA01','B03',0),('VNA01','B04',0),('VNA01','B05',0),('VNA01','B06',0),('VNA01','B07',0),('VNA01','B08',0),('VNA01','B09',0),('VNA01','B10',0),('VNA01','B11',0),('VNA01','B12',0),('VNA01','B13',0),('VNA01','B14',0),('VNA01','B15',0),('VNA01','B16',0),('VNA01','B17',0),('VNA01','B18',0),('VNA01','B19',0),('VNA01','B20',0),('VNA01','C01',1),('VNA01','C02',0),('VNA01','C03',0),('VNA01','C04',0),('VNA01','C05',0),('VNA01','C06',0),('VNA01','C07',0),('VNA01','C08',0),('VNA01','C09',0),('VNA01','C10',0),('VNA01','C11',0),('VNA01','C12',0),('VNA01','C13',0),('VNA01','C14',0),('VNA01','C15',0),('VNA01','C16',0),('VNA01','C17',0),('VNA01','C18',0),('VNA01','C19',0),('VNA01','C20',0),('VNA01','D01',1),('VNA01','D02',0),('VNA01','D03',0),('VNA01','D04',0),('VNA01','D05',0),('VNA01','D06',0),('VNA01','D07',0),('VNA01','D08',0),('VNA01','D09',0),('VNA01','D10',0),('VNA01','D11',0),('VNA01','D12',0),('VNA01','D13',0),('VNA01','D14',0),('VNA01','D15',0),('VNA01','D16',0),('VNA01','D17',0),('VNA01','D18',0),('VNA01','D19',0),('VNA01','D20',0),('VNA01','S01',0),('VNA01','S02',0),('VNA01','S03',1),('VNA01','S04',0),('VNA01','S05',0),('VNA01','S06',0),('VNA01','S07',0),('VNA01','S08',0),('VNA01','S09',0),('VNA01','S10',0),('VNA01','S11',0),('VNA01','S12',0),('VNA01','S13',0),('VNA01','S14',0),('VNA01','S15',0),('VNA01','S16',0),('VNA01','S17',0),('VNA01','S18',0),('VNA01','S19',0),('VNA01','S20',0),('VNA01','S21',0),('VNA01','S22',0),('VNA01','S23',0),('VNA01','S24',0),('VNA01','S25',0),('VNA01','S26',0),('VNA01','S27',0),('VNA01','S28',0),('VNA01','S29',0),('VNA01','S30',0);
+INSERT INTO `maybay_ghe` VALUES ('BA01','A01',0),('BA01','A02',1),('BA01','A03',0),('BA01','A04',0),('BA01','A05',0),('BA01','A06',0),('BA01','A07',0),('BA01','A08',0),('BA01','A09',0),('BA01','A10',0),('BA01','A11',0),('BA01','A12',0),('BA01','A13',0),('BA01','A14',0),('BA01','A15',0),('BA01','A16',0),('BA01','A17',0),('BA01','A18',0),('BA01','A19',0),('BA01','A20',0),('BA01','B01',1),('BA01','B02',0),('BA01','B03',0),('BA01','B04',0),('BA01','B05',0),('BA01','B06',0),('BA01','B07',0),('BA01','B08',0),('BA01','B09',0),('BA01','B10',0),('BA01','B11',0),('BA01','B12',0),('BA01','B13',0),('BA01','B14',0),('BA01','B15',0),('BA01','B16',0),('BA01','B17',0),('BA01','B18',0),('BA01','B19',0),('BA01','C01',0),('BA01','C02',0),('BA01','C03',0),('BA01','C04',0),('BA01','C05',0),('BA01','C06',0),('BA01','C07',0),('BA01','C08',0),('BA01','C09',0),('BA01','C10',0),('BA01','C11',0),('BA01','C12',0),('BA01','C13',0),('BA01','C14',0),('BA01','C15',0),('BA01','C16',0),('BA01','C17',0),('BA01','C18',0),('BA01','C19',0),('BA01','C20',0),('BA01','D01',0),('BA01','D02',0),('BA01','D03',0),('BA01','D04',0),('BA01','D05',0),('BA01','D06',0),('BA01','D07',0),('BA01','D08',0),('BA01','D09',0),('BA01','D10',0),('BA01','D11',0),('BA01','D12',0),('BA01','D13',0),('BA01','D14',0),('BA01','D15',0),('BA01','D16',0),('BA01','D17',0),('BA01','D18',0),('BA01','D19',0),('BA01','S01',1),('BA01','S02',1),('BA01','S03',0),('BA01','S04',0),('BA01','S05',0),('BA01','S06',0),('BA01','S07',0),('BA01','S08',0),('BA01','S09',0),('BA01','S10',0),('BA01','S11',0),('BA01','S12',0),('BA01','S13',0),('BA01','S14',0),('BA01','S15',0),('BA01','S16',0),('BA01','S17',0),('BA01','S18',0),('BA01','S19',0),('BA01','S20',0),('BA01','S21',0),('BA01','S22',0),('BA01','S23',0),('BA01','S24',0),('BA01','S25',0),('BA01','S26',0),('BA01','S27',0),('BA01','S28',0),('BA01','S29',0),('BA01','S30',0),('VNA01','A01',1),('VNA01','A02',1),('VNA01','A03',0),('VNA01','A04',0),('VNA01','A05',0),('VNA01','A06',0),('VNA01','A07',0),('VNA01','A08',0),('VNA01','A09',0),('VNA01','A10',0),('VNA01','A11',0),('VNA01','A12',0),('VNA01','A13',0),('VNA01','A14',0),('VNA01','A15',0),('VNA01','A16',0),('VNA01','A17',0),('VNA01','A18',0),('VNA01','A19',0),('VNA01','A20',0),('VNA01','B01',0),('VNA01','B02',0),('VNA01','B03',0),('VNA01','B04',0),('VNA01','B05',0),('VNA01','B06',0),('VNA01','B07',0),('VNA01','B08',0),('VNA01','B09',0),('VNA01','B10',0),('VNA01','B11',0),('VNA01','B12',0),('VNA01','B13',0),('VNA01','B14',0),('VNA01','B15',0),('VNA01','B16',0),('VNA01','B17',0),('VNA01','B18',0),('VNA01','B19',0),('VNA01','B20',0),('VNA01','C01',1),('VNA01','C02',0),('VNA01','C03',0),('VNA01','C04',0),('VNA01','C05',0),('VNA01','C06',0),('VNA01','C07',0),('VNA01','C08',0),('VNA01','C09',0),('VNA01','C10',0),('VNA01','C11',0),('VNA01','C12',0),('VNA01','C13',0),('VNA01','C14',0),('VNA01','C15',0),('VNA01','C16',0),('VNA01','C17',0),('VNA01','C18',0),('VNA01','C19',0),('VNA01','C20',0),('VNA01','D01',1),('VNA01','D02',0),('VNA01','D03',0),('VNA01','D04',0),('VNA01','D05',0),('VNA01','D06',0),('VNA01','D07',0),('VNA01','D08',0),('VNA01','D09',0),('VNA01','D10',0),('VNA01','D11',0),('VNA01','D12',0),('VNA01','D13',0),('VNA01','D14',0),('VNA01','D15',0),('VNA01','D16',0),('VNA01','D17',0),('VNA01','D18',0),('VNA01','D19',0),('VNA01','D20',0),('VNA01','S01',0),('VNA01','S02',0),('VNA01','S03',1),('VNA01','S04',0),('VNA01','S05',0),('VNA01','S06',0),('VNA01','S07',0),('VNA01','S08',0),('VNA01','S09',0),('VNA01','S10',0),('VNA01','S11',0),('VNA01','S12',0),('VNA01','S13',0),('VNA01','S14',0),('VNA01','S15',0),('VNA01','S16',0),('VNA01','S17',0),('VNA01','S18',0),('VNA01','S19',0),('VNA01','S20',0),('VNA01','S21',0),('VNA01','S22',0),('VNA01','S23',0),('VNA01','S24',0),('VNA01','S25',0),('VNA01','S26',0),('VNA01','S27',0),('VNA01','S28',0),('VNA01','S29',0),('VNA01','S30',0);
 /*!40000 ALTER TABLE `maybay_ghe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,7 +268,7 @@ CREATE TABLE `phieudatcho` (
   KEY `FK_phieudatcho_tenKH_idx` (`tenKH`),
   CONSTRAINT `FK_phieudatcho_maVe` FOREIGN KEY (`maVe`) REFERENCES `vemaybay` (`maVe`),
   CONSTRAINT `FK_phieudatcho_tenKH` FOREIGN KEY (`tenKH`) REFERENCES `khachhang` (`tenKH`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -277,7 +277,7 @@ CREATE TABLE `phieudatcho` (
 
 LOCK TABLES `phieudatcho` WRITE;
 /*!40000 ALTER TABLE `phieudatcho` DISABLE KEYS */;
-INSERT INTO `phieudatcho` VALUES (1,1,'Lê Thị B','04:00:00 20-01-2021'),(2,2,'Hoành Văn E','05:00:00 15-02-2021'),(3,3,'Trương G','06:00:00 27-02-2021'),(4,4,'Huỳnh N','07:00:00 02-03-2021');
+INSERT INTO `phieudatcho` VALUES (1,1,'Lê Thị B','04:00:00 20-01-2021'),(2,2,'Hoành Văn E','05:00:00 15-02-2021'),(3,3,'Trương G','06:00:00 27-02-2021'),(4,4,'Huỳnh N','07:00:00 02-03-2021'),(5,13,'fds','17:18:53 09-05-2021');
 /*!40000 ALTER TABLE `phieudatcho` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -340,6 +340,31 @@ INSERT INTO `sanbay_maybay` VALUES ('1','VNA01','05:50:00 20-03-2021'),('2','BA0
 UNLOCK TABLES;
 
 --
+-- Table structure for table `trangthaive`
+--
+
+DROP TABLE IF EXISTS `trangthaive`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `trangthaive` (
+  `loaiTrangThai` tinyint(1) NOT NULL DEFAULT '0',
+  `trangThai` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`loaiTrangThai`),
+  KEY `FK_trangThai_idx` (`trangThai`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `trangthaive`
+--
+
+LOCK TABLES `trangthaive` WRITE;
+/*!40000 ALTER TABLE `trangthaive` DISABLE KEYS */;
+INSERT INTO `trangthaive` VALUES (0,'Chưa thanh toán'),(1,'Đã thanh toán');
+/*!40000 ALTER TABLE `trangthaive` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -390,6 +415,7 @@ CREATE TABLE `vemaybay` (
   `tenNguoiDat` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tenKH` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `maChuyenBay` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `trangThai` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`maVe`),
   KEY `FK_vemaybay_maGhe_idx` (`maGhe`),
   KEY `FK_vemaybay_maChuyenBay_idx` (`maChuyenBay`),
@@ -398,13 +424,15 @@ CREATE TABLE `vemaybay` (
   KEY `FK_vemaybay_maVe_idx` (`maVe`),
   KEY `FK_vemaybay_hangVe_idx` (`hangVe`),
   KEY `FK_vemaybay_giaVe_idx` (`giaVe`),
+  KEY `FK_vemaybay_trangThai_idx` (`trangThai`),
   CONSTRAINT `FK_vemaybay_giaVe` FOREIGN KEY (`giaVe`) REFERENCES `giave` (`giaVe`),
   CONSTRAINT `FK_vemaybay_hangVe` FOREIGN KEY (`hangVe`) REFERENCES `hangve` (`hangVe`),
   CONSTRAINT `FK_vemaybay_khachhang_tenKH` FOREIGN KEY (`tenKH`) REFERENCES `khachhang` (`tenKH`),
   CONSTRAINT `FK_vemaybay_maChuyenBay` FOREIGN KEY (`maChuyenBay`) REFERENCES `chuyenbay` (`maChuyenBay`),
   CONSTRAINT `FK_vemaybay_maGhe` FOREIGN KEY (`maGhe`) REFERENCES `ghe` (`maGhe`),
+  CONSTRAINT `FK_vemaybay_trangThai` FOREIGN KEY (`trangThai`) REFERENCES `trangthaive` (`trangThai`),
   CONSTRAINT `FK_vemaybay_users_tenNguoiDat` FOREIGN KEY (`tenNguoiDat`) REFERENCES `users` (`hoTen`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -413,7 +441,7 @@ CREATE TABLE `vemaybay` (
 
 LOCK TABLES `vemaybay` WRITE;
 /*!40000 ALTER TABLE `vemaybay` DISABLE KEYS */;
-INSERT INTO `vemaybay` VALUES (1,'Thương gia',200000,'A01','04:00:00 20-01-2021','Nhân Viên 01','Lê Thị B','1'),(2,'Phổ thông',100000,'C01','05:00:00 15-02-2021','Nhân Viên 02','Hoành Văn E','1'),(3,'Thương gia',150000,'S01','06:00:00 27-02-2021','Nhân Viên 01','Trương G','2'),(4,'Phổ thông',90000,'B01','07:00:00 02-03-2021','Nhân Viên 02','Huỳnh N','2'),(5,'Phổ thông',100000,'D01','05:50:00 10-03-2021','Phạm Anh D','Phạm Anh D','1'),(6,'Thương gia',150000,'S02','22:20:21 15-03-2021','Nguyễn Thị Diễm M','Nguyễn Thị Diễm M','2'),(7,'Phổ thông',90000,'S03','18:22:31 20-04-2021','Nguyễn Thị Diễm M','Trần Thị C','1');
+INSERT INTO `vemaybay` VALUES (1,'Thương gia',200000,'A01','04:00:00 20-01-2021','Nhân Viên 01','Lê Thị B','1','Đã thanh toán'),(2,'Phổ thông',100000,'C01','05:00:00 15-02-2021','Nhân Viên 02','Hoành Văn E','1','Đã thanh toán'),(3,'Thương gia',150000,'S01','06:00:00 27-02-2021','Nhân Viên 01','Trương G','2','Đã thanh toán'),(4,'Phổ thông',90000,'B01','07:00:00 02-03-2021','Nhân Viên 02','Huỳnh N','2','Đã thanh toán'),(5,'Phổ thông',100000,'D01','05:50:00 10-03-2021','Phạm Anh D','Phạm Anh D','1','Đã thanh toán'),(6,'Thương gia',150000,'S02','22:20:21 15-03-2021','Nguyễn Thị Diễm M','Nguyễn Thị Diễm M','2','Chưa thanh toán'),(7,'Phổ thông',90000,'S03','18:22:31 20-04-2021','Nguyễn Thị Diễm M','Trần Thị C','1','Chưa thanh toán'),(13,'Phổ thông',100000,'A02','17:18:53 09-05-2021','Nhân Viên 01','fds','1','Chưa thanh toán');
 /*!40000 ALTER TABLE `vemaybay` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -426,4 +454,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-08 21:54:00
+-- Dump completed on 2021-05-09 17:47:55

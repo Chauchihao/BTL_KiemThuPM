@@ -22,6 +22,7 @@ public class VeMayBay {
     private String tenNguoiDat;
     private String tenKH;
     private String maCB;
+    private String trangThai;
 
     
     @Override
@@ -139,6 +140,20 @@ public class VeMayBay {
      */
     public void setMaCB(String maCB) {
         this.maCB = maCB;
+    }
+
+    /**
+     * @return the trangThai
+     */
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    /**
+     * @param trangThai the trangThai to set
+     */
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
     }
 
     
