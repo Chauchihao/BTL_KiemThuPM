@@ -19,7 +19,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SanBayService {
+ class SanBayService {
     private Connection conn;
 
     public SanBayService(Connection conn) {

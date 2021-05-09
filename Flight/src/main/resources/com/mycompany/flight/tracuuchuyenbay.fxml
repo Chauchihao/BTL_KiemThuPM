@@ -29,13 +29,13 @@
                            <children>
                               <Label layoutX="25.0" layoutY="27.0" text="Nơi đi" />
                               <Label layoutX="25.0" layoutY="61.0" text="Nơi đến" />
-                              <ChoiceBox fx:id="cbNoiDi_KH" layoutX="97.0" layoutY="23.0" prefWidth="150.0" />
-                              <ChoiceBox fx:id="cbNoiDen_KH" layoutX="97.0" layoutY="57.0" prefWidth="150.0" />
+                              <ChoiceBox fx:id="cbNoiDi" layoutX="97.0" layoutY="23.0" prefWidth="150.0" />
+                              <ChoiceBox layoutX="97.0" layoutY="57.0" prefWidth="150.0" />
                               <DatePicker layoutX="402.0" layoutY="23.0" />
                               <DatePicker layoutX="402.0" layoutY="57.0" />
                               <Label layoutX="298.0" layoutY="27.0" text="Ngày khởi hành" />
                               <Label layoutX="298.0" layoutY="61.0" text="Ngày về" />
-                              <Button layoutX="612.0" layoutY="54.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" text="Tra Cứu" />
+                              <Button layoutX="615.0" layoutY="55.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" text="Tra Cứu" />
                               <Button layoutX="615.0" layoutY="154.0" mnemonicParsing="false" text="Tiếp Tục" />
                               <Group layoutX="78.0" layoutY="132.0" />
                               <Button layoutX="615.0" layoutY="294.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" text="Thoát" />
