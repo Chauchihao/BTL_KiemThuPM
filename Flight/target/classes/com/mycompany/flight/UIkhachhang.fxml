@@ -12,7 +12,7 @@
       <Button fx:id="btKH_DatVeOnline" layoutX="310.0" layoutY="249.0" mnemonicParsing="false" onAction="#datVeOnlineHandler" prefHeight="30.0" prefWidth="196.0" text="Đặt Vé Online" />
       <AnchorPane layoutX="2.0" layoutY="7.0" minHeight="0.0" minWidth="0.0" prefHeight="58.0" prefWidth="600.0">
          <children>
-            <Label layoutX="3.0" prefHeight="58.0" prefWidth="177.0" text="XIN CHÀO">
+            <Label layoutX="3.0" prefHeight="58.0" prefWidth="174.0" text="XIN CHÀO">
                <font>
                   <Font name="Arial Italic" size="36.0" />
                </font>
