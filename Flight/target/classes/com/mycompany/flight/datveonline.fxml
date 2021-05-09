@@ -5,12 +5,14 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="358.0" prefWidth="600.0" style="-fx-background-color: #ccffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.flight.DatVeOnlineController">
    <children>
-      <Label layoutX="221.0" layoutY="14.0" text="Đặt Vé Online">
+      <Label layoutX="201.0" layoutY="14.0" style="-fx-background-color: lightblue;" text="Đặt Vé Online">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
@@ -38,5 +40,15 @@
       <TextField fx:id="txtIDCard" layoutX="399.0" layoutY="126.0" prefHeight="26.0" prefWidth="180.0" />
       <TextField fx:id="txtSDT" layoutX="399.0" layoutY="176.0" prefHeight="26.0" prefWidth="180.0" />
       <TextField fx:id="txtEmail" layoutX="399.0" layoutY="230.0" prefHeight="26.0" prefWidth="180.0" />
+      <ImageView fitHeight="62.0" fitWidth="64.0" layoutX="7.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/datveonl.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="68.0" fitWidth="81.0" layoutX="365.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/uikh.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
