@@ -220,7 +220,38 @@ CREATE TABLE phieudatcho (
   CONSTRAINT FK_phieudatcho_maVe FOREIGN KEY (maVe) REFERENCES vemaybay(maVe),
   CONSTRAINT FK_phieudatcho_tenKH FOREIGN KEY (tenKH) REFERENCES khachhang(tenKH)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  
+  #Tạo bảng hoadonthanhtoan
+  CREATE TABLE hoadonthanhtoan (
+  maHD varchar(36) NOT NULL,
+  tenNguoiTT varchar(100) NOT NULL,
+  tenKH varchar(100) NOT NULL,
+  ngayTT varchar(19) NOT NULL,
+  
+  PRIMARY KEY (maHD, tenKH, tenNguoiTT, ngayTT),
+  
+  KEY FK_hoadonthanhtoan_tenNguoiTT_idx (tenNguoiTT),
+  KEY FK_hoadonthanhtoan_tenKH_idx (tenKH),
+  CONSTRAINT FK_hoadonthanhtoan_tenNguoiTT FOREIGN KEY (tenNguoiTT) REFERENCES users(hoTen),
+  CONSTRAINT FK_hoadonthanhtoan_tenKH FOREIGN KEY (tenKH) REFERENCES khachhang(tenKH)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+#Tạo bảng chitiethoadon
+  CREATE TABLE chitiethoadon (
+  maHD varchar(36) NOT NULL,
+  maVe int NOT NULL,
+  giaVe decimal NOT NULL,
+  
+  PRIMARY KEY (maHD, maVe),
+  
+  KEY FK_chitiethoadon_maHD_idx (maHD),
+  KEY FK_chitiethoadon_maVe_idx (maVe),
+  KEY FK_chitiethoadon_giaVe_idx (giaVe),
+  CONSTRAINT FK_chitiethoadon_idNguoiTT FOREIGN KEY (maHD) REFERENCES hoadonthanhtoan(maHD),
+  CONSTRAINT FK_chitiethoadon_idKH FOREIGN KEY (maVe) REFERENCES vemaybay(maVe),
+  CONSTRAINT FK_chitiethoadon_giaVe FOREIGN KEY (giaVe) REFERENCES giave(giaVe)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  
 INSERT INTO flight.loaitk (id, tk) VALUES ('1', 'Nhân Viên');
 INSERT INTO flight.loaitk (id, tk) VALUES ('2', 'Khách Hàng');
 INSERT INTO flight.loaitk (id, tk) VALUES ('3', 'Admin');
@@ -624,5 +655,15 @@ INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('2', 'Hoành Vă
 INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('3', 'Trương G', '06:00:00 27-02-2021');
 INSERT INTO flight.phieudatcho (maVe, tenKH, ngayDatVe) VALUES ('4', 'Huỳnh N', '07:00:00 02-03-2021');
 
+INSERT INTO flight.hoadonthanhtoan (maHD, tenNguoiTT, tenKH,ngayTT) VALUES ('8b3079d0-26b3-4480-8299-19be8943a643', 'Nhân Viên 01', 'Lê Thị B', '04:00:00 20-01-2021');
+INSERT INTO flight.hoadonthanhtoan (maHD, tenNguoiTT, tenKH,ngayTT) VALUES ('c89e9cb9-64c8-45d5-83f6-ff20d11fa7d7', 'Nhân Viên 02', 'Hoành Văn E', '05:00:00 15-02-2021');
+INSERT INTO flight.hoadonthanhtoan (maHD, tenNguoiTT, tenKH,ngayTT) VALUES ('8cc4dc5d-0556-4a01-b285-b113661c6e46', 'Nhân Viên 01', 'Trương G',  '06:00:00 27-02-2021');
+INSERT INTO flight.hoadonthanhtoan (maHD, tenNguoiTT, tenKH,ngayTT) VALUES ('ad735366-5de8-4b6f-9070-18c13bbe65dd', 'Nhân Viên 02', 'Huỳnh N', '07:00:00 02-03-2021');
+INSERT INTO flight.hoadonthanhtoan (maHD, tenNguoiTT, tenKH,ngayTT) VALUES ('0349681f-228a-4311-9eb5-d2a6b723acb9', 'Phạm Anh D', 'Phạm Anh D', '05:50:00 10-03-2021');
 
 
+INSERT INTO flight.chitiethoadon (maHD, maVe, giaVe) VALUES ('8b3079d0-26b3-4480-8299-19be8943a643', 1, '200000');
+INSERT INTO flight.chitiethoadon (maHD, maVe, giaVe) VALUES ('c89e9cb9-64c8-45d5-83f6-ff20d11fa7d7', 2, '100000');
+INSERT INTO flight.chitiethoadon (maHD, maVe, giaVe) VALUES ('8cc4dc5d-0556-4a01-b285-b113661c6e46', 3, '150000');
+INSERT INTO flight.chitiethoadon (maHD, maVe, giaVe) VALUES ('ad735366-5de8-4b6f-9070-18c13bbe65dd', 4, '90000');
+INSERT INTO flight.chitiethoadon (maHD, maVe, giaVe) VALUES ('0349681f-228a-4311-9eb5-d2a6b723acb9', 5, '100000');

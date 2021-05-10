@@ -220,7 +220,7 @@ public class DatVeOnlineController implements Initializable {
                                                             if (gs.updateGhe(vmb.getMaGhe()
                                                                     , cbs.getChuyenBayByMaCB(vmb.getMaCB())
                                                                     .getSoHieuMayBay(), true) == true) {
-                                                                Utils.getBox("Đặt vé thành công!", Alert.AlertType.INFORMATION).show();
+                                                                Utils.getBox("Đặt vé thành công! \nVui lòng thanh toán để hoàn tất quá trình đặt vé!!!", Alert.AlertType.INFORMATION).show();
                                                                 Parent dvo;
                                                                 Stage stage = (Stage)((Node) evt.getSource()).getScene().getWindow();
                                                                 FXMLLoader loader = new FXMLLoader();
@@ -242,6 +242,19 @@ public class DatVeOnlineController implements Initializable {
         }
     }
     
+    public void payHandler(ActionEvent e) throws IOException {
+        Parent thanhtoan;
+        Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("thanhtoan.fxml"));
+        thanhtoan = loader.load();
+        Scene scene = new Scene(thanhtoan);
+        ThanhToanController controller = loader.getController();
+        controller.setTTUser(nd);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
     public void logoutHandler(ActionEvent e) throws IOException {
         Parent dangnhap;
         Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
@@ -251,7 +264,6 @@ public class DatVeOnlineController implements Initializable {
         Scene scene = new Scene(dangnhap);
         stage.setScene(scene);
         stage.show();
-
     }
     
     public void continueHandler(ActionEvent e) throws IOException {
@@ -265,7 +277,6 @@ public class DatVeOnlineController implements Initializable {
         controller.setTenTK(nd);
         stage.setScene(scene);
         stage.show();
-
     }
 }
 

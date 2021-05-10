@@ -24,7 +24,28 @@ public class KhachHangService {
     public KhachHangService(Connection conn) {
         this.conn = conn;
     }
-     
+    
+    public List<KhachHang> getKhachHangsByTenKH(String tenKH) throws SQLException {
+        
+        String sql = "SELECT * FROM khachhang WHERE tenKH=?";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setString(1, tenKH);
+        
+        ResultSet rs = stm.executeQuery();
+        List<KhachHang> khachhang = new ArrayList<>();
+        while (rs.next()) {
+            KhachHang kh = new KhachHang();
+            kh.setMaKH(rs.getInt("maKH"));
+            kh.setTenKH(rs.getString("tenKH"));
+            kh.setIdCard(rs.getString("idCard"));
+            kh.setEmail(rs.getString("email"));
+            kh.setSdt(rs.getString("sdt"));
+            
+            khachhang.add(kh);
+        }
+        return khachhang;
+    }
+    
     public KhachHang getKhachHang(String tenKH) throws SQLException {
         
         String sql = "SELECT * FROM khachhang WHERE tenKH=?";
