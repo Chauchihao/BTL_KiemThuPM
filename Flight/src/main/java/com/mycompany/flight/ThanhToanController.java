@@ -63,7 +63,7 @@ public class ThanhToanController implements Initializable {
     @FXML private TableView<VeMayBay> tbVeChuaTT;
     @FXML private TableView<KhachHang> tbTTKH;
     Users nd;
-    BigDecimal tongTien = new BigDecimal(0);
+    BigDecimal tongTien;
     List<VeMayBay> vmbChon = new ArrayList<>();
 
     @Override
@@ -97,6 +97,7 @@ public class ThanhToanController implements Initializable {
         nd = u;
         loadVeMayBayChuaTT(nd);
         this.txtTenNguoiTT.setText(nd.getHoTen());
+        this.txtTongTien.setText("");
     }
     
     public void loadVeMayBayChuaTT(Users u){
@@ -114,6 +115,7 @@ public class ThanhToanController implements Initializable {
     }
     
     private void loadTableVeChuaTT() {
+        tongTien = new BigDecimal(0);
         TableColumn colMaVe = new TableColumn("Mã Vé");
         colMaVe.setCellValueFactory(new PropertyValueFactory("maVe"));
         colMaVe.setMaxWidth( 1f * Integer.MAX_VALUE * 8);
@@ -153,6 +155,7 @@ public class ThanhToanController implements Initializable {
         TableColumn colAction = new TableColumn();
         colAction.setCellFactory((obj) -> {
             CheckBox chbx = new CheckBox();
+            
             chbx.setOnAction(evt -> {
                         TableCell cell = (TableCell) ((CheckBox) evt.getSource()).getParent();
                         VeMayBay vmb = (VeMayBay) cell.getTableRow().getItem();
@@ -161,9 +164,6 @@ public class ThanhToanController implements Initializable {
                         chbx.setId(Integer.toString(vmb.getMaVe()));
                         if (chbx.getId() != null || chbx.getId() != Integer.toString(vmb.getMaVe()))
                             if (chbx.isSelected()) {
-                                
-                                Utils.getBox("id CheckBox = " + chbx.getId(), Alert.AlertType.ERROR).show();
-            
                                 tong = tong.add(vmb.getGiaVe());
                                 ve.add(vmb);
                             }
@@ -178,7 +178,10 @@ public class ThanhToanController implements Initializable {
                         }
                         vmbChon = ve;
                         tongTien = tong;
-                        this.txtTongTien.setText(tongTien.toString());
+                        if (tongTien.compareTo(new BigDecimal(0)) == 0)
+                            this.txtTongTien.setText("");
+                        else
+                            this.txtTongTien.setText(tongTien.toString());
             });
             
             TableCell cell = new TableCell();
@@ -260,45 +263,53 @@ public class ThanhToanController implements Initializable {
     
     public void payHandler(ActionEvent evt) throws IOException {
         try {
-            UUID chuoiRD;
-            Connection conn = JdbcUtils.getConn();
-            HoaDonThanhToanService hdtts = new HoaDonThanhToanService(conn);
-            ChiTietHoaDonService cthds = new ChiTietHoaDonService(conn);
-            HoaDonThanhToan hdtt = null;
-            ChiTietHoaDon cthd = null;
-            VeMayBayService vmbs = new VeMayBayService(conn);
-            Calendar cal;
-            SimpleDateFormat simpleformat = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
-            String ngay;
-            
-            for(int i = 0; i < vmbChon.size(); i++) {
-                VeMayBay vmb = vmbChon.get(i);
-                hdtt = new HoaDonThanhToan();
-                cthd = new ChiTietHoaDon();
-                cal = Calendar.getInstance();
-                ngay = simpleformat.format(cal.getTime());
-                chuoiRD = UUID.randomUUID();
-                hdtt.setMaHoaDon(chuoiRD.toString());
-                hdtt.setTenNguoiTT(this.txtTenNguoiTT.getText());
-                hdtt.setTenKH(vmbs.getVeMayBayByMaVe(vmb.getMaVe()).getTenKH());
-                hdtt.setNgayTT(ngay);
-                if (hdtts.addHDTT(hdtt)) {
-                    cthd.setMaVe(vmb.getMaVe());
-                    cthd.setMaHoaDon(hdtt.getMaHoaDon());
-                    cthd.setGiaVe(vmb.getGiaVe());
-                    if (cthds.addHDTT(cthd)) {
-                        if (vmbs.updateTrangThaiVe(vmb.getMaVe())){
-                            Utils.getBox("Bạn đã thanh toán thành công vé " + vmb.getMaVe() + " !!!", Alert.AlertType.INFORMATION).show();
-                            loadVeMayBayChuaTT(nd);
-                            loadTTKH(null);
+            if (vmbChon.isEmpty() == false) {
+                UUID chuoiRD;
+                Connection conn = JdbcUtils.getConn();
+                HoaDonThanhToanService hdtts = new HoaDonThanhToanService(conn);
+                ChiTietHoaDonService cthds = new ChiTietHoaDonService(conn);
+                HoaDonThanhToan hdtt = null;
+                ChiTietHoaDon cthd = null;
+                VeMayBayService vmbs = new VeMayBayService(conn);
+                Calendar cal;
+                SimpleDateFormat simpleformat = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
+                String ngay;
+                for(int i = 0; i < vmbChon.size(); i++) {
+                    VeMayBay vmb = vmbChon.get(i);
+                    hdtt = new HoaDonThanhToan();
+                    cthd = new ChiTietHoaDon();
+                    cal = Calendar.getInstance();
+                    ngay = simpleformat.format(cal.getTime());
+                    chuoiRD = UUID.randomUUID();
+                    hdtt.setMaHoaDon(chuoiRD.toString());
+                    hdtt.setTenNguoiTT(this.txtTenNguoiTT.getText());
+                    hdtt.setTenKH(vmbs.getVeMayBayByMaVe(vmb.getMaVe()).getTenKH());
+                    hdtt.setNgayTT(ngay);
+                    if (hdtts.addHDTT(hdtt)) {
+                        cthd.setMaVe(vmb.getMaVe());
+                        cthd.setMaHoaDon(hdtt.getMaHoaDon());
+                        cthd.setGiaVe(vmb.getGiaVe());
+                        if (cthds.addHDTT(cthd)) {
+                            if (vmbs.updateTrangThaiVe(vmb.getMaVe())){
+                                Utils.getBox("Bạn đã thanh toán thành công vé " + vmb.getMaVe() + " !!!", Alert.AlertType.INFORMATION).show();
+                                this.tbVeChuaTT.getColumns().clear();
+                                this.txtTongTien.clear();
+                                
+                                
+                                loadTableVeChuaTT();
+                                loadVeMayBayChuaTT(nd);
+                                loadTTKH(null);
+                            }
                         }
                     }
+                    else
+                        Utils.getBox("Bạn đã thanh toán thất bại!!!", Alert.AlertType.INFORMATION).show();
                 }
-                else
-                    Utils.getBox("Bạn đã thanh toán thất bại!!!", Alert.AlertType.INFORMATION).show();
-                
-            }
+            vmbChon.removeAll(vmbChon);
             conn.close();
+            }
+            else 
+                Utils.getBox("Vui lòng chọn vé để thanh toán", Alert.AlertType.INFORMATION).show();
         } catch (SQLException ex) {
             Logger.getLogger(ThanhToanController.class.getName()).log(Level.SEVERE, null, ex);
         }

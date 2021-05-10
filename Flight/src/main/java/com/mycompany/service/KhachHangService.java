@@ -78,14 +78,4 @@ public class KhachHangService {
         
         return row > 0;
     }
-    
-    public boolean deleleKhachHang(int maKH) throws SQLException {
-        String sql = "DELETE FROM khachhang WHERE maKH=?";
-        PreparedStatement stm = this.conn.prepareStatement(sql);
-        stm.setInt(1, maKH);
-        
-        int row = stm.executeUpdate();
-        
-        return row > 0;
-    }
 }

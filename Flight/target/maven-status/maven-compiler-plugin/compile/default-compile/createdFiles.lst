@@ -1,6 +1,8 @@
 com\mycompany\flight\SecondaryController.class
 com\mycompany\service\SanBayService.class
 com\mycompany\pojo\MayBay.class
+com\mycompany\service\ChiTietHoaDonService.class
+com\mycompany\flight\ThanhToanController.class
 com\mycompany\service\LoaiTKService.class
 com\mycompany\pojo\Users.class
 com\mycompany\pojo\KhachHang.class
@@ -11,6 +13,7 @@ com\mycompany\flight\TrangChuController.class
 com\mycompany\flight\TraCuuVeController.class
 com\mycompany\pojo\PhieuDatCho.class
 com\mycompany\pojo\ChuyenBay.class
+com\mycompany\pojo\HoaDonThanhToan.class
 com\mycompany\flight\DatVeOnlineController.class
 com\mycompany\service\HangVeService.class
 com\mycompany\service\GiaVeService.class
@@ -20,10 +23,12 @@ com\mycompany\service\GheService.class
 com\mycompany\pojo\LoaiTK.class
 com\mycompany\service\ChuyenBayService.class
 com\mycompany\service\PhieuDatChoService.class
+com\mycompany\flight\ThayDoiQuiDinhController.class
 com\mycompany\service\KhachHangService.class
 com\mycompany\pojo\VeMayBay.class
 com\mycompany\pojo\HangVe.class
 com\mycompany\pojo\SanBay.class
+com\mycompany\service\HoaDonThanhToanService.class
 com\mycompany\flight\DatVeTaiQuayController.class
 com\mycompany\service\UsersService.class
 com\mycompany\service\MayBayService.class
@@ -32,3 +37,4 @@ com\mycompany\flight\DangNhapController.class
 com\mycompany\service\VeMayBayService.class
 com\mycompany\flight\Utils.class
 com\mycompany\flight\App.class
+com\mycompany\pojo\ChiTietHoaDon.class

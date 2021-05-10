@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ccffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ccffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.flight.ThayDoiQuiDinhController">
    <children>
       <Label layoutX="195.0" layoutY="14.0" style="-fx-background-color: lightblue;" text="Thay Đổi Qui Định">
          <font>
@@ -62,8 +62,8 @@
             <ChoiceBox layoutX="185.0" layoutY="62.0" prefHeight="25.0" prefWidth="41.0" />
          </children>
       </AnchorPane>
-      <Button layoutX="366.0" layoutY="343.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="79.0" text="Thoát" />
-      <Button layoutX="195.0" layoutY="343.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="79.0" text="Thay Đổi" />
+      <Button layoutX="366.0" layoutY="343.0" mnemonicParsing="false" onAction="#logoutHandler" prefHeight="30.0" prefWidth="79.0" text="Thoát" />
+      <Button layoutX="195.0" layoutY="343.0" mnemonicParsing="false" onAction="#changeHandler" prefHeight="30.0" prefWidth="79.0" text="Thay Đổi" />
       <ImageView fitHeight="94.0" fitWidth="92.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../images/uinv.jpg" />

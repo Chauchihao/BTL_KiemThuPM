@@ -120,6 +120,41 @@ public class VeMayBayService {
         return veMayBay;
     }
     
+    public List<VeMayBay> getVeMayBaysChonTT(Users u, ArrayList<String> maVe) throws SQLException{
+        String sql="";
+        if (u.getIdLoaiTK() == 1){
+            sql = "SELECT vemaybay.* FROM vemaybay, users"
+                    + " WHERE vemaybay.trangThai = 'Chưa thanh toán' "
+                    + " AND (tenNguoiDat = ? OR idLoaiTK = 1)"
+                    + " AND hoTen = tenNguoiDat";
+        }else if (u.getIdLoaiTK() == 2) 
+                sql = "SELECT * FROM vemaybay WHERE trangThai = 'Chưa thanh toán' "
+                        + "AND tenNguoiDat = ?";
+            
+        
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setString(1, u.getHoTen());
+        
+        ResultSet rs = stm.executeQuery();
+        
+        List<VeMayBay> veMayBay = new ArrayList<>();
+        while (rs.next()) {
+            VeMayBay vmb = new VeMayBay();
+            vmb.setMaVe(rs.getInt("maVe"));
+            vmb.setHangVe(rs.getString("hangVe"));
+            vmb.setGiaVe(rs.getBigDecimal("giaVe"));
+            vmb.setMaGhe(rs.getString("maGhe"));
+            vmb.setNgayXuatVe(rs.getString("ngayXuatVe"));
+            vmb.setTenNguoiDat(rs.getString("tenNguoiDat"));
+            vmb.setTenKH(rs.getString("tenKH"));
+            vmb.setMaCB(rs.getString("maChuyenBay"));
+            vmb.setTrangThai(rs.getString("trangThai"));
+            
+            veMayBay.add(vmb);
+        }
+        return veMayBay;
+    }
+    
     public VeMayBay getVeMayBay(String ngayXuatVe, String tenKH) throws SQLException {
         String sql = "SELECT * FROM vemaybay WHERE ngayXuatVe = ? AND tenKH = ?";
         PreparedStatement stm = this.conn.prepareStatement(sql);
