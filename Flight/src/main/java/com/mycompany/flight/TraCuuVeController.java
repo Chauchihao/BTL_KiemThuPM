@@ -137,42 +137,45 @@ public class TraCuuVeController implements Initializable {
                                  TableCell cell = (TableCell) ((Button) evt.getSource()).getParent();
                                  VeMayBay vmb = (VeMayBay) cell.getTableRow().getItem();
                                  
-                                 Connection conn = JdbcUtils.getConn();
-                                 VeMayBayService vmbs = new VeMayBayService(conn);
-                                 PhieuDatChoService pdcs = new PhieuDatChoService(conn);
-                                 GheService gs = new GheService(conn);
-                                 ChuyenBayService cbs = new ChuyenBayService(conn);
-                                 UsersService us = new UsersService(conn);
-                                 
-                                 int idLoaiTK = us.getUsersByTenNguoiDatVe(vmb.getTenNguoiDat()).getIdLoaiTK();
-                                 int idNguoiDat = us.getUsersByTenNguoiDatVe(vmb.getTenNguoiDat()).getId();
-                                 if ((nd.getIdLoaiTK() == 1 && idLoaiTK != 2) || idNguoiDat == nd.getId()) {
-                                    if (pdcs.getPhieuDatChoByMaVe(vmb.getMaVe()) != null) {
-                                       if (pdcs.delelePhieuDatCho(vmb.getMaVe())){
-                                          if (vmbs.deleleVeMayBay(vmb.getMaVe())) 
+                                 if (vmb.getTrangThai() == "Chưa thanh toán") {
+                                    Connection conn = JdbcUtils.getConn();
+                                    VeMayBayService vmbs = new VeMayBayService(conn);
+                                    PhieuDatChoService pdcs = new PhieuDatChoService(conn);
+                                    GheService gs = new GheService(conn);
+                                    ChuyenBayService cbs = new ChuyenBayService(conn);
+                                    UsersService us = new UsersService(conn);
+
+                                    int idLoaiTK = us.getUsersByTenNguoiDatVe(vmb.getTenNguoiDat()).getIdLoaiTK();
+                                    int idNguoiDat = us.getUsersByTenNguoiDatVe(vmb.getTenNguoiDat()).getId();
+                                    if ((nd.getIdLoaiTK() == 1 && idLoaiTK != 2) || idNguoiDat == nd.getId()) {
+                                       if (pdcs.getPhieuDatChoByMaVe(vmb.getMaVe()) != null) {
+                                          if (pdcs.delelePhieuDatCho(vmb.getMaVe())){
+                                             if (vmbs.deleleVeMayBay(vmb.getMaVe())) 
+                                                 if (gs.updateGhe(vmb.getMaGhe()
+                                                   , cbs.getChuyenBayByMaCB(vmb.getMaCB())
+                                                   .getSoHieuMayBay(), false) == true) {
+                                                   Utils.getBox("Đã hủy vé thành công", Alert.AlertType.INFORMATION).show();
+                                             } else
+                                                 Utils.getBox("Đã hủy vé thất bại", Alert.AlertType.ERROR).show();
+                                          }
+                                       } else {
+                                          if (vmbs.deleleVeMayBay(vmb.getMaVe()))
                                               if (gs.updateGhe(vmb.getMaGhe()
-                                                , cbs.getChuyenBayByMaCB(vmb.getMaCB())
-                                                .getSoHieuMayBay(), false) == true) {
-                                                Utils.getBox("Đã hủy vé thành công", Alert.AlertType.INFORMATION).show();
-                                          } else
-                                              Utils.getBox("Đã hủy vé thất bại", Alert.AlertType.ERROR).show();
+                                                   , cbs.getChuyenBayByMaCB(vmb.getMaCB())
+                                                   .getSoHieuMayBay(), false) == true) {
+                                               Utils.getBox("Đã hủy vé thành công", Alert.AlertType.INFORMATION).show();
+                                         } else
+                                             Utils.getBox("Đã hủy vé thất bại", Alert.AlertType.ERROR).show();
                                        }
-                                    } else {
-                                       if (vmbs.deleleVeMayBay(vmb.getMaVe()))
-                                           if (gs.updateGhe(vmb.getMaGhe()
-                                                , cbs.getChuyenBayByMaCB(vmb.getMaCB())
-                                                .getSoHieuMayBay(), false) == true) {
-                                            Utils.getBox("Đã hủy vé thành công", Alert.AlertType.INFORMATION).show();
-                                      } else
-                                          Utils.getBox("Đã hủy vé thất bại", Alert.AlertType.ERROR).show();
-                                    }
-                                    loadVeMayBay(vmb.getMaVe(), vmb.getMaCB(), vmb.getTenKH(), nd);
+                                       loadVeMayBay(vmb.getMaVe(), vmb.getMaCB(), vmb.getTenKH(), nd);
+                                    } else
+                                           Utils.getBox("Bạn không được phép hủy vé này", Alert.AlertType.ERROR).show();
+                                    if (vmb == null)
+                                        Utils.getBox("Không có vé để hủy tại đây", Alert.AlertType.ERROR).show();
+
+                                    conn.close();
                                  } else
-                                        Utils.getBox("Bạn không được phép hủy vé này", Alert.AlertType.ERROR).show();
-                                 if (vmb == null)
-                                     Utils.getBox("Không có vé để hủy tại đây", Alert.AlertType.ERROR).show();
-                                 
-                                 conn.close();
+                                     Utils.getBox("Không thể hủy vé đã thnah toán", Alert.AlertType.WARNING).show();
                              } catch (SQLException ex) {
                                  
                                  ex.printStackTrace();

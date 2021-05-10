@@ -6,17 +6,25 @@
 package com.mycompany.flight;
 
 import com.mycompany.pojo.ChuyenBay;
+import com.mycompany.pojo.KhachHang;
 import com.mycompany.pojo.MayBay;
+import com.mycompany.pojo.PhieuDatCho;
 import com.mycompany.pojo.SanBay;
 import com.mycompany.service.SanBayService;
 import com.mycompany.pojo.Users;
+import com.mycompany.pojo.VeMayBay;
 import com.mycompany.service.ChuyenBayService;
 import com.mycompany.service.JdbcUtils;
 import com.mycompany.service.MayBayService;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +36,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
@@ -54,6 +63,7 @@ public class TraCuuChuyenBayController implements Initializable {
     @FXML private Button btTiepTuc;
     @FXML private Button btThoat;
     Users nd;
+    LocalDate date = null;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -70,6 +80,7 @@ public class TraCuuChuyenBayController implements Initializable {
             
             
             
+            
             conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(TraCuuChuyenBayController.class.getName()).log(Level.SEVERE, null, ex);
@@ -79,6 +90,22 @@ public class TraCuuChuyenBayController implements Initializable {
 
     public void setTTUser(Users u){
         nd = u;
+        loadChuyenBay("", "", "");
+    }
+    
+    public void loadChuyenBay(String tenSanBayDi, String tenSanBayDen, String ngayGioKhoiHanh){
+        try {
+            this.tbvChuyenBayMC.getItems().clear();
+            Connection conn = JdbcUtils.getConn();
+            ChuyenBayService cbs = new ChuyenBayService(conn);
+            this.tbvChuyenBayMC.setItems(FXCollections.observableList(
+                    cbs.getChuyenBayMCs(tenSanBayDi, tenSanBayDen, ngayGioKhoiHanh)));
+            conn.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Logger.getLogger(TraCuuVeController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
     }
     
     private void loadTable() {
@@ -103,6 +130,28 @@ public class TraCuuChuyenBayController implements Initializable {
         
         this.tbvChuyenBayMC.getColumns().addAll(colMaCB, colSHCB, colNoiDi, colNoiDen, colTGKhoiHanh, colTGDen);
         this.tbvChuyenBayKH.getColumns().addAll(colMaCB, colSHCB, colNoiDi, colNoiDen, colTGKhoiHanh);
+    }
+    
+    public void traCuuHanler (ActionEvent evt) throws IOException {
+        Connection conn;
+        try {
+            conn = JdbcUtils.getConn();
+            if (this.ngayKhoiHanh.getValue()!= null)
+                    date = this.ngayKhoiHanh.getValue();
+            if (this.cbNoiDi_MC.getSelectionModel().isEmpty() 
+                    || this.cbNoiDen_MC.getSelectionModel().isEmpty()
+                    || date.toString().isEmpty())
+                Utils.getBox("Vui lòng chọn 1 thông tin cần tr cứu!!!", Alert.AlertType.WARNING).show();
+                        else {
+                            String tenSBDi = cbNoiDi_MC.getSelectionModel().getSelectedItem().toString();
+                            String tenSBDen = cbNoiDi_MC.getSelectionModel().getSelectedItem().toString();
+                            String ngayKH = date.toString().replace("/", "-");
+                            loadChuyenBay(tenSBDi, tenSBDen, ngayKH);
+                        }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DatVeOnlineController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void logoutHandler(ActionEvent evt) throws IOException {

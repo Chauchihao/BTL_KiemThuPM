@@ -68,4 +68,39 @@ public class ChuyenBayService {
         
         return cb;
     }
+    
+    public List<ChuyenBay> getChuyenBayMCs(String tenSanBayDi, String tenSanBayDen, String ngayGioKhoiHanh) throws SQLException{
+        String sql = "SELECT * FROM chuyenbay "
+                + " WHERE tenSanBayDi like concat('%', ?, '%') "
+                + " OR tenSanBayDen like concat('%', ?, '%') "
+                + " OR ngayGioKhoiHanh like concat('%', ?, '%')";
+                    
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        if (tenSanBayDi == "")
+            stm.setString(1, null);
+        else
+            stm.setString(1, tenSanBayDi);
+        if (tenSanBayDen == "")
+            stm.setString(2, null);
+        else
+            stm.setString(2, tenSanBayDen);
+        if (ngayGioKhoiHanh == null)
+            stm.setString(3, null);
+        else
+            stm.setString(3, ngayGioKhoiHanh);
+        ResultSet r = stm.executeQuery();
+        
+        List<ChuyenBay> chuyenBay = new ArrayList<>();
+        while (r.next()) {
+            ChuyenBay cb = new ChuyenBay();
+            cb.setMaChuyenBay(r.getString("maChuyenBay"));
+            cb.setSoHieuMayBay(r.getString("soHieuMayBay"));
+            cb.setTenSanBayDi(r.getString("tenSanBayDi"));
+            cb.setTenSanBayDen(r.getString("tenSanBayDen"));
+            cb.setNgayGioKhoiHanh(r.getString("ngayGioKhoiHanh"));
+            cb.setNgayGioDen(r.getString("ngayGioDen"));  
+            chuyenBay.add(cb);
+        }
+        return chuyenBay;
+    }
 }
