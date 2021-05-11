@@ -71,18 +71,12 @@ public class HangVeTester {
         }
    }
    
-//   @Test
-//    public void testTimeoutGetHangVeById() {
-//        Assertions.assertTimeoutPreemptively(Duration.ofSeconds(1), () -> {
-//            new HangVeService(conn).getHangVeById();
-//        });
-//    }
    
    @Test
    @DisplayName("Kiem thu getHangVe voi so luong HangVe")
     public void testQuantity() {
         try {
-            int expected = 3;
+            int expected = 2;
             HangVeService hvs = new HangVeService(conn);
             List<HangVe> hv = hvs.getHangVe();
             

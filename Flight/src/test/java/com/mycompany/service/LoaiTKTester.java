@@ -82,7 +82,7 @@ public class LoaiTKTester {
    @DisplayName("Kiem thu getLoaiTK voi so luong loaiTK")
     public void testQuantity() {
         try {
-            int expected = 2;
+            int expected = 3;
             LoaiTKService ltks = new LoaiTKService(conn);
             List<LoaiTK> ltk = ltks.getLoaiTK();
             
